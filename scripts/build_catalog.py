@@ -123,7 +123,22 @@ def get_json(url, timeout=90):
 # "this source failed". A catalogue that silently drops a section is worse than
 # one that admits it is stale: HDX quietly lost hot_flood_npl_buildings_fair
 # when the dataset started returning 403.
+# Failures are tagged with the section they belong to. An untagged list made the
+# carry-forward guard fire on unrelated outages: an HDX 403 plus a deliberate
+# reduction in scene count looked identical to the scene source degrading, and
+# the guard restored a stale scene list over a correct one.
 FAILURES = []
+_CURRENT_SOURCE = "other"
+
+
+def source_scope(name):
+    """Tag any failure recorded while this section is being fetched."""
+    global _CURRENT_SOURCE
+    _CURRENT_SOURCE = name
+
+
+def _fail(what, detail):
+    FAILURES.append({"source": _CURRENT_SOURCE, "what": what, "detail": detail})
 
 
 def try_json(url, what, attempts=4):
@@ -136,20 +151,20 @@ def try_json(url, what, attempts=4):
         except urllib.error.HTTPError as e:
             if e.code not in RETRYABLE or i == attempts:
                 print(f"  ! {what} failed: HTTP {e.code}", file=sys.stderr)
-                FAILURES.append(f"{what}: HTTP {e.code}")
+                _fail(what, f"HTTP {e.code}")
                 return None
             print(f"  . {what} HTTP {e.code}, retry {i}/{attempts - 1} in {delay}s",
                   file=sys.stderr)
         except (urllib.error.URLError, TimeoutError, ValueError, OSError) as e:
             if i == attempts:
                 print(f"  ! {what} failed: {e}", file=sys.stderr)
-                FAILURES.append(f"{what}: {e}")
+                _fail(what, str(e))
                 return None
             print(f"  . {what} error ({e}), retry {i}/{attempts - 1} in {delay}s",
                   file=sys.stderr)
         time.sleep(delay)
         delay *= 2
-    FAILURES.append(f"{what}: exhausted retries")
+    _fail(what, "exhausted retries")
     return None
 
 
@@ -451,25 +466,21 @@ def fetch_planet_crisis(cfg):
         }
         assets = item.get("assets") or {}
         stretch = PLANET_SENSORS[sensor]["rescale"]
-        # Several scenes share a day, and consecutive Pelican captures are one
-        # second apart, so seconds are needed to tell them apart in the list.
         stamp = f"{dt[:10]} {dt[11:19]}Z" if len(dt) >= 19 else dt[:10]
 
-        # OpenAerialMap already mirrors Planet's PlanetScope visual scenes, so
-        # only the renderings that add something (NIR, NDWI) are emitted for it.
-        want_visual = sensor != "PlanetScope"
-
-        # The 8-bit visual asset is the default, natural-colour entry.
-        if want_visual and "visual" in assets:
+        # One catalogue entry per scene, with the available renderings attached.
+        # Emitting a row per rendering tripled the list and made it hard to see
+        # what imagery actually exists.
+        renders = []
+        if "visual" in assets:
             url = urllib.parse.urljoin(item_url, assets["visual"]["href"])
-            sc = dict(base)
-            sc["id"] = f"planet-{item['id']}-visual"
-            sc["title"] = f"{sensor} {stamp} natural colour"
-            sc["tile_url"] = TITILER + urllib.parse.quote(url, safe="")
-            sc["group"] = group_of(sc)
-            scenes.append(sc)
+            renders.append({
+                "id": "natural",
+                "name": "Natural colour",
+                "tile_url": TITILER + urllib.parse.quote(url, safe=""),
+                "note": "8-bit RGB as published.",
+            })
 
-        # Multi-band assets get one entry per rendering.
         multi = next((a for a in ("pansharpened", "analytic", "analytic_sr") if a in assets), None)
         if multi:
             url = urllib.parse.urljoin(item_url, assets[multi]["href"])
@@ -484,13 +495,28 @@ def fetch_planet_crisis(cfg):
                 else:
                     parts += [f"bidx={b}" for b in r["bidx"]]
                     parts += [f"rescale={stretch}"] * len(r["bidx"])
-                sc = dict(base)
-                sc["id"] = f"planet-{item['id']}-{r['suffix'].lower().replace(' ', '-')}"
-                sc["title"] = f"{sensor} {stamp} {r['suffix']}"
-                sc["tile_url"] = TITILER.replace("{z}/{x}/{y}@1x?url=", "{z}/{x}/{y}@1x?") + "&".join(parts)
-                sc["note"] = r["note"]
-                sc["group"] = group_of(sc)
-                scenes.append(sc)
+                renders.append({
+                    "id": r["suffix"].lower().replace(" ", "-"),
+                    "name": r["suffix"],
+                    "tile_url": TITILER.replace("{z}/{x}/{y}@1x?url=", "{z}/{x}/{y}@1x?") + "&".join(parts),
+                    "note": r["note"],
+                })
+
+        # OpenAerialMap already mirrors Planet's PlanetScope visual scenes, so for
+        # that sensor only the renderings that add something are offered.
+        if sensor == "PlanetScope" and len(renders) > 1:
+            renders = [r for r in renders if r["id"] != "natural"]
+
+        if not renders:
+            continue
+
+        sc = dict(base)
+        sc["id"] = f"planet-{item['id']}"
+        sc["title"] = f"{sensor} {stamp}"
+        sc["renders"] = renders
+        sc["tile_url"] = renders[0]["tile_url"]
+        sc["group"] = group_of(sc)
+        scenes.append(sc)
 
     # Two SkySat captures can share a timestamp to the second, so disambiguate
     # any remaining collisions with a fragment of the source item id.
@@ -499,7 +525,7 @@ def fetch_planet_crisis(cfg):
         counts[sc["title"]] = counts.get(sc["title"], 0) + 1
     for sc in scenes:
         if counts.get(sc["title"], 0) > 1:
-            frag = sc["id"].split("-")[1].rsplit("_", 1)[-1][:6]
+            frag = sc["id"].split("-", 1)[1].rsplit("_", 1)[-1][:6]
             sc["title"] = f"{sc['title']} ({frag})"
 
     scenes.sort(key=lambda s: (s.get("acquired") or ""), reverse=True)
@@ -619,15 +645,18 @@ def build(cfg_path):
         previous = {}
 
     print("  OpenAerialMap ...")
+    source_scope("scenes")
     scenes = fetch_oam(cfg)
     print(f"    {len(scenes)} scenes, {sum(1 for s in scenes if s['in_aoi'])} in AOI, "
           f"{sum(1 for s in scenes if s['phase'] == 'post')} post-event")
 
     print("  Tasking Manager ...")
+    source_scope("tasking_manager")
     tm = fetch_tm(cfg)
     print(f"    {len(tm)} projects")
 
     print("  Planet crisis response ...")
+    source_scope("scenes")
     planet = fetch_planet_crisis(cfg)
     if planet:
         by_sensor = {}
@@ -644,6 +673,7 @@ def build(cfg_path):
         print("    none")
 
     print("  Provider STAC metadata ...")
+    source_scope("provider_metadata")
     provider_meta = fetch_provider_metadata(cfg)
     matched = 0
     for sc in scenes:
@@ -663,6 +693,7 @@ def build(cfg_path):
         matched += 1
     print(f"    {len(provider_meta)} provider items, cloud cover joined to {matched} scenes")
 
+    source_scope("task_grids")
     print("  Task grids ...")
     grid_path = os.path.join(DATA_DIR, f"{eid}.taskgrid.json")
     try:
@@ -701,6 +732,7 @@ def build(cfg_path):
         print("    task geometry unchanged")
 
     print("  Esri seamlines ...")
+    source_scope("esri_seamlines")
     seam = fetch_esri_seamlines(cfg)
     if seam["features"]:
         seam_path = os.path.join(DATA_DIR, f"{eid}.esri-seamlines.geojson")
@@ -716,12 +748,14 @@ def build(cfg_path):
         print("    none returned, keeping any existing file")
 
     print("  HDX ...")
+    source_scope("hdx")
     hdx = fetch_hdx(cfg)
     print(f"    {len(hdx)} datasets")
 
     # Carry forward any section that came back empty while its source was
     # failing, and record what happened so the viewer can say so out loud.
     sources = {}
+    failed_sources = {f["source"] for f in FAILURES}
     for name, value, key in (
         ("scenes", scenes, "scenes"),
         ("tasking_manager", tm, "tm_projects"),
@@ -729,7 +763,9 @@ def build(cfg_path):
     ):
         expected = len(previous.get(key) or [])
         got = len(value or [])
-        degraded = bool(FAILURES) and got < expected
+        # Only this section's own failures can mark it degraded, otherwise an
+        # unrelated outage reverts a section that is perfectly fine.
+        degraded = name in failed_sources and got < expected
         if degraded and previous.get(key):
             print(f"    ! {name}: {got} of an expected {expected}; keeping previous",
                   file=sys.stderr)
@@ -780,7 +816,7 @@ def build(cfg_path):
         print(f"  ! {len(FAILURES)} source failure(s) recorded in the catalogue:",
               file=sys.stderr)
         for f_ in FAILURES[:6]:
-            print(f"      {f_}", file=sys.stderr)
+            print(f"      [{f_['source']}] {f_['what']}: {f_['detail']}", file=sys.stderr)
 
     post = [s for s in scenes if s["phase"] == "post"]
     if post:

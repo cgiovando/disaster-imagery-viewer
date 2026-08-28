@@ -1,0 +1,23 @@
+# Cloudflare Worker that triggers the catalogue refresh on a schedule.
+#
+# GitHub's own Actions scheduler has proved unreliable for this repo: zero
+# `schedule` events were delivered in the first 12 hours despite a valid, active
+# hourly cron on the default branch. Cloudflare cron triggers are dependable, so
+# the schedule lives here and pokes GitHub through repository_dispatch.
+#
+# The GitHub token is NOT stored in this file. It is a Worker secret, set once:
+#   wrangler secret put GITHUB_TOKEN
+# Use a fine-grained PAT scoped to cgiovando/disaster-imagery-viewer with
+# "Contents: read" and "Actions: write". Secrets never live in this file.
+
+name = "disaster-imagery-refresh"
+main = "worker.js"
+compatibility_date = "2026-08-01"
+
+[triggers]
+# Hourly at :07. Not on the hour, where schedulers bunch up.
+crons = ["7 * * * *"]
+
+[vars]
+GITHUB_REPO = "cgiovando/disaster-imagery-viewer"
+DISPATCH_EVENT = "refresh"

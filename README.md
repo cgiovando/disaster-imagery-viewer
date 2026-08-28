@@ -155,6 +155,17 @@ Radar answers the persistent monsoon cloud that defeats optical here. Note that
 in steep terrain radar shadow also reads as smooth, so the water mask is
 indicative and not a validated flood product.
 
+## Refresh trigger
+
+GitHub Actions delivered zero `schedule` events for this repository across its
+first day, despite a valid hourly cron on an active workflow on the default
+branch, with the repo public, not a fork, Actions enabled and no queued runs.
+`workflow_dispatch` worked throughout. The schedule therefore lives in a
+Cloudflare Worker (`worker/`) which fires hourly and pokes GitHub through
+`repository_dispatch`. See `worker/README.md` to deploy it. The Actions cron is
+left in place in case GitHub starts honouring it; the workflow's `concurrency`
+group serialises any duplicate run.
+
 ## Stack
 
 MapLibre GL JS 5.6.1, PMTiles 4.5.0, fflate 0.8.2, vanilla JavaScript, no build

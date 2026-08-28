@@ -195,3 +195,35 @@ input[type=search]:focus,select:focus{outline:none;border-color:#43505f}
 .health p{margin:0 0 5px;font-size:11.5px;line-height:1.45;color:#f0b8b8}
 .health p:last-child{margin-bottom:0}
 .health b{color:var(--hot)}
+
+/* Faceted catalogue controls */
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{
+  background:var(--bg);border:1px solid var(--line);color:var(--fg3);
+  border-radius:11px;padding:3px 9px;font:inherit;font-size:11px;cursor:pointer;
+}
+.chip:hover{color:var(--fg2);border-color:#3c4653}
+.chip.on{background:rgba(215,63,63,.16);border-color:rgba(215,63,63,.5);color:#f0b8b8}
+.chip .n{opacity:.6;margin-left:4px;font-variant-numeric:tabular-nums}
+.slider-row{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--fg2)}
+.slider-row label{flex:0 0 auto}
+.slider-row b{color:var(--fg);font-variant-numeric:tabular-nums}
+.slider-row input[type=range]{flex:1;accent-color:var(--hot);height:3px}
+.sort-row{display:flex;align-items:center;gap:8px}
+.sort-row label{font-size:11.5px;color:var(--fg2);flex:0 0 auto}
+.sort-row select{flex:1}
+
+/* Per-scene rendering selector */
+.render-row{display:flex;align-items:center;gap:6px;margin-top:5px}
+.render-row select{font-size:11px;padding:3px 6px}
+.render-row .lbl{font-size:10.5px;color:var(--fg3);flex:0 0 auto}
+
+/* Best-available cards */
+.best{display:block;background:var(--bg3);border:1px solid var(--line);border-left:2px solid var(--drone);
+  border-radius:6px;padding:8px 10px;margin-bottom:7px;cursor:pointer;width:100%;text-align:left;font:inherit}
+.best:hover{border-color:#43505f}
+.best .k{font-size:10px;font-weight:650;letter-spacing:.05em;text-transform:uppercase;color:var(--drone)}
+.best .v{font-size:12.5px;color:var(--fg);margin-top:3px;line-height:1.35}
+.best .d{font-size:10.5px;color:var(--fg3);margin-top:2px;font-variant-numeric:tabular-nums}
+.best.pair{border-left-color:var(--pre)}
+.best.pair .k{color:var(--pre)}
