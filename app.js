@@ -130,6 +130,28 @@ function fmtGsd(cm) {
   return cm >= 100 ? `${(cm / 100).toFixed(cm >= 1000 ? 0 : 1)} m` : `${cm.toFixed(0)} cm`;
 }
 
+/* Relative timestamps are rendered once, so refresh them on a timer. A viewer
+ * left open through a response would otherwise still claim the catalogue was
+ * built "3 min ago" hours later. */
+function startAgoTicker() {
+  const tick = () => {
+    const cat = state.catalog && state.catalog.generated;
+    if (cat) {
+      const f = $('#freshness');
+      if (f) f.textContent = `Event ${fmtDate(state.cfg.eventDate)} \u00b7 catalogue ${ago(cat)}`;
+    }
+    document.querySelectorAll('.js-ago').forEach((el2) => {
+      const iso = el2.dataset.iso;
+      if (iso) el2.textContent = ago(iso);
+    });
+    if (state.osmFresh) {
+      const o = $('#osm-fresh');
+      if (o) o.textContent = 'OSM snapshot ' + ago(state.osmFresh.replace(' ', 'T'));
+    }
+  };
+  setInterval(tick, 30000);
+}
+
 function ago(iso) {
   if (!iso) return '';
   const mins = Math.round((Date.now() - new Date(iso).getTime()) / 60000);
@@ -988,10 +1010,11 @@ function renderAbout() {
     providers; nothing is re-hosted here.</p>
 
     <h3>Freshness</h3>
-    <p>Imagery catalogue and task grids baked ${esc(c.generated)} (${ago(c.generated)}) and
+    <p>Imagery catalogue and task grids built
+    <b class="js-ago" data-iso="${esc(c.generated)}" title="${esc(c.generated)}">${ago(c.generated)}</b>,
     refreshed hourly by CI. Tasking Manager progress is re-read live in your
-    browser from the insta-tm mirror on each load, and Sentinel-1 is queried live from
-    the Planetary Computer.</p>
+    browser from the insta-tm mirror on each load, and Sentinel-1 and Sentinel-2
+    are queried live from the Planetary Computer.</p>
     <p>The source APIs cannot be called from a static page: the OpenAerialMap API
     restricts CORS to its own site and the Tasking Manager API sends no CORS header
     at all. That is why the catalogue is pre-built.</p>
@@ -1845,6 +1868,7 @@ async function boot() {
   };
   window.addEventListener('resize', () => { if (state.compare) setSplit(state.splitPct); });
   initSwipeDrag();
+  startAgoTicker();
 
   // Debug handle. Useful when something looks wrong mid-response and someone
   // needs to inspect layer state from the console.
