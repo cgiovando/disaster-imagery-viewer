@@ -55,38 +55,15 @@
           </div>
         </div>
 
-        <div class="block" id="best-block" hidden>
-          <div class="block-head"><h2>Best available here</h2></div>
-          <div id="best-list"></div>
-        </div>
-
         <div class="block">
           <div class="block-head">
             <h2>Imagery catalogue</h2>
             <span class="count" id="scene-count"></span>
           </div>
-
           <div class="filters">
-            <input type="search" id="scene-search" placeholder="Filter by name, provider, year&hellip;">
-            <div class="chips" id="chip-phase"></div>
-            <div class="chips" id="chip-provider"></div>
-            <div class="slider-row">
-              <label for="cloud-max">Cloud &le; <b id="cloud-max-val">100%</b></label>
-              <input type="range" id="cloud-max" min="0" max="100" step="5" value="100">
-            </div>
-            <label class="chk"><input type="checkbox" id="view-only"><span>Covers this view</span></label>
             <label class="chk"><input type="checkbox" id="aoi-only" checked><span>Corridor AOI only</span></label>
-            <div class="sort-row">
-              <label for="scene-sort">Sort</label>
-              <select id="scene-sort">
-                <option value="newest">Newest first</option>
-                <option value="clearest">Least cloud</option>
-                <option value="sharpest">Sharpest</option>
-                <option value="coverage">Most coverage here</option>
-              </select>
-            </div>
+            <input type="search" id="scene-search" placeholder="Filter by name, provider, year&hellip;">
           </div>
-
           <div id="scene-groups"></div>
         </div>
 

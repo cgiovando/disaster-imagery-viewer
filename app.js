@@ -101,9 +101,6 @@ const state = {
   optical: [],
   sarMode: 'db',
   opticalMode: 'tci',
-  filters: { phase: new Set(), provider: new Set(), maxCloud: 100, viewOnly: false },
-  sort: 'newest',
-  renderChoice: {},   // sceneId -> render id, for multi-rendering scenes
   sar: [],               // Sentinel-1 scenes from the Planetary Computer
   osmFresh: null
 };
@@ -128,41 +125,9 @@ function fmtDate(iso) {
   return `${String(d.getUTCDate()).padStart(2, '0')} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
 }
 
-/* Fraction of the current viewport a scene's footprint covers. Used both for
- * the "covers this view" filter and for ranking, because over a long river
- * corridor most scenes are irrelevant to wherever the user is actually looking. */
-function viewCoverage(scene) {
-  if (!scene.bbox || scene.bbox.length !== 4 || !state.mapA) return 0;
-  const b = state.mapA.getBounds();
-  const [w, s_, e, n] = scene.bbox;
-  const iw = Math.max(0, Math.min(e, b.getEast()) - Math.max(w, b.getWest()));
-  const ih = Math.max(0, Math.min(n, b.getNorth()) - Math.max(s_, b.getSouth()));
-  const va = (b.getEast() - b.getWest()) * (b.getNorth() - b.getSouth());
-  return va > 0 ? (iw * ih) / va : 0;
-}
-
-function sceneRenders(scene) {
-  return Array.isArray(scene.renders) && scene.renders.length ? scene.renders : null;
-}
-
-function activeRender(scene) {
-  const rs = sceneRenders(scene);
-  if (!rs) return null;
-  const chosen = state.renderChoice[scene.id];
-  return rs.find((r) => r.id === chosen) || rs[0];
-}
-
-function sceneTileUrl(scene) {
-  const r = activeRender(scene);
-  return (r && r.tile_url) || scene.tile_url || scene.tms;
-}
-
 function fmtGsd(cm) {
   if (cm == null) return null;
-  if (cm >= 100) return `${(cm / 100).toFixed(cm >= 1000 ? 0 : 1)} m`;
-  // Keep a decimal below 10 cm: for drone orthos 3.5 cm and 6 cm are
-  // meaningfully different, and both would round to the same figure.
-  return cm < 10 ? `${cm.toFixed(1)} cm` : `${cm.toFixed(0)} cm`;
+  return cm >= 100 ? `${(cm / 100).toFixed(cm >= 1000 ? 0 : 1)} m` : `${cm.toFixed(0)} cm`;
 }
 
 /* Relative timestamps are rendered once, so refresh them on a timer. A viewer
@@ -191,12 +156,7 @@ function renderHealth() {
     notes.push(`Showing previously saved data for: <b>${stale.map(esc).join(', ')}</b>.`);
   }
   if ((cat.failures || []).length) {
-    // Failures are objects tagged with the section they belong to.
-    const fmt = (f) => typeof f === 'string' ? f
-      : `${f.what || f.source || 'source'}${f.detail ? ' (' + f.detail + ')' : ''}`;
-    const list = cat.failures.slice(0, 3).map((f) => esc(fmt(f))).join('; ');
-    const more = cat.failures.length > 3 ? ` and ${cat.failures.length - 3} more` : '';
-    notes.push(`${cat.failures.length} upstream source${cat.failures.length > 1 ? 's' : ''} failed on the last build: ${list}${more}.`);
+    notes.push(`${cat.failures.length} upstream source${cat.failures.length > 1 ? 's' : ''} failed on the last build: ${cat.failures.slice(0, 3).map(esc).join('; ')}.`);
   }
 
   box.hidden = notes.length === 0;
@@ -638,15 +598,14 @@ function initSwipeDrag() {
 /* ------------------------------------------------------------ layer stack */
 
 function toggleScene(scene) {
-  const r = activeRender(scene);
-  const key = 's:' + scene.id + (r && sceneRenders(scene).length > 1 ? ':' + r.id : '');
+  const key = 's:' + scene.id;
   const i = state.active.findIndex((a) => a.key === key);
   if (i >= 0) {
     state.active.splice(i, 1);
   } else {
     state.active.unshift({
-      key, kind: 'scene', scene,
-      url: sceneTileUrl(scene).replace(/\{-y\}/g, '{y}'),
+      key, name: scene.title, kind: 'scene', scene,
+      url: (scene.tile_url || scene.tms).replace(/\{-y\}/g, '{y}'),
       opacity: 1, side: 'right',
       attribution: scene.attribution || `${scene.provider} via OpenAerialMap`,
       maxzoom: 22
@@ -738,180 +697,51 @@ function renderActive() {
   }
 }
 
-/* Which scenes survive the current facets. Kept separate from rendering so the
- * chip counts and the "best available" picks work off the same rule. */
-function filteredScenes(ignore) {
-  const f = state.filters;
-  const q = ($('#scene-search').value || '').trim().toLowerCase();
-  const aoiOnly = $('#aoi-only').checked;
-
-  return state.scenes.filter((s) => {
-    if (aoiOnly && !s.in_aoi) return false;
-    if (q && !(
-      (s.title || '').toLowerCase().includes(q) ||
-      (s.provider || '').toLowerCase().includes(q) ||
-      (s.sensor || '').toLowerCase().includes(q) ||
-      (s.acquired || '').toLowerCase().includes(q)
-    )) return false;
-    if (ignore !== 'phase' && f.phase.size && !f.phase.has(s.phase)) return false;
-    if (ignore !== 'provider' && f.provider.size && !f.provider.has(providerKey(s))) return false;
-    // Scenes with no published cloud figure are never hidden by the slider,
-    // otherwise tightening it would silently drop every drone ortho.
-    if (ignore !== 'cloud' && f.maxCloud < 100 &&
-        s.cloud_pct != null && s.cloud_pct > f.maxCloud) return false;
-    if (f.viewOnly && viewCoverage(s) <= 0.001) return false;
-    return true;
-  });
-}
-
-/* Collapse the long tail of provider strings into a few useful buckets. */
-function providerKey(s) {
-  const p = (s.provider || '').toLowerCase();
-  if (s.is_drone || (s.gsd_cm != null && s.gsd_cm < 25)) return 'Drone';
-  if (p.includes('vantor') || p.includes('maxar')) return 'Vantor';
-  if (p.includes('planet')) return 'Planet';
-  if (p.includes('digitalglobe')) return 'Archive';
-  return 'Other';
-}
-
-function sortScenes(list) {
-  const arr = list.slice();
-  if (state.sort === 'clearest') {
-    arr.sort((a, b) => (a.cloud_pct ?? 101) - (b.cloud_pct ?? 101) ||
-                       ((b.acquired || '') < (a.acquired || '') ? -1 : 1));
-  } else if (state.sort === 'sharpest') {
-    arr.sort((a, b) => (a.gsd_cm ?? 1e9) - (b.gsd_cm ?? 1e9));
-  } else if (state.sort === 'coverage') {
-    arr.sort((a, b) => viewCoverage(b) - viewCoverage(a));
-  } else {
-    arr.sort((a, b) => ((b.acquired || '') > (a.acquired || '') ? 1 : -1));
-  }
-  return arr;
-}
-
-function renderChips() {
-  const f = state.filters;
-  const mk = (box, key, values) => {
-    const wrap = $(box);
-    wrap.innerHTML = '';
-    for (const v of values) {
-      const n = filteredScenes(key).filter((s) =>
-        key === 'phase' ? s.phase === v : providerKey(s) === v).length;
-      if (!n && !f[key].has(v)) continue;
-      const b = el('button', 'chip' + (f[key].has(v) ? ' on' : ''));
-      b.innerHTML = `${esc(v === 'post' ? 'Post-event' : v === 'pre' ? 'Pre-event' : v)}<span class="n">${n}</span>`;
-      b.onclick = () => {
-        f[key].has(v) ? f[key].delete(v) : f[key].add(v);
-        renderCatalog();
-      };
-      wrap.appendChild(b);
-    }
-  };
-  mk('#chip-phase', 'phase', ['post', 'pre']);
-  mk('#chip-provider', 'provider', ['Vantor', 'Planet', 'Drone', 'Archive']);
-}
-
-/* Answer "what should I be looking at right now" without making anyone browse
- * a hundred rows. Picks are computed from the same filtered set as the list. */
-function renderBest() {
-  const box = $('#best-list');
-  const block = $('#best-block');
-  const pool = filteredScenes().filter((s) => !s.is_drone || true);
-  const inView = state.filters.viewOnly
-    ? pool : pool.filter((s) => viewCoverage(s) > 0.001);
-  const scope = inView.length ? inView : pool;
-
-  const withCloud = (arr) => arr.filter((s) => s.cloud_pct != null);
-  const post = scope.filter((s) => s.phase === 'post');
-  const pre = scope.filter((s) => s.phase === 'pre');
-
-  const picks = [];
-  const clearest = withCloud(post).sort((a, b) => a.cloud_pct - b.cloud_pct)[0];
-  if (clearest) {
-    picks.push({ k: 'Clearest post-event', s: clearest,
-      d: `${fmtDate(clearest.acquired)} · ${fmtGsd(clearest.gsd_cm)} · ${Math.round(clearest.cloud_pct)}% cloud` });
-  }
-  const sharpestPre = pre.filter((s) => s.gsd_cm != null)
-    .sort((a, b) => a.gsd_cm - b.gsd_cm)[0];
-  if (sharpestPre) {
-    picks.push({ k: 'Sharpest pre-event', s: sharpestPre,
-      d: `${fmtDate(sharpestPre.acquired)} · ${fmtGsd(sharpestPre.gsd_cm)} · ${esc(sharpestPre.provider)}` });
-  }
-  const newestPost = post.sort((a, b) => ((b.acquired || '') > (a.acquired || '') ? 1 : -1))[0];
-  if (newestPost && sharpestPre) {
-    picks.push({ k: 'Compare before and after', pair: [sharpestPre, newestPost],
-      d: `${fmtGsd(sharpestPre.gsd_cm)} pre vs ${fmtGsd(newestPost.gsd_cm)} post, opens in swipe` });
-  }
-
-  box.innerHTML = '';
-  block.hidden = picks.length === 0;
-  for (const p of picks) {
-    const b = el('button', 'best' + (p.pair ? ' pair' : ''));
-    b.innerHTML = `<div class="k">${p.pair ? '\u21c4 ' : '\u2605 '}${esc(p.k)}</div>` +
-      `<div class="v">${esc(p.pair ? `${p.pair[0].title} \u2194 ${p.pair[1].title}` : p.s.title)}</div>` +
-      `<div class="d">${p.d}</div>`;
-    b.onclick = () => {
-      if (p.pair) {
-        state.active = [];
-        toggleScene(p.pair[1]);
-        toggleScene(p.pair[0]);
-        const cb = $('#compare-toggle');
-        if (!cb.checked) { cb.checked = true; enableCompare(true); }
-      } else {
-        toggleScene(p.s);
-        if (p.s.bbox && p.s.bbox.length === 4) fitBbox(p.s.bbox);
-      }
-    };
-    box.appendChild(b);
-  }
-}
-
 function renderCatalog() {
   const wrap = $('#scene-groups');
+  const q = ($('#scene-search').value || '').trim().toLowerCase();
+  const aoiOnly = $('#aoi-only').checked;
   wrap.innerHTML = '';
-  const matched = sortScenes(filteredScenes());
 
-  // Grouping still helps, but when an explicit sort is chosen the groups fight
-  // it, so a non-default sort renders one flat list.
-  if (state.sort === 'newest') {
-    let shown = 0;
-    for (const g of GROUPS) {
-      const scenes = matched.filter((s) => s.group === g.id);
-      if (!scenes.length) continue;
-      shown += scenes.length;
-      const box = el('div', 'group' + (state.collapsed.has(g.id) ? ' collapsed' : ''));
-      const head = el('button', 'group-head');
-      head.innerHTML =
-        `<span class="caret">${state.collapsed.has(g.id) ? '&#9654;' : '&#9660;'}</span>` +
-        `<span class="dot" style="background:${g.color}"></span>` +
-        `<span>${esc(g.name)}</span><span class="n">${scenes.length}</span>`;
-      head.onclick = () => {
-        if (state.collapsed.has(g.id)) state.collapsed.delete(g.id);
-        else state.collapsed.add(g.id);
-        renderCatalog();
-      };
-      box.appendChild(head);
-      const body = el('div', 'group-body');
-      for (const sc of scenes) body.appendChild(sceneRow(sc));
-      box.appendChild(body);
-      wrap.appendChild(box);
+  let shown = 0;
+  for (const g of GROUPS) {
+    let scenes = state.scenes.filter((s) => s.group === g.id);
+    if (aoiOnly) scenes = scenes.filter((s) => s.in_aoi);
+    if (q) {
+      scenes = scenes.filter((s) =>
+        (s.title || '').toLowerCase().includes(q) ||
+        (s.provider || '').toLowerCase().includes(q) ||
+        (s.sensor || '').toLowerCase().includes(q) ||
+        (s.acquired || '').toLowerCase().includes(q));
     }
-    if (!shown) wrap.appendChild(el('p', 'empty', 'No scenes match these filters.'));
-  } else {
-    if (!matched.length) wrap.appendChild(el('p', 'empty', 'No scenes match these filters.'));
-    for (const sc of matched) wrap.appendChild(sceneRow(sc));
+    if (!scenes.length) continue;
+    shown += scenes.length;
+
+    const box = el('div', 'group' + (state.collapsed.has(g.id) ? ' collapsed' : ''));
+    const head = el('button', 'group-head');
+    head.innerHTML =
+      `<span class="caret">${state.collapsed.has(g.id) ? '&#9654;' : '&#9660;'}</span>` +
+      `<span class="dot" style="background:${g.color}"></span>` +
+      `<span>${esc(g.name)}</span><span class="n">${scenes.length}</span>`;
+    head.onclick = () => {
+      if (state.collapsed.has(g.id)) state.collapsed.delete(g.id); else state.collapsed.add(g.id);
+      renderCatalog();
+    };
+    box.appendChild(head);
+
+    const body = el('div', 'group-body');
+    for (const s of scenes) body.appendChild(sceneRow(s));
+    box.appendChild(body);
+    wrap.appendChild(box);
   }
 
-  const total = state.scenes.filter((s) => !$('#aoi-only').checked || s.in_aoi).length;
-  $('#scene-count').textContent = `${matched.length} of ${total}`;
-  renderChips();
-  renderBest();
+  if (!shown) wrap.appendChild(el('p', 'empty', 'No scenes match this filter.'));
+  const total = state.scenes.filter((s) => !aoiOnly || s.in_aoi).length;
+  $('#scene-count').textContent = `${shown} of ${total}`;
 }
 
 function sceneRow(s) {
-  const rs = sceneRenders(s);
-  const cur = activeRender(s);
-  const key = 's:' + s.id + (cur && rs.length > 1 ? ':' + cur.id : '');
+  const key = 's:' + s.id;
   const on = isActive(key);
   const row = el('div', 'scene' + (on ? ' on' : ''));
 
@@ -939,28 +769,6 @@ function sceneRow(s) {
   bits.push(esc(s.provider));
   body.appendChild(el('div', 'd', bits.join(' &middot; ')));
   if (s.note) body.appendChild(el('div', 'note', esc(s.note)));
-
-  // Multi-band scenes offer several renderings. One row with a selector beats
-  // one row per rendering, which tripled the list.
-  if (rs && rs.length > 1) {
-    const row = el('div', 'render-row');
-    row.appendChild(el('span', 'lbl', 'view'));
-    const sel = el('select');
-    for (const r of rs) {
-      const o = el('option'); o.value = r.id; o.textContent = r.name;
-      if (cur && r.id === cur.id) o.selected = true;
-      sel.appendChild(o);
-    }
-    sel.onclick = (e) => e.stopPropagation();
-    sel.onchange = (e) => {
-      e.stopPropagation();
-      state.renderChoice[s.id] = sel.value;
-      renderCatalog();
-    };
-    row.appendChild(sel);
-    body.appendChild(row);
-    if (cur && cur.note) body.appendChild(el('div', 'note', esc(cur.note)));
-  }
   row.appendChild(body);
 
   const link = el('a', 'ext', '&#8599;');
@@ -2091,19 +1899,6 @@ async function boot() {
   });
   $('#scene-search').oninput = renderCatalog;
   $('#aoi-only').onchange = renderCatalog;
-  $('#scene-sort').onchange = (e) => { state.sort = e.target.value; renderCatalog(); };
-  $('#cloud-max').oninput = (e) => {
-    state.filters.maxCloud = +e.target.value;
-    $('#cloud-max-val').textContent = `${e.target.value}%`;
-    renderCatalog();
-  };
-  $('#view-only').onchange = (e) => { state.filters.viewOnly = e.target.checked; renderCatalog(); };
-  // Coverage-based filtering and ranking depend on the viewport, so refresh the
-  // list when the map settles if either is in play.
-  state.mapA.on('moveend', () => {
-    if (state.filters.viewOnly || state.sort === 'coverage') renderCatalog();
-    else renderBest();
-  });
   $('#clear-active').onclick = () => {
     state.active = []; renderActive(); renderCatalog(); renderMosaics(); renderAll(); writeHash();
   };
