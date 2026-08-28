@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T20:35:15Z",
+ "generated": "2026-08-28T21:57:52Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -3485,7 +3485,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 6,
+   "percent_validated": 7,
    "url": "https://tasks.hotosm.org/projects/63102",
    "aoi": {
     "type": "MultiPolygon",
@@ -9814,7 +9814,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T10:05:13.518000Z",
-   "last_updated": "2026-08-28T19:10:23.628000Z",
+   "last_updated": "2026-08-28T20:57:31.843000Z",
    "total_tasks": null,
    "task_status": {
     "88": "MAPPED",
@@ -9943,15 +9943,15 @@
     "128": "MAPPED",
     "130": "MAPPED",
     "113": "MAPPED",
-    "116": "MAPPED",
     "111": "MAPPED",
     "129": "MAPPED",
     "133": "MAPPED",
-    "115": "MAPPED",
     "112": "MAPPED",
     "108": "MAPPED",
     "123": "VALIDATED",
     "122": "VALIDATED",
+    "116": "VALIDATED",
+    "115": "VALIDATED",
     "150": "MAPPED",
     "143": "MAPPED",
     "156": "MAPPED",
@@ -9996,7 +9996,6 @@
     "180": "MAPPED",
     "183": "MAPPED",
     "184": "MAPPED",
-    "185": "MAPPED",
     "190": "MAPPED",
     "193": "MAPPED",
     "188": "MAPPED",
@@ -10004,6 +10003,7 @@
     "197": "VALIDATED",
     "196": "VALIDATED",
     "195": "VALIDATED",
+    "185": "MAPPED",
     "148": "MAPPED",
     "5": "MAPPED",
     "137": "MAPPED",
@@ -10019,8 +10019,8 @@
     "11": "BADIMAGERY"
    },
    "task_counts": {
-    "MAPPED": 186,
-    "VALIDATED": 12,
+    "MAPPED": 184,
+    "VALIDATED": 14,
     "BADIMAGERY": 2
    }
   },
@@ -10030,7 +10030,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 16,
+   "percent_validated": 17,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
     "type": "MultiPolygon",
@@ -16359,7 +16359,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-28T20:34:37.391000Z",
+   "last_updated": "2026-08-28T20:43:01.296000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
@@ -16404,6 +16404,7 @@
     "640": "MAPPED",
     "641": "MAPPED",
     "639": "MAPPED",
+    "286": "VALIDATED",
     "646": "MAPPED",
     "645": "MAPPED",
     "643": "MAPPED",
@@ -16453,8 +16454,6 @@
     "634": "MAPPED",
     "34": "MAPPED",
     "32": "MAPPED",
-    "25": "MAPPED",
-    "31": "MAPPED",
     "26": "MAPPED",
     "27": "MAPPED",
     "33": "MAPPED",
@@ -16477,6 +16476,8 @@
     "22": "VALIDATED",
     "30": "VALIDATED",
     "28": "VALIDATED",
+    "25": "MAPPED",
+    "31": "MAPPED",
     "47": "MAPPED",
     "54": "MAPPED",
     "68": "MAPPED",
@@ -16599,7 +16600,6 @@
     "199": "MAPPED",
     "187": "MAPPED",
     "186": "MAPPED",
-    "207": "MAPPED",
     "182": "MAPPED",
     "208": "MAPPED",
     "192": "MAPPED",
@@ -16619,6 +16619,7 @@
     "179": "MAPPED",
     "195": "MAPPED",
     "184": "MAPPED",
+    "207": "VALIDATED",
     "237": "MAPPED",
     "238": "MAPPED",
     "239": "MAPPED",
@@ -16666,11 +16667,8 @@
     "279": "MAPPED",
     "280": "MAPPED",
     "261": "MAPPED",
-    "267": "MAPPED",
     "247": "MAPPED",
-    "266": "MAPPED",
     "252": "MAPPED",
-    "265": "MAPPED",
     "253": "MAPPED",
     "251": "MAPPED",
     "277": "MAPPED",
@@ -16678,6 +16676,9 @@
     "249": "MAPPED",
     "262": "MAPPED",
     "259": "MAPPED",
+    "266": "VALIDATED",
+    "265": "VALIDATED",
+    "267": "VALIDATED",
     "314": "MAPPED",
     "310": "MAPPED",
     "311": "MAPPED",
@@ -16707,8 +16708,7 @@
     "292": "MAPPED",
     "300": "VALIDATED",
     "290": "VALIDATED",
-    "286": "LOCKED_FOR_VALIDATION",
-    "287": "LOCKED_FOR_VALIDATION",
+    "287": "VALIDATED",
     "329": "MAPPED",
     "330": "MAPPED",
     "338": "MAPPED",
@@ -17012,10 +17012,9 @@
     "9": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 532,
-    "VALIDATED": 105,
-    "BADIMAGERY": 9,
-    "LOCKED_FOR_VALIDATION": 2
+    "MAPPED": 528,
+    "VALIDATED": 111,
+    "BADIMAGERY": 9
    }
   }
  ],
