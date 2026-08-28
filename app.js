@@ -48,6 +48,16 @@ const OSM_NEW = '#ffd24d';      // edited since the event
 const OSM_BUILDING = '#4d9de0';
 const OSM_ROAD = '#5ec26a';
 
+// Age bands for Esri basemap capture dates. The point is to make it obvious at
+// a glance where a mapper is tracing something years out of date.
+const SEAMLINE_BANDS = [
+  { from: 2025, color: '#5ec26a', label: '2025 or newer' },
+  { from: 2022, color: '#4d9de0', label: '2022-2024' },
+  { from: 2019, color: '#f0c94d', label: '2019-2021' },
+  { from: 2016, color: '#f0883e', label: '2016-2018' },
+  { from: 0,    color: '#d73f3f', label: 'before 2016' }
+];
+
 const BASEMAPS = [
   { id: 'esri', name: 'Esri World Imagery', note: 'Default in most OSM editors',
     tiles: ['https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
@@ -359,6 +369,23 @@ function addVectors(map) {
         paint: { 'line-color': layer.color || '#c8a3ff', 'line-width': 1.1, 'line-opacity': 0.9 }
       });
     }
+  }
+
+  // Esri basemap capture dates, drawn under everything else.
+  if (state.vectorsOn.has('esri-seamlines') && state._seamlines) {
+    map.addSource('seamlines', { type: 'geojson', data: state._seamlines });
+    const colorExpr = ['step', ['coalesce', ['get', 'year'], 0]];
+    const asc = SEAMLINE_BANDS.slice().reverse();
+    colorExpr.push(asc[0].color);
+    for (const b of asc.slice(1)) colorExpr.push(b.from, b.color);
+    map.addLayer({
+      id: 'seamlines-fill', type: 'fill', source: 'seamlines',
+      paint: { 'fill-color': colorExpr, 'fill-opacity': 0.22 }
+    });
+    map.addLayer({
+      id: 'seamlines-line', type: 'line', source: 'seamlines',
+      paint: { 'line-color': colorExpr, 'line-width': 1.2, 'line-opacity': 0.9 }
+    });
   }
 
   // Live OpenStreetMap. Buildings and roads are styled distinctly, and anything
@@ -876,6 +903,29 @@ function fitGeometry(geom) {
   eachMap((m) => m.fitBounds([[minX, minY], [maxX, maxY]], { padding: 50, duration: 700 }));
 }
 
+async function loadSeamlines() {
+  if (state._seamlines) return true;
+  const file = state.catalog.esri_seamlines;
+  if (!file) return false;
+  try {
+    const r = await fetch(`${BASE}data/${file}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    state._seamlines = await r.json();
+    return true;
+  } catch (e) {
+    console.warn('Esri seamlines unavailable:', e);
+    return false;
+  }
+}
+
+function seamlineSummary() {
+  const f = state._seamlines && state._seamlines.features;
+  if (!f || !f.length) return '';
+  const years = f.map((x) => x.properties.year).filter(Boolean).sort((a, b) => a - b);
+  const median = years[Math.floor(years.length / 2)];
+  return `${f.length} source images, ${years[0]} to ${years[years.length - 1]}, median ${median}`;
+}
+
 async function loadGeojson(layer) {
   state._geojson = state._geojson || {};
   if (state._geojson[layer.id]) return;
@@ -923,6 +973,10 @@ function renderAbout() {
   const c = state.catalog, cfg = state.cfg;
   const post = state.scenes.filter((s) => s.phase === 'post' && s.in_aoi).length;
   $('#about-body').innerHTML = `
+    <h3>This viewer</h3>
+    <p><a href="https://cgiovando.github.io/disaster-imagery-viewer/${esc(cfg.id)}/" target="_blank" rel="noopener">cgiovando.github.io/disaster-imagery-viewer/${esc(cfg.id)}/</a><br>
+    <a href="https://github.com/cgiovando/disaster-imagery-viewer" target="_blank" rel="noopener">Source on GitHub &#8599;</a></p>
+
     <h3>The event</h3>
     <p>${esc(cfg.summary || '')}</p>
     <p><a href="${esc(cfg.wiki)}" target="_blank" rel="noopener">Activation wiki page &#8599;</a></p>
@@ -970,6 +1024,8 @@ function renderAbout() {
       <li>Sentinel-1 radar via the
           <a href="https://planetarycomputer.microsoft.com/" target="_blank" rel="noopener">Microsoft Planetary Computer</a>
           (Copernicus Sentinel data). Queried live, so a new pass appears without a rebuild.</li>
+      <li>Esri World Imagery seamlines (basemap capture dates) from the Esri
+          World_Imagery MapServer footprint layer.</li>
       <li>Basemaps as attributed on the map.</li>
     </ul>
 
@@ -1680,6 +1736,17 @@ async function boot() {
     .filter((l) => l.type === 'geojson' && state.vectorsOn.has(l.id))
     .map(loadGeojson));
   if (state.showTaskGrid) await loadTaskGrid();
+  if (state.vectorsOn.has('esri-seamlines')) {
+    await loadSeamlines();
+    const cb = $('#seamlines-toggle');
+    if (cb) {
+      cb.checked = true;
+      $('#seamlines-legend').hidden = false;
+      $('#seamlines-legend').innerHTML = SEAMLINE_BANDS
+        .map((b) => `<span class="lg"><i style="background:${b.color}"></i>${esc(b.label)}</span>`).join('');
+      $('#seamlines-summary').textContent = seamlineSummary();
+    }
+  }
 
   state.mapA = makeMap('map');
   state.mapA.on('load', async () => {
@@ -1695,6 +1762,20 @@ async function boot() {
     }
     renderMap(state.mapA, 'A');
   });
+  state.mapA.on('click', 'seamlines-fill', (e) => {
+    const p = e.features && e.features[0] && e.features[0].properties;
+    if (!p) return;
+    new maplibregl.Popup({ closeButton: true })
+      .setLngLat(e.lngLat)
+      .setHTML(
+        `<h4>Esri basemap source</h4>` +
+        `<div>Captured <b>${esc(fmtDate(p.date))}</b></div>` +
+        `<div>${p.res ? esc(p.res) + ' m resolution' : ''}${p.name ? ' &middot; ' + esc(p.name) : ''}</div>`)
+      .addTo(state.mapA);
+  });
+  state.mapA.on('mouseenter', 'seamlines-fill', () => { state.mapA.getCanvas().style.cursor = 'pointer'; });
+  state.mapA.on('mouseleave', 'seamlines-fill', () => { state.mapA.getCanvas().style.cursor = ''; });
+
   state.mapA.on('moveend', writeHash);
   state.mapA.on('mousemove', (e) => {
     $('#coords').textContent = `${e.lngLat.lat.toFixed(5)}, ${e.lngLat.lng.toFixed(5)}  z${state.mapA.getZoom().toFixed(1)}`;
@@ -1727,6 +1808,23 @@ async function boot() {
     state.active = []; renderActive(); renderCatalog(); renderMosaics(); renderAll(); writeHash();
   };
   $('#compare-toggle').onchange = (e) => enableCompare(e.target.checked);
+  $('#seamlines-toggle').onchange = async (e) => {
+    if (e.target.checked) {
+      const ok = await loadSeamlines();
+      if (!ok) { e.target.checked = false; $('#seamlines-summary').textContent = 'Seamlines unavailable for this event.'; return; }
+      state.vectorsOn.add('esri-seamlines');
+      $('#seamlines-legend').hidden = false;
+      $('#seamlines-legend').innerHTML = SEAMLINE_BANDS
+        .map((b) => `<span class="lg"><i style="background:${b.color}"></i>${esc(b.label)}</span>`).join('');
+      $('#seamlines-summary').textContent = seamlineSummary();
+    } else {
+      state.vectorsOn.delete('esri-seamlines');
+      $('#seamlines-legend').hidden = true;
+      $('#seamlines-summary').textContent = '';
+    }
+    renderAll(); writeHash();
+  };
+
   $('#osm-load').onclick = loadOsm;
   $('#osm-aoi-toggle').onchange = (e) => {
     state.showAoiOsm = e.target.checked;

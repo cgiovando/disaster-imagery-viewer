@@ -1,5 +1,8 @@
 # Disaster Imagery Viewer
 
+**Live: <https://cgiovando.github.io/disaster-imagery-viewer/>**
+&middot; Nepal Floods 2026: <https://cgiovando.github.io/disaster-imagery-viewer/nepal-floods-2026/>
+
 A map for humanitarian mapping activations that answers three questions:
 
 1. **What imagery exists over this area, and how old is it?**
@@ -126,6 +129,13 @@ of render modes rather than a single fixed view:
 - Sentinel-2: **true colour**, **SWIR false colour** which cuts through haze,
   and **NDWI** for water.
 
+**Esri basemap capture dates** come from the World Imagery footprint layer. Its
+`/query` endpoint is CORS-blocked in the browser, which is why other tools
+grid-sample the `/identify` endpoint instead; because this project has a build
+step, the exact seamline polygons are fetched server-side and generalised by the
+service, which takes the payload from megabytes to about 200 KB. Over the Nepal
+corridor that is 334 source images spanning 2012 to 2026, median 2018.
+
 Radar answers the persistent monsoon cloud that defeats optical here. Note that
 in steep terrain radar shadow also reads as smooth, so the water mask is
 indicative and not a validated flood product.
@@ -147,6 +157,7 @@ Pages.
 | [HOT Raw Data API](https://api-prod.raw-data.hotosm.org/v1/docs) | Live OpenStreetMap features | ODbL |
 | [Overpass API](https://overpass-api.de) | Fallback for live OSM | ODbL |
 | [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/) | Sentinel-1 radar tiles | Copernicus open licence |
+| Esri World Imagery seamlines | Basemap capture dates | Esri, attributed on the map |
 | Esri, Bing, OpenStreetMap | Basemaps | Per provider, attributed on the map |
 
 ## Caveats

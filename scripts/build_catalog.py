@@ -35,6 +35,19 @@ OAM_API = "https://api.openaerialmap.org/meta"
 TM_API = "https://tasking-manager-production-api.hotosm.org/api/v2"
 HDX_API = "https://data.humdata.org/api/3/action/package_show"
 
+# Esri World Imagery seamlines: the footprint of every source image behind the
+# default basemap, with its capture date. This is what tells a mapper how old
+# the imagery under their cursor actually is.
+#
+# The /query endpoint is blocked by CORS in the browser, which is why other
+# tools grid-sample the /identify endpoint instead. Here it is fetched
+# server-side in CI, so the exact seamline polygons can be used rather than
+# sampled points. maxAllowableOffset asks the server to generalise the
+# geometry, which takes the payload from megabytes to tens of kilobytes.
+ESRI_SEAMLINES = ("https://services.arcgisonline.com/ArcGIS/rest/services"
+                  "/World_Imagery/MapServer/0/query")
+ESRI_PAGE = 100  # the service caps a page at 100 regardless of what is asked
+
 # Task grid geometry never changes for a project, only task status does. So the
 # geometry is written once to its own file and the per-build status is a compact
 # array in the catalogue. Keeps the 20-minute CI commits small.
@@ -302,6 +315,57 @@ def fetch_tasks(pid):
     return geoms, statuses
 
 
+def fetch_esri_seamlines(cfg):
+    """Esri World Imagery source footprints intersecting the event bbox."""
+    bbox = ",".join(str(v) for v in cfg["bbox"])
+    feats, offset = [], 0
+    while offset < 2000:
+        params = {
+            "f": "geojson",
+            "geometry": bbox,
+            "geometryType": "esriGeometryEnvelope",
+            "inSR": "4326",
+            "outSR": "4326",
+            "spatialRel": "esriSpatialRelIntersects",
+            "outFields": "OBJECTID,SRC_DATE,SRC_RES,NICE_NAME",
+            "returnGeometry": "true",
+            "maxAllowableOffset": "0.0004",
+            "geometryPrecision": "5",
+            "resultOffset": str(offset),
+            "resultRecordCount": str(ESRI_PAGE),
+        }
+        url = f"{ESRI_SEAMLINES}?{urllib.parse.urlencode(params)}"
+        data = try_json(url, f"Esri seamlines offset {offset}")
+        if not data or "features" not in data:
+            break
+        page = data["features"]
+        feats.extend(page)
+        if len(page) < ESRI_PAGE or not data.get("exceededTransferLimit"):
+            break
+        offset += ESRI_PAGE
+
+    # Keep only what the viewer uses, and drop anything without a date.
+    out = []
+    for f in feats:
+        p = f.get("properties") or {}
+        d = p.get("SRC_DATE")
+        if not d:
+            continue
+        ds = str(d)
+        iso = f"{ds[0:4]}-{ds[4:6]}-{ds[6:8]}" if len(ds) == 8 else ds
+        out.append({
+            "type": "Feature",
+            "geometry": f.get("geometry"),
+            "properties": {
+                "date": iso,
+                "year": int(ds[0:4]) if len(ds) >= 4 and ds[0:4].isdigit() else None,
+                "res": p.get("SRC_RES"),
+                "name": p.get("NICE_NAME"),
+            },
+        })
+    return {"type": "FeatureCollection", "features": out}
+
+
 def fetch_hdx(cfg):
     out = []
     for slug in cfg.get("hdxDatasets", []):
@@ -363,6 +427,21 @@ def build(cfg_path):
     else:
         print("    task geometry unchanged")
 
+    print("  Esri seamlines ...")
+    seam = fetch_esri_seamlines(cfg)
+    if seam["features"]:
+        seam_path = os.path.join(DATA_DIR, f"{eid}.esri-seamlines.geojson")
+        os.makedirs(DATA_DIR, exist_ok=True)
+        with open(seam_path, "w") as f:
+            json.dump(seam, f, separators=(",", ":"))
+        years = sorted({x["properties"]["year"] for x in seam["features"] if x["properties"]["year"]})
+        print(f"    {len(seam['features'])} footprints, {years[0]}-{years[-1]}, "
+              f"{os.path.getsize(seam_path):,} bytes")
+        seam_file = f"{eid}.esri-seamlines.geojson"
+    else:
+        seam_file = None
+        print("    none returned, keeping any existing file")
+
     print("  HDX ...")
     hdx = fetch_hdx(cfg)
     print(f"    {len(hdx)} datasets")
@@ -372,6 +451,7 @@ def build(cfg_path):
         "event": {k: cfg.get(k) for k in
                   ("id", "name", "eventDate", "bbox", "tmAoiBbox", "tmCampaign",
                    "center", "zoom", "wiki", "summary")},
+        "esri_seamlines": seam_file,
         "scenes": scenes,
         "tm_projects": tm,
         "hdx": hdx,
