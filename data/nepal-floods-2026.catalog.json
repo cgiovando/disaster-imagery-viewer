@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T16:15:22Z",
+ "generated": "2026-08-28T16:16:15Z",
  "event": {
   "id": "nepal-floods-2026",
   "name": "Nepal Floods 2026",
@@ -9057,10 +9057,10 @@
     "BADIMAGERY"
    ],
    "task_counts": {
-    "MAPPED": 189,
-    "BADIMAGERY": 2,
     "VALIDATED": 8,
-    "LOCKED_FOR_MAPPING": 1
+    "LOCKED_FOR_MAPPING": 1,
+    "MAPPED": 189,
+    "BADIMAGERY": 2
    }
   },
   {
@@ -16051,9 +16051,9 @@
     "VALIDATED"
    ],
    "task_counts": {
+    "VALIDATED": 60,
     "MAPPED": 577,
     "BADIMAGERY": 9,
-    "VALIDATED": 60,
     "LOCKED_FOR_VALIDATION": 2
    }
   }
