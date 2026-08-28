@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T22:07:57Z",
+ "generated": "2026-08-28T22:34:45Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -16359,7 +16359,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-28T20:43:01.296000Z",
+   "last_updated": "2026-08-28T22:31:59.275000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
@@ -16447,7 +16447,7 @@
     "638": "MAPPED",
     "394": "MAPPED",
     "632": "MAPPED",
-    "366": "MAPPED",
+    "366": "LOCKED_FOR_VALIDATION",
     "312": "MAPPED",
     "248": "MAPPED",
     "69": "MAPPED",
@@ -16740,7 +16740,6 @@
     "332": "VALIDATED",
     "326": "VALIDATED",
     "379": "MAPPED",
-    "359": "MAPPED",
     "374": "MAPPED",
     "362": "MAPPED",
     "353": "MAPPED",
@@ -16754,10 +16753,8 @@
     "363": "MAPPED",
     "358": "MAPPED",
     "355": "MAPPED",
-    "365": "MAPPED",
     "384": "MAPPED",
     "377": "MAPPED",
-    "360": "MAPPED",
     "354": "MAPPED",
     "370": "MAPPED",
     "369": "MAPPED",
@@ -16768,6 +16765,9 @@
     "378": "MAPPED",
     "364": "MAPPED",
     "375": "MAPPED",
+    "359": "VALIDATED",
+    "365": "VALIDATED",
+    "360": "VALIDATED",
     "420": "MAPPED",
     "421": "MAPPED",
     "411": "MAPPED",
@@ -17012,9 +17012,10 @@
     "9": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 528,
-    "VALIDATED": 111,
-    "BADIMAGERY": 9
+    "MAPPED": 524,
+    "VALIDATED": 114,
+    "BADIMAGERY": 9,
+    "LOCKED_FOR_VALIDATION": 1
    }
   }
  ],
