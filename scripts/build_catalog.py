@@ -119,6 +119,13 @@ def get_json(url, timeout=90):
         return json.load(r)
 
 
+# Populated by try_json so build() can tell "this source returned nothing" from
+# "this source failed". A catalogue that silently drops a section is worse than
+# one that admits it is stale: HDX quietly lost hot_flood_npl_buildings_fair
+# when the dataset started returning 403.
+FAILURES = []
+
+
 def try_json(url, what, attempts=4):
     """Fetch with backoff. The OAM API returns intermittent 502s; a single
     failure must not be allowed to empty the catalogue."""
@@ -129,39 +136,52 @@ def try_json(url, what, attempts=4):
         except urllib.error.HTTPError as e:
             if e.code not in RETRYABLE or i == attempts:
                 print(f"  ! {what} failed: HTTP {e.code}", file=sys.stderr)
+                FAILURES.append(f"{what}: HTTP {e.code}")
                 return None
             print(f"  . {what} HTTP {e.code}, retry {i}/{attempts - 1} in {delay}s",
                   file=sys.stderr)
         except (urllib.error.URLError, TimeoutError, ValueError, OSError) as e:
             if i == attempts:
                 print(f"  ! {what} failed: {e}", file=sys.stderr)
+                FAILURES.append(f"{what}: {e}")
                 return None
             print(f"  . {what} error ({e}), retry {i}/{attempts - 1} in {delay}s",
                   file=sys.stderr)
         time.sleep(delay)
         delay *= 2
+    FAILURES.append(f"{what}: exhausted retries")
     return None
 
 
 def classify_phase(item, acquired, cfg):
-    """pre / post relative to the event, most trustworthy signal first."""
-    title = item.get("title") or ""
-    if POST_MARK.search(title):
-        return "post"
-    if PRE_MARK.search(title):
-        return "pre"
+    """Return (phase, capture_datetime_or_None).
 
+    When a filename timestamp is trusted over OpenAerialMap's acquisition_start,
+    it must also become the displayed date. Otherwise a scene can be badged
+    post-event while showing a date before the event, which is what happened to
+    eight Planet scenes: OAM recorded 2026-08-25T22:45Z for a file named
+    20260826_054502, roughly a 7 hour offset.
+    """
+    title = item.get("title") or ""
     event_dt = cfg.get("eventDatetime") or (cfg["eventDate"] + "T00:00:00Z")
+
     m = TITLE_TS.search(title)
+    stamp = None
     if m:
         d, t = m.group(1), m.group(2)
         stamp = f"{d[0:4]}-{d[4:6]}-{d[6:8]}T{t[0:2]}:{t[2:4]}:{t[4:6]}Z"
-        return "post" if stamp >= event_dt else "pre"
 
+    if POST_MARK.search(title):
+        return "post", stamp
+    if PRE_MARK.search(title):
+        return "pre", stamp
+    if stamp:
+        return ("post" if stamp >= event_dt else "pre"), stamp
     if not acquired:
-        return "unknown"
-    return "post" if acquired[:10] > cfg["eventDate"] else (
+        return "unknown", None
+    phase = "post" if acquired[:10] > cfg["eventDate"] else (
         "post" if acquired >= event_dt else "pre")
+    return phase, None
 
 
 def normalise_provider(item):
@@ -245,14 +265,21 @@ def fetch_oam(cfg):
                 isinstance(gsd, (int, float)) and 0 < gsd < DRONE_GSD_M
             )
 
+            phase, capture_dt = classify_phase(it, acquired, cfg)
+            # Prefer the filename timestamp when we trusted it for the phase, so
+            # the badge and the date on the row cannot contradict each other.
+            display_dt = capture_dt or acquired
+
             scene = {
                 "id": it.get("_id"),
                 "title": title,
                 "tms": tms,
                 "cog": cog or None,
                 "tile_url": tile_url,
-                "acquired": acquired,
-                "phase": classify_phase(it, acquired, cfg),
+                "acquired": display_dt,
+                "acquired_source": "filename" if capture_dt else "oam",
+                "oam_acquired": acquired,
+                "phase": phase,
                 "gsd_cm": round(gsd * 100, 1) if isinstance(gsd, (int, float)) else None,
                 "provider": provider,
                 "platform": it.get("platform"),
@@ -334,12 +361,20 @@ def fetch_tasks(pid):
     data = try_json(f"{TM_API}/projects/{pid}/tasks/", f"TM tasks {pid}")
     if not data or not data.get("features"):
         return None, None
-    geoms, statuses = [], []
+    # Keyed by taskId, not array position. Joining geometry to status by index
+    # means a same-count reorder or geometry edit on the Tasking Manager side
+    # would silently paint statuses onto the wrong tasks.
+    geoms, statuses = {}, {}
     for f in data["features"]:
         if not f.get("geometry"):
             continue
-        geoms.append(round_coords(f["geometry"]))
-        statuses.append((f.get("properties") or {}).get("taskStatus") or "READY")
+        props = f.get("properties") or {}
+        tid = props.get("taskId")
+        if tid is None:
+            continue
+        tid = str(tid)
+        geoms[tid] = round_coords(f["geometry"])
+        statuses[tid] = props.get("taskStatus") or "READY"
     return geoms, statuses
 
 
@@ -483,7 +518,8 @@ def fetch_provider_metadata(cfg):
         coll = try_json(url, "ODP collection")
         if not coll:
             continue
-        hrefs = [l["href"] for l in coll.get("links", []) if l.get("rel") == "item"]
+        hrefs = [urllib.parse.urljoin(url, l["href"])
+                 for l in coll.get("links", []) if l.get("rel") == "item"]
         for href in hrefs:
             item = try_json(href, f"ODP item {href.rsplit('/', 1)[-1]}", attempts=2)
             if not item:
@@ -571,7 +607,16 @@ def build(cfg_path):
     with open(cfg_path) as f:
         cfg = json.load(f)
     eid = cfg["id"]
+    FAILURES.clear()
     print(f"\n=== {eid} ({cfg['name']}) ===")
+
+    previous = {}
+    prev_path = os.path.join(DATA_DIR, f"{eid}.catalog.json")
+    try:
+        with open(prev_path) as f:
+            previous = json.load(f)
+    except (OSError, ValueError):
+        previous = {}
 
     print("  OpenAerialMap ...")
     scenes = fetch_oam(cfg)
@@ -625,6 +670,9 @@ def build(cfg_path):
             grids = json.load(f)
     except (OSError, ValueError):
         grids = {}
+    # Earlier builds stored each grid as a positional list. Those cannot be
+    # joined by task id, so discard them and refetch.
+    grids = {k: v for k, v in grids.items() if isinstance(v, dict)}
     grids_changed = False
     for p in tm:
         geoms, statuses = fetch_tasks(p["id"])
@@ -632,13 +680,18 @@ def build(cfg_path):
             print(f"    project {p['id']}: unavailable, keeping any existing grid")
             continue
         key = str(p["id"])
-        if len(grids.get(key, [])) != len(geoms):
+        # Rewrite geometry whenever the set of task ids changes, not just the
+        # count, so an edited or reordered grid cannot go stale.
+        if sorted(grids.get(key, {}).keys()) != sorted(geoms.keys()):
             grids[key] = geoms
             grids_changed = True
         p["task_status"] = statuses
-        p["task_counts"] = {s: statuses.count(s) for s in set(statuses)}
+        counts = {}
+        for v in statuses.values():
+            counts[v] = counts.get(v, 0) + 1
+        p["task_counts"] = counts
         print(f"    project {p['id']}: {len(geoms)} tasks, "
-              + ", ".join(f"{k} {v}" for k, v in sorted(p["task_counts"].items())))
+              + ", ".join(f"{k} {v}" for k, v in sorted(counts.items())))
     if grids_changed:
         os.makedirs(DATA_DIR, exist_ok=True)
         with open(grid_path, "w") as f:
@@ -666,8 +719,34 @@ def build(cfg_path):
     hdx = fetch_hdx(cfg)
     print(f"    {len(hdx)} datasets")
 
+    # Carry forward any section that came back empty while its source was
+    # failing, and record what happened so the viewer can say so out loud.
+    sources = {}
+    for name, value, key in (
+        ("scenes", scenes, "scenes"),
+        ("tasking_manager", tm, "tm_projects"),
+        ("hdx", hdx, "hdx"),
+    ):
+        expected = len(previous.get(key) or [])
+        got = len(value or [])
+        degraded = bool(FAILURES) and got < expected
+        if degraded and previous.get(key):
+            print(f"    ! {name}: {got} of an expected {expected}; keeping previous",
+                  file=sys.stderr)
+            if key == "scenes":
+                scenes = previous[key]
+            elif key == "tm_projects":
+                tm = previous[key]
+            else:
+                hdx = previous[key]
+            sources[name] = {"status": "stale", "count": expected}
+        else:
+            sources[name] = {"status": "ok", "count": got}
+
     catalog = {
         "generated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "sources": sources,
+        "failures": FAILURES[:20],
         "event": {k: cfg.get(k) for k in
                   ("id", "name", "eventDate", "bbox", "tmAoiBbox", "tmCampaign",
                    "center", "zoom", "wiki", "summary")},
@@ -697,6 +776,11 @@ def build(cfg_path):
     with open(out_path, "w") as f:
         json.dump(catalog, f, indent=1)
     print(f"  wrote data/{eid}.catalog.json ({os.path.getsize(out_path):,} bytes)")
+    if FAILURES:
+        print(f"  ! {len(FAILURES)} source failure(s) recorded in the catalogue:",
+              file=sys.stderr)
+        for f_ in FAILURES[:6]:
+            print(f"      {f_}", file=sys.stderr)
 
     post = [s for s in scenes if s["phase"] == "post"]
     if post:
@@ -839,6 +923,10 @@ def main():
     write_landing(built)
     if failed:
         print(f"\nStale (kept previous catalogue): {', '.join(failed)}", file=sys.stderr)
+        return 2
+    if any(c.get("failures") for c in [x[1] for x in built] if isinstance(c, dict)):
+        print("\nBuilt with source failures; see the catalogue 'failures' field.",
+              file=sys.stderr)
         return 2
     return 0
 

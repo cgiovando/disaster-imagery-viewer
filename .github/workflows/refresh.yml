@@ -9,6 +9,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  # GitHub's scheduler has proved unreliable for this repo (zero schedule events
+  # in the first 12 hours despite a valid active cron), so allow an external
+  # trigger that does not depend on it:
+  #   gh api repos/OWNER/REPO/dispatches -f event_type=refresh
+  repository_dispatch:
+    types: [refresh]
 
 permissions:
   contents: write

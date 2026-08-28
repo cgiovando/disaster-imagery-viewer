@@ -133,6 +133,36 @@ function fmtGsd(cm) {
 /* Relative timestamps are rendered once, so refresh them on a timer. A viewer
  * left open through a response would otherwise still claim the catalogue was
  * built "3 min ago" hours later. */
+/* How old the catalogue may get before the viewer says so loudly. CI is meant
+ * to refresh hourly; three hours means something is wrong, and during a response
+ * a quietly stale page is more dangerous than an obviously broken one. */
+const STALE_AFTER_MIN = 180;
+
+function renderHealth() {
+  const box = $('#health');
+  if (!box) return;
+  const cat = state.catalog || {};
+  const notes = [];
+
+  const mins = cat.generated
+    ? Math.round((Date.now() - new Date(cat.generated).getTime()) / 60000) : null;
+  if (mins != null && mins > STALE_AFTER_MIN) {
+    const h = Math.floor(mins / 60);
+    notes.push(`The imagery catalogue was last rebuilt <b>${h} hours ago</b> and should refresh hourly. Newly released imagery may be missing.`);
+  }
+  const stale = Object.entries(cat.sources || {})
+    .filter(([, v]) => v.status === 'stale').map(([k]) => k);
+  if (stale.length) {
+    notes.push(`Showing previously saved data for: <b>${stale.map(esc).join(', ')}</b>.`);
+  }
+  if ((cat.failures || []).length) {
+    notes.push(`${cat.failures.length} upstream source${cat.failures.length > 1 ? 's' : ''} failed on the last build: ${cat.failures.slice(0, 3).map(esc).join('; ')}.`);
+  }
+
+  box.hidden = notes.length === 0;
+  box.innerHTML = notes.map((n) => `<p>${n}</p>`).join('');
+}
+
 function startAgoTicker() {
   const tick = () => {
     const cat = state.catalog && state.catalog.generated;
@@ -140,6 +170,7 @@ function startAgoTicker() {
       const f = $('#freshness');
       if (f) f.textContent = `Event ${fmtDate(state.cfg.eventDate)} \u00b7 catalogue ${ago(cat)}`;
     }
+    renderHealth();
     document.querySelectorAll('.js-ago').forEach((el2) => {
       const iso = el2.dataset.iso;
       if (iso) el2.textContent = ago(iso);
@@ -303,8 +334,10 @@ function addVectors(map) {
     const geoms = p && state.taskGrid[String(p.id)];
     const statuses = p && p.task_status;
     if (geoms && statuses) {
-      const feats = geoms.map((g, i) => ({
-        type: 'Feature', geometry: g, properties: { s: statuses[i] || 'READY' }
+      // Joined by task id, so a reordered grid cannot mislabel statuses.
+      const feats = Object.entries(geoms).map(([tid, g]) => ({
+        type: 'Feature', geometry: g,
+        properties: { s: statuses[tid] || 'READY', tid }
       }));
       map.addSource('tasks', { type: 'geojson', data: { type: 'FeatureCollection', features: feats } });
       const colorExpr = ['match', ['get', 's']];
@@ -514,16 +547,28 @@ function enableCompare(on) {
   if (on) {
     if (!state.mapB) {
       state.mapB = makeMap('map-b');
-      state.mapB.on('load', () => { renderMap(state.mapB, 'B'); setSplit(state.splitPct); });
+      state.mapB.on('load', () => {
+        // Adopt map A's current view, otherwise the second map opens at the
+        // event's default position rather than wherever the user is looking.
+        syncMaps(state.mapA, state.mapB);
+        renderMap(state.mapB, 'B');
+        setSplit(state.splitPct);
+      });
       state.mapA.on('move', () => syncMaps(state.mapA, state.mapB));
       state.mapB.on('move', () => syncMaps(state.mapB, state.mapA));
     } else {
       state.mapB.resize();
       syncMaps(state.mapA, state.mapB);
     }
-    // Default the two sides to the newest post-event and newest pre-event.
-    if (state.active.length && !state.active.some((a) => a.side === 'right')) {
-      state.active.forEach((a, i) => { a.side = i === 0 ? 'right' : 'left'; });
+    // Every layer is created on the right, so a "does anything sit on the right"
+    // test never fires and the left pane would open blank. Split the stack
+    // instead: newest on the right, next one on the left.
+    if (state.active.length && !state.active.some((a) => a.side === 'left')) {
+      if (state.active.length === 1) {
+        state.active[0].side = 'right';
+      } else {
+        state.active.forEach((a, i) => { a.side = i === 0 ? 'right' : 'left'; });
+      }
     }
     setSplit(state.splitPct);
   }
@@ -1201,8 +1246,19 @@ const MAJOR_ROADS = new Set(['motorway', 'trunk', 'primary', 'secondary', 'terti
 
 /* Tag the features so the map style can distinguish buildings from roads, and
  * work done since the event from what was already there. */
+/* The Raw Data API returns timestamps with no timezone ("2026-08-27T04:46:45").
+ * new Date() would read those as the viewer's local time, so the same feature
+ * would count as edited-since-event in Kathmandu but not in California. Force
+ * UTC before comparing. */
+function parseUtc(ts) {
+  if (!ts) return NaN;
+  const s = String(ts);
+  const hasZone = /[Zz]$|[+-]\d{2}:?\d{2}$/.test(s);
+  return new Date(hasZone ? s : s + 'Z').getTime();
+}
+
 function decorateOsm(features, eventIso) {
-  const cutoff = new Date(eventIso).getTime();
+  const cutoff = parseUtc(eventIso);
   let fresh = 0;
   for (const f of features) {
     const tags = f.properties.tags || f.properties || {};
@@ -1212,7 +1268,8 @@ function decorateOsm(features, eventIso) {
     f.properties._class = !hw ? '' : (MAJOR_ROADS.has(hw) ? 'major'
       : (hw === 'track' || hw === 'path' || hw === 'footway') ? 'track' : 'minor');
     const ts = f.properties.timestamp;
-    const isNew = ts ? new Date(ts).getTime() >= cutoff : false;
+    const t = parseUtc(ts);
+    const isNew = isNaN(t) ? false : t >= cutoff;
     f.properties._new = isNew ? 1 : 0;
     if (isNew) fresh++;
   }
@@ -1824,6 +1881,7 @@ async function boot() {
     state.tmOn.add(state.catalog.tm_projects[0].id);
   }
   renderTM(); renderImpact(); renderLists(); renderPlaces(); renderAbout(); renderActive();
+  renderHealth();
   refreshTMLive();
   refreshOsmFreshness();
   loadSar();
