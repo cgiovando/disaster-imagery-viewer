@@ -2,9 +2,10 @@ name: Refresh catalogue and deploy
 
 on:
   schedule:
-    # Every 20 minutes. During the first days of an activation the imagery
-    # picture changes hourly, and a stale catalogue is worse than no viewer.
-    - cron: '*/20 * * * *'
+    # Hourly. Fast enough to track an activation without generating dozens of
+    # commits a day. Run the workflow manually if something has just been
+    # released and you do not want to wait.
+    - cron: '7 * * * *'
   push:
     branches: [main]
   workflow_dispatch:

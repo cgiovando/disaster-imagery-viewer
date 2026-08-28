@@ -989,7 +989,7 @@ function renderAbout() {
 
     <h3>Freshness</h3>
     <p>Imagery catalogue and task grids baked ${esc(c.generated)} (${ago(c.generated)}) and
-    refreshed every 20 minutes by CI. Tasking Manager progress is re-read live in your
+    refreshed hourly by CI. Tasking Manager progress is re-read live in your
     browser from the insta-tm mirror on each load, and Sentinel-1 is queried live from
     the Planetary Computer.</p>
     <p>The source APIs cannot be called from a static page: the OpenAerialMap API

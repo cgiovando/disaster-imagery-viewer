@@ -61,13 +61,14 @@ basemap and a position can be shared as a link.
    from `shell.html`, and rebuilds the root event index.
 3. Open `/<event-id>/`.
 
-CI rebuilds every configured event automatically.
+CI rebuilds every configured event hourly, and on any push. Trigger a run by
+hand from the Actions tab when something has just been released.
 
 ## How it works
 
 ```
 OpenAerialMap API ─┐
-Tasking Manager API ├─ scripts/build_catalog.py (CI, every 20 min) ─→ data/<event>.catalog.json
+Tasking Manager API ├─ scripts/build_catalog.py (CI, hourly) ──→ data/<event>.catalog.json
 HDX API ───────────┘
 
 browser ─→ insta-tm mirror            (Tasking Manager progress, when newer)
