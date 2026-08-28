@@ -101,6 +101,7 @@ const state = {
   optical: [],
   sarMode: 'db',
   opticalMode: 'tci',
+  renderChoice: {},   // sceneId -> render id, for multi-rendering scenes
   sar: [],               // Sentinel-1 scenes from the Planetary Computer
   osmFresh: null
 };
@@ -123,6 +124,38 @@ function fmtDate(iso) {
   const d = new Date(iso);
   if (isNaN(d)) return String(iso).slice(0, 10);
   return `${String(d.getUTCDate()).padStart(2, '0')} ${MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+}
+
+/* Some scenes ship several renderings of the same capture (natural colour, NIR
+ * false colour, NDWI). They are one catalogue row with a selector rather than a
+ * row each, which would triple the list. */
+function sceneRenders(scene) {
+  return Array.isArray(scene.renders) && scene.renders.length ? scene.renders : null;
+}
+
+function activeRender(scene) {
+  const rs = sceneRenders(scene);
+  if (!rs) return null;
+  return rs.find((r) => r.id === state.renderChoice[scene.id]) || rs[0];
+}
+
+function sceneTileUrl(scene) {
+  const r = activeRender(scene);
+  return (r && r.tile_url) || scene.tile_url || scene.tms;
+}
+
+/* Key and label for a scene in a given rendering. Both must agree, or the
+ * active-layer list and the compare dropdowns end up out of step. */
+function sceneKey(scene) {
+  const rs = sceneRenders(scene);
+  const r = activeRender(scene);
+  return 's:' + scene.id + (rs && rs.length > 1 && r ? ':' + r.id : '');
+}
+
+function sceneLabel(scene) {
+  const rs = sceneRenders(scene);
+  const r = activeRender(scene);
+  return rs && rs.length > 1 && r ? `${scene.title} ${r.name}` : scene.title;
 }
 
 function fmtGsd(cm) {
@@ -156,7 +189,12 @@ function renderHealth() {
     notes.push(`Showing previously saved data for: <b>${stale.map(esc).join(', ')}</b>.`);
   }
   if ((cat.failures || []).length) {
-    notes.push(`${cat.failures.length} upstream source${cat.failures.length > 1 ? 's' : ''} failed on the last build: ${cat.failures.slice(0, 3).map(esc).join('; ')}.`);
+    // Failures are tagged objects; older catalogues used plain strings.
+    const fmt = (f) => typeof f === 'string' ? f
+      : `${f.what || f.source || 'source'}${f.detail ? ' (' + f.detail + ')' : ''}`;
+    const list = cat.failures.slice(0, 3).map((f) => esc(fmt(f))).join('; ');
+    const more = cat.failures.length > 3 ? ` and ${cat.failures.length - 3} more` : '';
+    notes.push(`${cat.failures.length} upstream source${cat.failures.length > 1 ? 's' : ''} failed on the last build: ${list}${more}.`);
   }
 
   box.hidden = notes.length === 0;
@@ -305,11 +343,16 @@ function renderMap(map, which) {
 
   stack.slice().reverse().forEach((a, i) => {
     const sid = `img-${i}`;
-    map.addSource(sid, {
+    const src = {
       type: 'raster', tiles: [a.url], tileSize: 256,
       minzoom: a.minzoom || 0, maxzoom: a.maxzoom || 22,
       attribution: a.attribution || ''
-    });
+    };
+    // Constrain requests to the scene footprint. Without this MapLibre asks for
+    // the whole viewport grid and titiler 404s everything outside the image,
+    // which was 60-odd wasted requests against a shared HOT service per pan.
+    if (a.bounds) src.bounds = a.bounds;
+    map.addSource(sid, src);
     map.addLayer({
       id: sid, type: 'raster', source: sid,
       paint: { 'raster-opacity': a.opacity, 'raster-fade-duration': 120 }
@@ -598,16 +641,19 @@ function initSwipeDrag() {
 /* ------------------------------------------------------------ layer stack */
 
 function toggleScene(scene) {
-  const key = 's:' + scene.id;
+  const key = sceneKey(scene);
   const i = state.active.findIndex((a) => a.key === key);
   if (i >= 0) {
     state.active.splice(i, 1);
   } else {
     state.active.unshift({
-      key, name: scene.title, kind: 'scene', scene,
-      url: (scene.tile_url || scene.tms).replace(/\{-y\}/g, '{y}'),
+      key,
+      name: sceneLabel(scene),
+      kind: 'scene', scene,
+      url: sceneTileUrl(scene).replace(/\{-y\}/g, '{y}'),
       opacity: 1, side: 'right',
       attribution: scene.attribution || `${scene.provider} via OpenAerialMap`,
+      bounds: (scene.bbox && scene.bbox.length === 4) ? scene.bbox : null,
       maxzoom: 22
     });
   }
@@ -741,8 +787,9 @@ function renderCatalog() {
 }
 
 function sceneRow(s) {
-  const key = 's:' + s.id;
-  const on = isActive(key);
+  const rs = sceneRenders(s);
+  const cur = activeRender(s);
+  const on = isActive(sceneKey(s));
   const row = el('div', 'scene' + (on ? ' on' : ''));
 
   const cb = el('input'); cb.type = 'checkbox'; cb.checked = on;
@@ -769,6 +816,31 @@ function sceneRow(s) {
   bits.push(esc(s.provider));
   body.appendChild(el('div', 'd', bits.join(' &middot; ')));
   if (s.note) body.appendChild(el('div', 'note', esc(s.note)));
+
+  // Multi-band scenes offer several renderings. Switching the selector while the
+  // scene is active swaps the layer in place rather than adding a second one.
+  if (rs && rs.length > 1) {
+    const row = el('div', 'render-row');
+    row.appendChild(el('span', 'lbl', 'view'));
+    const sel = el('select');
+    for (const r of rs) {
+      const o = el('option'); o.value = r.id; o.textContent = r.name;
+      if (cur && r.id === cur.id) o.selected = true;
+      sel.appendChild(o);
+    }
+    sel.onclick = (e) => e.stopPropagation();
+    sel.onchange = (e) => {
+      e.stopPropagation();
+      const wasOn = isActive(sceneKey(s));
+      if (wasOn) toggleScene(s);            // remove the old rendering
+      state.renderChoice[s.id] = sel.value;
+      if (wasOn) toggleScene(s);            // add the newly chosen one
+      else { renderCatalog(); }
+    };
+    row.appendChild(sel);
+    body.appendChild(row);
+    if (cur && cur.note) body.appendChild(el('div', 'note', esc(cur.note)));
+  }
   row.appendChild(body);
 
   const link = el('a', 'ext', '&#8599;');
