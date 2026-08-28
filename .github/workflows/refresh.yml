@@ -9,9 +9,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  # GitHub's scheduler has proved unreliable for this repo (zero schedule events
-  # in the first 12 hours despite a valid active cron), so allow an external
-  # trigger that does not depend on it:
+  # GitHub's scheduler is unreliable for this repo: one `schedule` event in
+  # roughly 24 hourly slots, and that one 25 minutes late. The dependable
+  # schedule is a Cloudflare Worker cron that fires this dispatch; see worker/.
+  # To dispatch by hand:
   #   gh api repos/OWNER/REPO/dispatches -f event_type=refresh
   repository_dispatch:
     types: [refresh]
@@ -51,16 +52,38 @@ jobs:
             exit "$code"
           fi
 
-      - name: Commit if changed
+      - name: Commit if the catalogue actually changed
+        # Every build stamps a fresh `generated` time, so a plain "did anything
+        # change" test is always true and would produce a commit an hour,
+        # forever, burying real catalogue changes in timestamp noise. Commit
+        # only when something other than that timestamp moved.
+        #
+        # The deploy below is unconditional and builds from the working tree,
+        # not from HEAD, so the live site still shows the true last-checked
+        # time even on the runs that do not commit.
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain data/ index.html ./*/index.html)" ]; then
-            git add data/ index.html ./*/index.html
+
+          paths="data/ index.html ./*/index.html"
+
+          if git diff --quiet -- $paths; then
+            echo "No change."
+            exit 0
+          fi
+
+          substantive=$(git diff -U0 -- $paths \
+            | grep -E '^[+-]' \
+            | grep -vE '^(\+\+\+|---)' \
+            | grep -vcE '"generated":|Catalogues refreshed' || true)
+
+          if [ "${substantive:-0}" -gt 0 ]; then
+            echo "$substantive substantive line(s) changed; committing."
+            git add $paths
             git commit -m "chore: refresh catalogue $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           else
-            echo "No catalogue change."
+            echo "Only the refresh timestamp changed; deploying without a commit."
           fi
 
       - uses: actions/configure-pages@v5

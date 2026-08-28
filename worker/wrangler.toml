@@ -5,14 +5,19 @@
 # hourly cron on the default branch. Cloudflare cron triggers are dependable, so
 # the schedule lives here and pokes GitHub through repository_dispatch.
 #
-# The GitHub token is NOT stored in this file. It is a Worker secret, set once:
+# The GitHub token is NOT stored in this file. It is a Worker secret, set once
+# from this directory:
 #   wrangler secret put GITHUB_TOKEN
-# Use a fine-grained PAT scoped to cgiovando/disaster-imagery-viewer with
-# "Contents: read" and "Actions: write". Secrets never live in this file.
+# Use a fine-grained PAT scoped to cgiovando/disaster-imagery-viewer only, with
+# "Contents: write", which is what the repository dispatch endpoint requires.
+# See README.md. Secrets never live in this file.
 
 name = "disaster-imagery-refresh"
 main = "worker.js"
-compatibility_date = "2026-08-01"
+
+# Must not exceed what the installed wrangler's bundled runtime supports, or
+# `wrangler dev` refuses to start. Bump only alongside a wrangler upgrade.
+compatibility_date = "2026-05-01"
 
 [triggers]
 # Hourly at :07. Not on the hour, where schedulers bunch up.

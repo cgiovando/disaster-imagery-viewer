@@ -2,3 +2,9 @@
 __pycache__/
 *.pyc
 .venv/
+
+# Wrangler local state and local secrets. .dev.vars holds plaintext secrets for
+# `wrangler dev` and must never be committed.
+.wrangler/
+.dev.vars
+.dev.vars.*

@@ -1,8 +1,9 @@
 /* Triggers the disaster-imagery-viewer catalogue refresh.
  *
  * Cron fires hourly and POSTs a repository_dispatch to GitHub, which runs the
- * refresh workflow. Also answers GET so the trigger can be exercised by hand
- * without waiting for the cron.
+ * refresh workflow. To refresh by hand, use `gh workflow run refresh.yml`
+ * rather than anything here: this Worker deliberately exposes no HTTP trigger,
+ * so there is no endpoint anyone could hit to spawn unlimited Actions runs.
  */
 
 async function dispatch(env) {
@@ -47,15 +48,39 @@ export default {
     );
   },
 
+  /* Status only. This triggers nothing, so it needs no guarding, and it answers
+   * "did the deploy land and is the token in place" without waiting for :07.
+   *
+   * `github_token_set` reports whether a secret is configured, never its value.
+   * That is operational state rather than repo-public information, and it is
+   * kept deliberately: an empty secret uploaded by a silently-failing
+   * `wrangler secret put` is exactly the failure this caught once already, and
+   * knowing a token exists gains an attacker nothing when no endpoint here can
+   * trigger anything.
+   */
   async fetch(request, env) {
-    if (request.method !== 'GET' && request.method !== 'POST') {
-      return new Response('method not allowed\n', { status: 405 });
+    /* POST used to perform the dispatch. Anyone following an older runbook must
+     * not get a 200 that looks like a refresh happened, so say plainly that the
+     * trigger is gone and where it went.
+     */
+    if (request.method !== 'GET' && request.method !== 'HEAD') {
+      return new Response(
+        'This Worker no longer exposes an HTTP trigger.\n' +
+          'Refresh with: gh workflow run refresh.yml --repo ' + env.GITHUB_REPO + '\n',
+        { status: 410, headers: { 'Content-Type': 'text/plain' } },
+      );
     }
-    try {
-      const msg = await dispatch(env);
-      return new Response(`${msg}\n`, { status: 200 });
-    } catch (err) {
-      return new Response(`${err.message}\n`, { status: 502 });
-    }
+
+    const body = {
+      worker: 'disaster-imagery-refresh',
+      repo: env.GITHUB_REPO,
+      schedule: '7 * * * *',
+      github_token_set: Boolean(env.GITHUB_TOKEN),
+      trigger: 'cron only; refresh by hand with `gh workflow run refresh.yml`',
+    };
+    return new Response(JSON.stringify(body, null, 2) + '\n', {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   },
 };
