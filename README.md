@@ -158,6 +158,7 @@ Pages.
 | [HOT Raw Data API](https://api-prod.raw-data.hotosm.org/v1/docs) | Live OpenStreetMap features | ODbL |
 | [Overpass API](https://overpass-api.de) | Fallback for live OSM | ODbL |
 | [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/) | Sentinel-1 radar tiles | Copernicus open licence |
+| Vantor Open Data STAC | Per-scene cloud cover | CC-BY-NC-4.0 |
 | Esri World Imagery seamlines | Basemap capture dates | Esri, attributed on the map |
 | Esri, Bing, OpenStreetMap | Basemaps | Per provider, attributed on the map |
 
@@ -166,7 +167,8 @@ Pages.
 This viewer shows imagery and published extents. **It does not classify damage**,
 and nothing shown here is a damage assessment. Absence of a scene means no scene
 has been published to OpenAerialMap, not that no imagery exists. Cloud cover is
-not recorded per scene in OpenAerialMap metadata, so judge it visually.
+shown where the provider publishes it; OpenAerialMap does not carry it, so
+scenes without a figure must be judged visually.
 
 ## AI-assisted development
 

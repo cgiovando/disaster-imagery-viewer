@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T15:52:13Z",
+ "generated": "2026-08-28T16:15:22Z",
  "event": {
   "id": "nepal-floods-2026",
   "name": "Nepal Floods 2026",
@@ -48,7 +48,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a917ea69cc7715385e4e919",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B110001101165110",
+   "cloud_pct": 78.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a9166c3835b65a3708c89ea",
@@ -71,7 +79,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a9166c3835b65a3708c89ea",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B030001100CF1610",
+   "cloud_pct": 79.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a91675c835b65a3708c8d99",
@@ -94,7 +110,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a91675c835b65a3708c8d99",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B030001100CF1310",
+   "cloud_pct": 78.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a9166a5835b65a3708c893e",
@@ -117,7 +141,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a9166a5835b65a3708c893e",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B030001100CF1210",
+   "cloud_pct": 74.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a91663a835b65a3708c87c9",
@@ -140,7 +172,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a91663a835b65a3708c87c9",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B030001100CF1110",
+   "cloud_pct": 81.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a90be59d8f7b27f66739570",
@@ -163,7 +203,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a90be59d8f7b27f66739570",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B040001100881610",
+   "cloud_pct": 71.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a90be58d8f7b27f66739567",
@@ -186,7 +234,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a90be58d8f7b27f66739567",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B040001100881410",
+   "cloud_pct": 73.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a907f20d8f7b27f667341ad",
@@ -209,7 +265,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a907f20d8f7b27f667341ad",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B040001100881710",
+   "cloud_pct": 72.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a908fe7d8f7b27f66736374",
@@ -232,7 +296,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a908fe7d8f7b27f66736374",
-   "group": "post-satellite"
+   "group": "post-satellite",
+   "catalog_id": "B040001100882F10",
+   "cloud_pct": 79.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a90f57bf93a44f85f488422",
@@ -623,7 +695,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a906c20c611ed22fc12fc36",
-   "group": "pre-satellite"
+   "group": "pre-satellite",
+   "catalog_id": "10300100FCB83600",
+   "cloud_pct": 15.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "659d69b9c2e5aa0001f0a132",
@@ -669,7 +749,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a9085a6d8f7b27f66735097",
-   "group": "pre-satellite"
+   "group": "pre-satellite",
+   "catalog_id": "10500100364E8400",
+   "cloud_pct": 46.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "6a90c0f1d8f7b27f66739990",
@@ -692,7 +780,15 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/6a90c0f1d8f7b27f66739990",
-   "group": "pre-satellite"
+   "group": "pre-satellite",
+   "catalog_id": "10300100C86CED00",
+   "cloud_pct": 22.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
   },
   {
    "id": "59e62b793d6412ef72209498",
@@ -2427,7 +2523,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 99,
-   "percent_validated": 3,
+   "percent_validated": 4,
    "url": "https://tasks.hotosm.org/projects/63102",
    "aoi": {
     "type": "MultiPolygon",
@@ -8756,7 +8852,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T10:05:13.518000Z",
-   "last_updated": "2026-08-28T14:08:13.989000Z",
+   "last_updated": "2026-08-28T15:54:00.011000Z",
    "total_tasks": null,
    "task_status": [
     "MAPPED",
@@ -8769,7 +8865,7 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
-    "LOCKED_FOR_VALIDATION",
+    "VALIDATED",
     "MAPPED",
     "MAPPED",
     "MAPPED",
@@ -8961,10 +9057,9 @@
     "BADIMAGERY"
    ],
    "task_counts": {
-    "BADIMAGERY": 2,
     "MAPPED": 189,
-    "VALIDATED": 7,
-    "LOCKED_FOR_VALIDATION": 1,
+    "BADIMAGERY": 2,
+    "VALIDATED": 8,
     "LOCKED_FOR_MAPPING": 1
    }
   },
@@ -8973,8 +9068,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 100,
-   "percent_validated": 8,
+   "percent_mapped": 99,
+   "percent_validated": 9,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
     "type": "MultiPolygon",
@@ -15303,7 +15398,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-28T15:27:16.905000Z",
+   "last_updated": "2026-08-28T16:07:40.512000Z",
    "total_tasks": null,
    "task_status": [
     "MAPPED",
@@ -15336,7 +15431,7 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
-    "MAPPED",
+    "VALIDATED",
     "MAPPED",
     "VALIDATED",
     "MAPPED",
@@ -15761,8 +15856,6 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
-    "MAPPED",
-    "MAPPED",
     "VALIDATED",
     "VALIDATED",
     "VALIDATED",
@@ -15772,6 +15865,8 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
+    "MAPPED",
+    "VALIDATED",
     "MAPPED",
     "MAPPED",
     "MAPPED",
@@ -15849,7 +15944,7 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
-    "MAPPED",
+    "VALIDATED",
     "VALIDATED",
     "VALIDATED",
     "VALIDATED",
@@ -15904,21 +15999,14 @@
     "VALIDATED",
     "VALIDATED",
     "VALIDATED",
-    "MAPPED",
     "LOCKED_FOR_VALIDATION",
+    "MAPPED",
+    "VALIDATED",
     "VALIDATED",
     "VALIDATED",
     "VALIDATED",
-    "VALIDATED",
     "MAPPED",
     "VALIDATED",
-    "MAPPED",
-    "MAPPED",
-    "VALIDATED",
-    "MAPPED",
-    "MAPPED",
-    "MAPPED",
-    "MAPPED",
     "MAPPED",
     "MAPPED",
     "VALIDATED",
@@ -15928,6 +16016,7 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
+    "VALIDATED",
     "MAPPED",
     "MAPPED",
     "MAPPED",
@@ -15935,6 +16024,11 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
+    "MAPPED",
+    "MAPPED",
+    "MAPPED",
+    "MAPPED",
+    "VALIDATED",
     "MAPPED",
     "BADIMAGERY",
     "MAPPED",
@@ -15943,23 +16037,24 @@
     "MAPPED",
     "MAPPED",
     "MAPPED",
-    "MAPPED",
-    "MAPPED",
+    "VALIDATED",
+    "LOCKED_FOR_VALIDATION",
     "MAPPED",
     "VALIDATED",
     "MAPPED",
     "MAPPED",
     "MAPPED",
     "MAPPED",
+    "VALIDATED",
     "MAPPED",
     "MAPPED",
     "VALIDATED"
    ],
    "task_counts": {
-    "LOCKED_FOR_VALIDATION": 1,
-    "VALIDATED": 54,
+    "MAPPED": 577,
     "BADIMAGERY": 9,
-    "MAPPED": 584
+    "VALIDATED": 60,
+    "LOCKED_FOR_VALIDATION": 2
    }
   }
  ],

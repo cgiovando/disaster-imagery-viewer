@@ -666,6 +666,7 @@ function renderCatalog() {
       scenes = scenes.filter((s) =>
         (s.title || '').toLowerCase().includes(q) ||
         (s.provider || '').toLowerCase().includes(q) ||
+        (s.sensor || '').toLowerCase().includes(q) ||
         (s.acquired || '').toLowerCase().includes(q));
     }
     if (!scenes.length) continue;
@@ -709,9 +710,19 @@ function sceneRow(s) {
   if (s.phase === 'post') badges += '<span class="badge post">post</span>';
   if (s.gsd_cm != null && s.gsd_cm <= 25) badges += '<span class="badge hires">hi-res</span>';
   if (s.gsd_cm != null && s.gsd_cm >= 300) badges += '<span class="badge coarse">coarse</span>';
+  // Cloud cover comes from the provider's STAC, not OpenAerialMap. At 70-80%
+  // cloud it is the difference between a useful scene and a wasted click.
+  if (s.cloud_pct != null) {
+    const cls = s.cloud_pct >= 70 ? 'cloudy' : s.cloud_pct >= 30 ? 'part' : 'clear';
+    badges += `<span class="badge ${cls}">${Math.round(s.cloud_pct)}% cloud</span>`;
+  }
   body.appendChild(el('div', 't', esc(s.title) + badges));
-  body.appendChild(el('div', 'd',
-    `<b>${fmtDate(s.acquired)}</b>${gsd ? ' &middot; ' + gsd : ''} &middot; ${esc(s.provider)}`));
+  // The sensor is already in the title (WV02, WV03, LG01, GE01), and the STAC
+  // platform field only says "maxar", so it is not repeated here.
+  const bits = [`<b>${fmtDate(s.acquired)}</b>`];
+  if (gsd) bits.push(gsd);
+  bits.push(esc(s.provider));
+  body.appendChild(el('div', 'd', bits.join(' &middot; ')));
   row.appendChild(body);
 
   const link = el('a', 'ext', '&#8599;');
@@ -1056,7 +1067,9 @@ function renderAbout() {
     <p>This viewer shows imagery and published extents. It does not classify damage
     and no figure here should be read as a damage assessment. Absence of a scene means
     no scene has been published to OpenAerialMap, not that no imagery exists.
-    Cloud cover is not recorded per scene in the OAM metadata, so check visually.</p>
+    Cloud cover shown on a scene comes from the provider's own STAC metadata where
+    it is published; OpenAerialMap does not carry it, so scenes without a figure
+    have to be judged visually.</p>
   `;
 }
 

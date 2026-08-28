@@ -48,6 +48,11 @@ ESRI_SEAMLINES = ("https://services.arcgisonline.com/ArcGIS/rest/services"
                   "/World_Imagery/MapServer/0/query")
 ESRI_PAGE = 100  # the service caps a page at 100 regardless of what is asked
 
+# Provider STAC collections (currently Vantor's Open Data Program). These carry
+# per-scene cloud cover, which OpenAerialMap does not expose, so it is joined
+# onto the catalogue by the provider catalogue ID embedded in the OAM title.
+CATALOG_ID_RE = re.compile(r"\b([0-9A-F]{16})\b")
+
 # Task grid geometry never changes for a project, only task status does. So the
 # geometry is written once to its own file and the per-build status is a compact
 # array in the catalogue. Keeps the 20-minute CI commits small.
@@ -315,6 +320,34 @@ def fetch_tasks(pid):
     return geoms, statuses
 
 
+def fetch_provider_metadata(cfg):
+    """Per-scene metadata from provider STAC collections, keyed by catalogue ID.
+
+    Vantor's Open Data Program publishes eo:cloud_cover and the platform on each
+    STAC item. OpenAerialMap carries neither, and at 70-80% cloud knowing which
+    scenes are worth opening matters, so the two are joined here.
+    """
+    meta = {}
+    for url in cfg.get("odpCollections", []):
+        coll = try_json(url, "ODP collection")
+        if not coll:
+            continue
+        hrefs = [l["href"] for l in coll.get("links", []) if l.get("rel") == "item"]
+        for href in hrefs:
+            item = try_json(href, f"ODP item {href.rsplit('/', 1)[-1]}", attempts=2)
+            if not item:
+                continue
+            p = item.get("properties") or {}
+            meta[str(item.get("id", "")).upper()] = {
+                "cloud": p.get("eo:cloud_cover"),
+                "platform": p.get("platform") or p.get("constellation"),
+                "bands": [b.get("common_name") or b.get("name")
+                          for b in (p.get("eo:bands") or [])],
+                "assets": sorted(item.get("assets", {}).keys()),
+            }
+    return meta
+
+
 def fetch_esri_seamlines(cfg):
     """Esri World Imagery source footprints intersecting the event bbox."""
     bbox = ",".join(str(v) for v in cfg["bbox"])
@@ -397,6 +430,26 @@ def build(cfg_path):
     print("  Tasking Manager ...")
     tm = fetch_tm(cfg)
     print(f"    {len(tm)} projects")
+
+    print("  Provider STAC metadata ...")
+    provider_meta = fetch_provider_metadata(cfg)
+    matched = 0
+    for sc in scenes:
+        m = CATALOG_ID_RE.search((sc.get("title") or "").upper())
+        if not m:
+            continue
+        info = provider_meta.get(m.group(1))
+        if not info:
+            continue
+        sc["catalog_id"] = m.group(1)
+        if info.get("cloud") is not None:
+            sc["cloud_pct"] = round(float(info["cloud"]), 1)
+        if info.get("platform"):
+            sc["sensor"] = info["platform"]
+        if info.get("bands"):
+            sc["bands"] = info["bands"]
+        matched += 1
+    print(f"    {len(provider_meta)} provider items, cloud cover joined to {matched} scenes")
 
     print("  Task grids ...")
     grid_path = os.path.join(DATA_DIR, f"{eid}.taskgrid.json")

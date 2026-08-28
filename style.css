@@ -182,3 +182,8 @@ input[type=search]:focus,select:focus{outline:none;border-color:#43505f}
 .osm-headline b{color:var(--drone);font-weight:650;font-variant-numeric:tabular-nums}
 .osm-headline.loading{border-left-color:var(--fg3);color:var(--fg3)}
 .osm-headline.error{border-left-color:var(--hot);color:var(--fg3)}
+
+/* Cloud cover badges on catalogue rows */
+.badge.clear{background:rgba(94,194,106,.16);color:var(--drone)}
+.badge.part{background:rgba(240,201,77,.16);color:#f0c94d}
+.badge.cloudy{background:rgba(154,167,182,.16);color:var(--fg2)}

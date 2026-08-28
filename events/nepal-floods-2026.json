@@ -25,6 +25,9 @@
   "zoom": 11,
   "wiki": "https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/Nepal_Floods_2026",
   "hashtag": "nepal-flood-2026-trisuli-bhotekoshi",
+  "odpCollections": [
+    "https://vantor-opendata.s3.amazonaws.com/events/Nepal-Flooding-Aug-2026/collection.json"
+  ],
   "hdxDatasets": [
     "hot_flood_npl",
     "hot_flood_npl_corridor",
