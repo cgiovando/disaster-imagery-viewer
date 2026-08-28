@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T22:34:45Z",
+ "generated": "2026-08-28T23:08:00Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -3484,7 +3484,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [ROAD]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 100,
+   "percent_mapped": 99,
    "percent_validated": 7,
    "url": "https://tasks.hotosm.org/projects/63102",
    "aoi": {
@@ -9940,7 +9940,6 @@
     "126": "MAPPED",
     "121": "MAPPED",
     "117": "MAPPED",
-    "128": "MAPPED",
     "130": "MAPPED",
     "113": "MAPPED",
     "111": "MAPPED",
@@ -9952,6 +9951,7 @@
     "122": "VALIDATED",
     "116": "VALIDATED",
     "115": "VALIDATED",
+    "128": "LOCKED_FOR_VALIDATION",
     "150": "MAPPED",
     "143": "MAPPED",
     "156": "MAPPED",
@@ -10019,9 +10019,10 @@
     "11": "BADIMAGERY"
    },
    "task_counts": {
-    "MAPPED": 184,
+    "MAPPED": 183,
     "VALIDATED": 14,
-    "BADIMAGERY": 2
+    "BADIMAGERY": 2,
+    "LOCKED_FOR_VALIDATION": 1
    }
   },
   {
@@ -10030,7 +10031,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 17,
+   "percent_validated": 18,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
     "type": "MultiPolygon",
@@ -16359,7 +16360,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-28T22:31:59.275000Z",
+   "last_updated": "2026-08-28T22:47:17.979000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
@@ -16429,8 +16430,8 @@
     "619": "MAPPED",
     "243": "MAPPED",
     "52": "MAPPED",
-    "371": "MAPPED",
     "201": "MAPPED",
+    "371": "VALIDATED",
     "407": "MAPPED",
     "111": "MAPPED",
     "372": "MAPPED",
@@ -16447,7 +16448,7 @@
     "638": "MAPPED",
     "394": "MAPPED",
     "632": "MAPPED",
-    "366": "LOCKED_FOR_VALIDATION",
+    "366": "VALIDATED",
     "312": "MAPPED",
     "248": "MAPPED",
     "69": "MAPPED",
@@ -16752,7 +16753,6 @@
     "387": "MAPPED",
     "363": "MAPPED",
     "358": "MAPPED",
-    "355": "MAPPED",
     "384": "MAPPED",
     "377": "MAPPED",
     "354": "MAPPED",
@@ -16768,6 +16768,7 @@
     "359": "VALIDATED",
     "365": "VALIDATED",
     "360": "VALIDATED",
+    "355": "VALIDATED",
     "420": "MAPPED",
     "421": "MAPPED",
     "411": "MAPPED",
@@ -17012,10 +17013,9 @@
     "9": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 524,
-    "VALIDATED": 114,
-    "BADIMAGERY": 9,
-    "LOCKED_FOR_VALIDATION": 1
+    "MAPPED": 522,
+    "VALIDATED": 117,
+    "BADIMAGERY": 9
    }
   }
  ],
@@ -17024,7 +17024,7 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-08-28T22:04:45.699307",
+   "last_modified": "2026-08-28T23:01:28.361320",
    "num_resources": 92
   },
   {
