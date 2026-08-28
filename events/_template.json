@@ -1,0 +1,19 @@
+{
+  "_comment": "Copy to <event-id>.json, fill in, then run: python3 scripts/build_catalog.py <event-id>",
+  "id": "event-id-slug",
+  "name": "Event Name As HOT Uses It",
+  "subtitle": "River system / districts",
+  "eventDate": "YYYY-MM-DD",
+  "summary": "One or two sentences. What happened, who is coordinating.",
+  "bbox": [0, 0, 0, 0],
+  "tmAoiBbox": [0, 0, 0, 0],
+  "tmCampaign": "Tasking Manager campaign name, exactly",
+  "center": [0, 0],
+  "zoom": 11,
+  "wiki": "https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/...",
+  "hashtag": "",
+  "hdxDatasets": [],
+  "places": [{ "name": "", "center": [0, 0], "zoom": 14 }],
+  "extraLayers": [],
+  "links": []
+}

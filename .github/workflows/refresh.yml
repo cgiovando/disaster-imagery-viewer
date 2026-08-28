@@ -1,0 +1,64 @@
+name: Refresh catalogue and deploy
+
+on:
+  schedule:
+    # Every 20 minutes. During the first days of an activation the imagery
+    # picture changes hourly, and a stale catalogue is worse than no viewer.
+    - cron: '*/20 * * * *'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Rebuild event catalogues
+        id: build
+        # Exit 2 means an upstream API was unavailable and the previous
+        # catalogue was deliberately kept. That is not a failure worth
+        # alerting on, but it should not be silent either.
+        run: |
+          set +e
+          python3 scripts/build_catalog.py
+          code=$?
+          set -e
+          if [ "$code" -eq 2 ]; then
+            echo "::warning::One or more catalogues kept stale (upstream unavailable)"
+          elif [ "$code" -ne 0 ]; then
+            exit "$code"
+          fi
+
+      - name: Commit if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain data/)" ]; then
+            git add data/
+            git commit -m "chore: refresh catalogue $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          else
+            echo "No catalogue change."
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

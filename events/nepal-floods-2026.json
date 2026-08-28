@@ -1,0 +1,242 @@
+{
+  "id": "nepal-floods-2026",
+  "name": "Nepal Floods 2026",
+  "subtitle": "Bhote Koshi / Trishuli corridor, Rasuwa & Nuwakot",
+  "eventDate": "2026-08-26",
+  "eventDatetime": "2026-08-26T02:55:00Z",
+  "summary": "On 26 August 2026 a glacier and rock collapse on the Tibetan side of the border sent a debris flow down the Lhende Khola into the Bhote Koshi and Trishuli rivers. Coordinated mapping is led by HOT's Open Mapping Hub Asia-Pacific with NAXA and NDRRMA.",
+  "bbox": [
+    85.0,
+    27.8,
+    85.6,
+    28.36
+  ],
+  "tmAoiBbox": [
+    85.0581,
+    27.844,
+    85.3879,
+    28.2874
+  ],
+  "tmCampaign": "2026 Nepal Floods",
+  "center": [
+    85.34,
+    28.16
+  ],
+  "zoom": 11,
+  "wiki": "https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/Nepal_Floods_2026",
+  "hashtag": "nepal-flood-2026-trisuli-bhotekoshi",
+  "hdxDatasets": [
+    "hot_flood_npl",
+    "hot_flood_npl_corridor",
+    "hot_flood_npl_buildings_fair",
+    "2026-nepal-flash-flood"
+  ],
+  "places": [
+    {
+      "name": "Shyaphru (pre/post overlap)",
+      "center": [
+        85.3393,
+        28.1638
+      ],
+      "zoom": 15
+    },
+    {
+      "name": "Timure / Rasuwagadhi",
+      "center": [
+        85.3785,
+        28.2732
+      ],
+      "zoom": 14
+    },
+    {
+      "name": "Syabrubesi",
+      "center": [
+        85.3345,
+        28.1622
+      ],
+      "zoom": 14
+    },
+    {
+      "name": "Betrawati",
+      "center": [
+        85.1806,
+        27.9694
+      ],
+      "zoom": 14
+    }
+  ],
+  "extraLayers": [
+    {
+      "id": "unosat-extent",
+      "type": "geojson",
+      "group": "impact",
+      "name": "UNOSAT flood / mudflow extent",
+      "url": "https://opendata.aiforgood.ai/damage-assessment/data/unosat_damage_area.geojson",
+      "color": "#d73f3f",
+      "attribution": "UNOSAT, via Microsoft AI for Good Lab",
+      "info": "SAR-derived impacted area published by UNOSAT. 37 sq km. Basis of the Microsoft AI for Good exposure figures.",
+      "link": "https://unosat.org/products/4257"
+    },
+    {
+      "id": "ai4g-s2-post",
+      "type": "raster",
+      "group": "mosaic",
+      "name": "Sentinel-2 post-event",
+      "url": "https://opendata.aiforgood.ai/damage-assessment/tiles/nepal_flash_flood_2026_post_sentinel2_rgb/sentinel2-post/{z}/{x}/{y}.png",
+      "maxzoom": 14,
+      "attribution": "Copernicus Sentinel-2 via Microsoft AI for Good Lab",
+      "info": "10 m Sentinel-2. Coarse, but wide and often the first cloud-free look."
+    },
+    {
+      "id": "ai4g-planet-post",
+      "type": "raster",
+      "group": "mosaic",
+      "name": "PlanetScope post-event",
+      "url": "https://opendata.aiforgood.ai/damage-assessment/tiles/nepal_flash_flood_2026_post_planetscope_rgb/post/{z}/{x}/{y}.png",
+      "maxzoom": 15,
+      "attribution": "Planet via Microsoft AI for Good Lab",
+      "info": "3 m PlanetScope after the event. Frequently cloudy over this valley."
+    },
+    {
+      "id": "ai4g-planet-pre",
+      "type": "raster",
+      "group": "mosaic",
+      "name": "PlanetScope pre-event",
+      "url": "https://opendata.aiforgood.ai/damage-assessment/tiles/nepal_flash_flood_2026_pre_planetscope_rgb/pre/{z}/{x}/{y}.png",
+      "maxzoom": 15,
+      "attribution": "Planet via Microsoft AI for Good Lab",
+      "info": "3 m PlanetScope before the event."
+    },
+    {
+      "id": "overture-buildings",
+      "type": "pmtiles",
+      "group": "reference",
+      "name": "Overture building footprints",
+      "url": "https://opendata.aiforgood.ai/damage-assessment/tiles/nepal_flash_flood_2026_overture_buildings_buffer_10km.pmtiles",
+      "sourceLayer": "buildings",
+      "color": "#ff8adc",
+      "attribution": "Overture Maps via Microsoft AI for Good Lab",
+      "info": "Overture footprints within 10 km of the flood extent. Useful as a check on what OpenStreetMap is still missing.",
+      "minzoom": 8,
+      "maxzoom": 14,
+      "opacity": 0.55
+    }
+  ],
+  "links": [
+    {
+      "name": "Activation wiki",
+      "url": "https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/Nepal_Floods_2026"
+    },
+    {
+      "name": "Tasking Manager campaign",
+      "url": "https://tasks.hotosm.org/explore?campaign=2026%20Nepal%20Floods&omitMapResults=1"
+    },
+    {
+      "name": "Focus area uMap",
+      "url": "https://umap.hotosm.org/en/map/nepal-floods-2026-focus-area-and-tasking-manager-p_3989"
+    },
+    {
+      "name": "Vantor STAC index",
+      "url": "https://browser.moregeo.it/external/vantor-opendata.s3.amazonaws.com/events/Nepal-Flooding-Aug-2026/collection.json"
+    },
+    {
+      "name": "Copernicus EMSR927",
+      "url": "https://mapping.emergency.copernicus.eu/activations/EMSR927/"
+    },
+    {
+      "name": "UNOSAT SMCS event 421",
+      "url": "https://smcs.unosat.org/event/421"
+    },
+    {
+      "name": "Disasters Charter 1052",
+      "url": "https://disasterscharter.org/activations/flood-in-nepal-activation-1052-"
+    },
+    {
+      "name": "ohsomeNow contribution stats",
+      "url": "https://ohsome-now.heigit.org/dashboard#hashtag=nepal-flood-2026-trisuli-bhotekoshi"
+    },
+    {
+      "name": "Microsoft AI for Good viewer",
+      "url": "https://visualizers.aiforgood.ai/damage-assessment/nepal_landslide_8_27_2026.html"
+    }
+  ],
+  "sar": {
+    "enabled": true,
+    "stac": "https://planetarycomputer.microsoft.com/api/stac/v1/search",
+    "tiler": "https://planetarycomputer.microsoft.com/api/data/v1/item/tiles/WebMercatorQuad/{z}/{x}/{y}@1x",
+    "collections": [
+      "sentinel-1-rtc",
+      "sentinel-1-grd"
+    ],
+    "daysBefore": 30,
+    "daysAfter": 30,
+    "rescale": {
+      "sentinel-1-rtc": "0,0.4",
+      "sentinel-1-grd": "0,600"
+    },
+    "modes": [
+      {
+        "id": "db",
+        "name": "Backscatter (dB)",
+        "default": true,
+        "expression": "10*log10({pol})",
+        "rescale": "-22,0",
+        "colormap": "gray",
+        "info": "The standard way to read radar. Smooth surfaces such as standing water and wet scoured mud are dark; rough ground and buildings are bright. Raw linear backscatter renders almost black, which is why this is the default."
+      },
+      {
+        "id": "water",
+        "name": "Smooth-surface / water mask",
+        "expression": "where({pol}<0.02,1,0)",
+        "rescale": "0,1",
+        "colormap": "blues",
+        "info": "Thresholds low backscatter: standing water, saturated ground and smooth deposits. Indicative only. In steep terrain radar shadow also reads as smooth, so treat isolated patches on slopes with caution."
+      },
+      {
+        "id": "rgb",
+        "name": "False colour (dB VV / VH / ratio)",
+        "expression": "10*log10(vv);10*log10(vh);10*log10(vv)-10*log10(vh)",
+        "rescale": "-20,-2&rescale=-28,-10&rescale=2,12",
+        "info": "Dual-polarisation composite on a dB scale. Vegetation is green, smooth and water-covered ground dark blue, built-up surfaces pale."
+      }
+    ]
+  },
+  "rawDataApi": "https://api-prod.raw-data.hotosm.org/v1",
+  "excludeTitles": [
+    "Land Use"
+  ],
+  "optical": {
+    "enabled": true,
+    "collection": "sentinel-2-l2a",
+    "stac": "https://planetarycomputer.microsoft.com/api/stac/v1/search",
+    "tiler": "https://planetarycomputer.microsoft.com/api/data/v1/item/tiles/WebMercatorQuad/{z}/{x}/{y}@1x",
+    "daysBefore": 20,
+    "daysAfter": 30,
+    "maxCloud": 95,
+    "modes": [
+      {
+        "id": "tci",
+        "name": "True colour",
+        "default": true,
+        "assets": "B04,B03,B02",
+        "rescale": "0,3000",
+        "info": "Natural colour, 10 m."
+      },
+      {
+        "id": "swir",
+        "name": "SWIR false colour",
+        "assets": "B12,B08,B04",
+        "rescale": "0,4000",
+        "info": "Cuts through haze and thin cloud. Water is very dark, wet ground dark blue, bare scoured land bright."
+      },
+      {
+        "id": "ndwi",
+        "name": "NDWI water index",
+        "expression": "(B03-B08)/(B03+B08)",
+        "rescale": "-1,1",
+        "colormap": "rdbu",
+        "info": "Normalised difference water index. Blue is water."
+      }
+    ]
+  }
+}
