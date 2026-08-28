@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T20:34:48Z",
+ "generated": "2026-08-28T20:35:15Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -16359,7 +16359,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-28T20:34:08.697000Z",
+   "last_updated": "2026-08-28T20:34:37.391000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
@@ -16681,8 +16681,6 @@
     "314": "MAPPED",
     "310": "MAPPED",
     "311": "MAPPED",
-    "286": "MAPPED",
-    "287": "MAPPED",
     "293": "MAPPED",
     "297": "MAPPED",
     "299": "MAPPED",
@@ -16709,6 +16707,8 @@
     "292": "MAPPED",
     "300": "VALIDATED",
     "290": "VALIDATED",
+    "286": "LOCKED_FOR_VALIDATION",
+    "287": "LOCKED_FOR_VALIDATION",
     "329": "MAPPED",
     "330": "MAPPED",
     "338": "MAPPED",
@@ -17012,9 +17012,10 @@
     "9": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 534,
+    "MAPPED": 532,
     "VALIDATED": 105,
-    "BADIMAGERY": 9
+    "BADIMAGERY": 9,
+    "LOCKED_FOR_VALIDATION": 2
    }
   }
  ],
