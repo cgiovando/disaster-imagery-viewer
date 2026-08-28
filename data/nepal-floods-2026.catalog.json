@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T20:21:48Z",
+ "generated": "2026-08-28T20:22:38Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -10320,7 +10320,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 13,
+   "percent_validated": 14,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
     "type": "MultiPolygon",
@@ -16649,7 +16649,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-28T20:19:54.847000Z",
+   "last_updated": "2026-08-28T20:21:26.395000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
