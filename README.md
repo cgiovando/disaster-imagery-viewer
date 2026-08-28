@@ -130,6 +130,20 @@ of render modes rather than a single fixed view:
 - Sentinel-2: **true colour**, **SWIR false colour** which cuts through haze,
   and **NDWI** for water.
 
+**Planet's crisis response bucket** is read directly from Source Cooperative,
+because Planet mirror only PlanetScope to OpenAerialMap. SkySat and Pelican are
+otherwise invisible, and for the Nepal event SkySat at 0.8 m and 50% cloud is
+the least cloudy post-event optical imagery available anywhere.
+
+Planet also publish more than RGB. Pelican ships a six-band pan-sharpened COG
+(blue, green, red, NIR, red edge, red edge II) at 0.55 m, and PlanetScope a
+four-band analytic. Each multi-band asset is emitted as one catalogue entry per
+rendering (natural colour, NIR false colour, NDWI), which reuses the ordinary
+scene rows and means renderings can be swipe-compared against each other.
+Display stretches are tabulated per sensor from the 2nd to 98th percentile of
+the real scenes; Pelican sits around 9,000-46,000 while SkySat is 60-460, so a
+single shared stretch makes most of them unreadable.
+
 **Esri basemap capture dates** come from the World Imagery footprint layer. Its
 `/query` endpoint is CORS-blocked in the browser, which is why other tools
 grid-sample the `/identify` endpoint instead; because this project has a build
@@ -159,6 +173,7 @@ Pages.
 | [Overpass API](https://overpass-api.de) | Fallback for live OSM | ODbL |
 | [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/) | Sentinel-1 radar tiles | Copernicus open licence |
 | Vantor Open Data STAC | Per-scene cloud cover | CC-BY-NC-4.0 |
+| [Planet Crisis Response](https://source.coop/planet/disasterdata) | SkySat, Pelican, PlanetScope imagery and bands | CC-BY-NC-4.0 |
 | Esri World Imagery seamlines | Basemap capture dates | Esri, attributed on the map |
 | Esri, Bing, OpenStreetMap | Basemaps | Per provider, attributed on the map |
 

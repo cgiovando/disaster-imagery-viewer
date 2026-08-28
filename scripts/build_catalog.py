@@ -53,6 +53,29 @@ ESRI_PAGE = 100  # the service caps a page at 100 regardless of what is asked
 # onto the catalogue by the provider catalogue ID embedded in the OAM title.
 CATALOG_ID_RE = re.compile(r"\b([0-9A-F]{16})\b")
 
+# Planet's crisis response buckets publish more than the RGB visual: Pelican
+# ships a 6-band pan-sharpened COG (blue, green, red, NIR, red edge, red edge II)
+# and PlanetScope a 4-band analytic. Those extra bands are worth surfacing, so
+# each multi-band asset is emitted as its own catalogue entry per rendering,
+# which reuses the existing row UI and lets renderings be swipe-compared.
+#
+# Band order and sensible display stretches differ per sensor, so they are
+# tabulated rather than guessed. Stretches come from the 2nd-98th percentile of
+# the actual scenes; a single shared value makes two of the three unreadable.
+PLANET_SENSORS = {
+    "Pelican":     {"gsd": 0.55, "rescale": "9000,46000"},
+    "SkySat":      {"gsd": 0.80, "rescale": "50,470"},
+    "PlanetScope": {"gsd": 3.70, "rescale": "2000,44000"},
+}
+# Renderings offered for a multi-band asset. bidx is 1-based, RGB order.
+PLANET_RENDERS = [
+    {"suffix": "NIR false colour", "bidx": [4, 3, 2],
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."},
+    {"suffix": "NDWI", "expression": "(b2-b4)/(b2+b4)",
+     "rescale": "-1,1", "colormap": "rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."},
+]
+
 # Task grid geometry never changes for a project, only task status does. So the
 # geometry is written once to its own file and the per-build status is a compact
 # array in the catalogue. Keeps the 20-minute CI commits small.
@@ -320,6 +343,134 @@ def fetch_tasks(pid):
     return geoms, statuses
 
 
+def _planet_sensor(gsd):
+    best, diff = None, 1e9
+    for name, spec in PLANET_SENSORS.items():
+        d = abs((gsd or 0) - spec["gsd"])
+        if d < diff:
+            best, diff = name, d
+    # Beyond a reasonable tolerance we do not claim to know the sensor.
+    return best if diff < max(0.3, (gsd or 0) * 0.35) else None
+
+
+def _walk_stac(url, seen=None, depth=0):
+    """Yield every item URL under a STAC catalog or collection."""
+    seen = seen if seen is not None else set()
+    if url in seen or depth > 6:
+        return
+    seen.add(url)
+    node = try_json(url, f"STAC {url.rsplit('/', 2)[-2]}", attempts=2)
+    if not node:
+        return
+    for link in node.get("links", []):
+        rel, href = link.get("rel"), link.get("href")
+        if not href or rel not in ("child", "item"):
+            continue
+        target = urllib.parse.urljoin(url, href)
+        if rel == "item":
+            yield target
+        else:
+            yield from _walk_stac(target, seen, depth + 1)
+
+
+def fetch_planet_crisis(cfg):
+    """Scenes from a Planet crisis response STAC catalog.
+
+    Planet mirror only PlanetScope to OpenAerialMap, so SkySat and Pelican are
+    invisible unless the bucket is read directly. For this event SkySat is the
+    least cloudy post-event optical available anywhere.
+    """
+    root = cfg.get("planetCrisis")
+    if not root:
+        return []
+    event_dt = cfg.get("eventDatetime") or (cfg["eventDate"] + "T00:00:00Z")
+    aoi = cfg.get("tmAoiBbox")
+    scenes = []
+
+    for item_url in _walk_stac(root):
+        item = try_json(item_url, f"Planet item {item_url.rsplit('/', 1)[-1]}", attempts=2)
+        if not item:
+            continue
+        props = item.get("properties") or {}
+        gsd = props.get("gsd")
+        sensor = _planet_sensor(gsd)
+        if not sensor:
+            continue
+        dt = props.get("datetime") or ""
+        bbox = item.get("bbox") or []
+        cloud = props.get("eo:cloud_cover")
+        phase = "post" if dt >= event_dt else "pre"
+        base = {
+            "provider": "Planet",
+            "sensor": sensor,
+            "acquired": dt,
+            "phase": phase,
+            "gsd_cm": round(gsd * 100, 1) if gsd else None,
+            "cloud_pct": round(float(cloud), 1) if cloud is not None else None,
+            "bbox": bbox,
+            "in_aoi": bbox_intersects(bbox, aoi) if aoi else True,
+            "is_drone": False,
+            "license": "CC-BY-NC-4.0",
+            "attribution": "Planet Crisis Response via Source Cooperative",
+            "oam_url": item_url,
+        }
+        assets = item.get("assets") or {}
+        stretch = PLANET_SENSORS[sensor]["rescale"]
+        # Several scenes share a day, and consecutive Pelican captures are one
+        # second apart, so seconds are needed to tell them apart in the list.
+        stamp = f"{dt[:10]} {dt[11:19]}Z" if len(dt) >= 19 else dt[:10]
+
+        # OpenAerialMap already mirrors Planet's PlanetScope visual scenes, so
+        # only the renderings that add something (NIR, NDWI) are emitted for it.
+        want_visual = sensor != "PlanetScope"
+
+        # The 8-bit visual asset is the default, natural-colour entry.
+        if want_visual and "visual" in assets:
+            url = urllib.parse.urljoin(item_url, assets["visual"]["href"])
+            sc = dict(base)
+            sc["id"] = f"planet-{item['id']}-visual"
+            sc["title"] = f"{sensor} {stamp} natural colour"
+            sc["tile_url"] = TITILER + urllib.parse.quote(url, safe="")
+            sc["group"] = group_of(sc)
+            scenes.append(sc)
+
+        # Multi-band assets get one entry per rendering.
+        multi = next((a for a in ("pansharpened", "analytic", "analytic_sr") if a in assets), None)
+        if multi:
+            url = urllib.parse.urljoin(item_url, assets[multi]["href"])
+            enc = urllib.parse.quote(url, safe="")
+            for r in PLANET_RENDERS:
+                parts = [f"url={enc}"]
+                if r.get("expression"):
+                    parts.append("expression=" + urllib.parse.quote(r["expression"], safe=""))
+                    parts.append(f"rescale={r['rescale']}")
+                    if r.get("colormap"):
+                        parts.append(f"colormap_name={r['colormap']}")
+                else:
+                    parts += [f"bidx={b}" for b in r["bidx"]]
+                    parts += [f"rescale={stretch}"] * len(r["bidx"])
+                sc = dict(base)
+                sc["id"] = f"planet-{item['id']}-{r['suffix'].lower().replace(' ', '-')}"
+                sc["title"] = f"{sensor} {stamp} {r['suffix']}"
+                sc["tile_url"] = TITILER.replace("{z}/{x}/{y}@1x?url=", "{z}/{x}/{y}@1x?") + "&".join(parts)
+                sc["note"] = r["note"]
+                sc["group"] = group_of(sc)
+                scenes.append(sc)
+
+    # Two SkySat captures can share a timestamp to the second, so disambiguate
+    # any remaining collisions with a fragment of the source item id.
+    counts = {}
+    for sc in scenes:
+        counts[sc["title"]] = counts.get(sc["title"], 0) + 1
+    for sc in scenes:
+        if counts.get(sc["title"], 0) > 1:
+            frag = sc["id"].split("-")[1].rsplit("_", 1)[-1][:6]
+            sc["title"] = f"{sc['title']} ({frag})"
+
+    scenes.sort(key=lambda s: (s.get("acquired") or ""), reverse=True)
+    return scenes
+
+
 def fetch_provider_metadata(cfg):
     """Per-scene metadata from provider STAC collections, keyed by catalogue ID.
 
@@ -430,6 +581,22 @@ def build(cfg_path):
     print("  Tasking Manager ...")
     tm = fetch_tm(cfg)
     print(f"    {len(tm)} projects")
+
+    print("  Planet crisis response ...")
+    planet = fetch_planet_crisis(cfg)
+    if planet:
+        by_sensor = {}
+        for sc in planet:
+            by_sensor.setdefault(sc["sensor"], 0)
+            by_sensor[sc["sensor"]] += 1
+        print("    " + ", ".join(f"{k} {v}" for k, v in sorted(by_sensor.items())) +
+              f" ({len(planet)} renderings)")
+        # OAM already carries mirrored PlanetScope scenes; keep both but the
+        # Planet-native ones carry cloud cover and the extra bands.
+        scenes.extend(planet)
+        scenes.sort(key=lambda s: (s.get("acquired") or ""), reverse=True)
+    else:
+        print("    none")
 
     print("  Provider STAC metadata ...")
     provider_meta = fetch_provider_metadata(cfg)

@@ -28,6 +28,7 @@
   "odpCollections": [
     "https://vantor-opendata.s3.amazonaws.com/events/Nepal-Flooding-Aug-2026/collection.json"
   ],
+  "planetCrisis": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/catalog.json",
   "hdxDatasets": [
     "hot_flood_npl",
     "hot_flood_npl_corridor",

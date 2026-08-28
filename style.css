@@ -187,3 +187,4 @@ input[type=search]:focus,select:focus{outline:none;border-color:#43505f}
 .badge.clear{background:rgba(94,194,106,.16);color:var(--drone)}
 .badge.part{background:rgba(240,201,77,.16);color:#f0c94d}
 .badge.cloudy{background:rgba(154,167,182,.16);color:var(--fg2)}
+.scene .note{font-size:10.5px;color:var(--fg3);margin-top:3px;line-height:1.4}

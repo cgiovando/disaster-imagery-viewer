@@ -562,7 +562,7 @@ function toggleScene(scene) {
       key, name: scene.title, kind: 'scene', scene,
       url: (scene.tile_url || scene.tms).replace(/\{-y\}/g, '{y}'),
       opacity: 1, side: 'right',
-      attribution: `${scene.provider} via OpenAerialMap`,
+      attribution: scene.attribution || `${scene.provider} via OpenAerialMap`,
       maxzoom: 22
     });
   }
@@ -723,6 +723,7 @@ function sceneRow(s) {
   if (gsd) bits.push(gsd);
   bits.push(esc(s.provider));
   body.appendChild(el('div', 'd', bits.join(' &middot; ')));
+  if (s.note) body.appendChild(el('div', 'note', esc(s.note)));
   row.appendChild(body);
 
   const link = el('a', 'ext', '&#8599;');
