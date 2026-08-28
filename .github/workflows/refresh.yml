@@ -48,8 +48,8 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain data/)" ]; then
-            git add data/
+          if [ -n "$(git status --porcelain data/ index.html ./*/index.html)" ]; then
+            git add data/ index.html ./*/index.html
             git commit -m "chore: refresh catalogue $(date -u +%Y-%m-%dT%H:%MZ)"
             git push
           else

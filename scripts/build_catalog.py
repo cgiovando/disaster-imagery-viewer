@@ -29,6 +29,7 @@ from datetime import datetime, timezone
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EVENTS_DIR = os.path.join(ROOT, "events")
 DATA_DIR = os.path.join(ROOT, "data")
+SHELL = os.path.join(ROOT, "shell.html")
 
 OAM_API = "https://api.openaerialmap.org/meta"
 TM_API = "https://tasking-manager-production-api.hotosm.org/api/v2"
@@ -406,6 +407,103 @@ def build(cfg_path):
     return catalog
 
 
+def write_event_page(cfg):
+    """Emit /<event-id>/index.html so each event has a real URL rather than a
+    query string. GitHub Pages serves static directories, so this is a page per
+    event built from the shared shell rather than any client-side routing."""
+    eid = cfg["id"]
+    with open(SHELL) as f:
+        html = f.read()
+
+    # Assets live one level up from the event directory.
+    html = html.replace('href="style.css"', 'href="../style.css"')
+    html = html.replace('src="app.js"', 'src="../app.js"')
+    html = html.replace(
+        "<title>Disaster Imagery Viewer</title>",
+        f"<title>{cfg['name']} - Imagery Viewer</title>",
+    )
+    subtitle = cfg.get("subtitle", "")
+    html = html.replace(
+        '<meta name="description" content=',
+        f'<meta property="og:title" content="{cfg["name"]} - Imagery Viewer">\n'
+        f'<meta property="og:description" content="{subtitle}">\n'
+        '<meta name="description" content=',
+    )
+    html = html.replace(
+        '<script src="https://unpkg.com/maplibre-gl',
+        f'<script>window.APP_BASE = "../"; window.EVENT_ID = "{eid}";</script>\n'
+        '<script src="https://unpkg.com/maplibre-gl',
+        1,
+    )
+
+    out_dir = os.path.join(ROOT, eid)
+    os.makedirs(out_dir, exist_ok=True)
+    with open(os.path.join(out_dir, "index.html"), "w") as f:
+        f.write(html)
+    print(f"  wrote {eid}/index.html")
+
+
+def write_landing(events):
+    """Root page listing every configured event."""
+    cards = []
+    for cfg, cat in events:
+        scenes = len(cat.get("scenes", []))
+        post = sum(1 for s in cat.get("scenes", []) if s.get("phase") == "post")
+        cards.append(
+            f'    <a class="card" href="{cfg["id"]}/">\n'
+            f'      <h2>{cfg["name"]}</h2>\n'
+            f'      <p class="sub">{cfg.get("subtitle", "")}</p>\n'
+            f'      <p class="meta">Event {cfg.get("eventDate", "")} &middot; '
+            f'{scenes} scenes catalogued &middot; {post} post-event</p>\n'
+            f'    </a>'
+        )
+    generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    html = f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Disaster Imagery Viewer</title>
+<meta name="description" content="Imagery and response viewer for humanitarian mapping activations.">
+<link rel="stylesheet" href="style.css">
+<style>
+  body{{display:block;padding:0}}
+  .wrap{{max-width:760px;margin:0 auto;padding:56px 24px 72px}}
+  h1{{font-size:26px;margin:0 0 6px;letter-spacing:-.01em}}
+  h1::before{{content:"";display:inline-block;width:4px;height:20px;background:var(--hot);
+    margin-right:11px;vertical-align:-2px;border-radius:1px}}
+  .lede{{color:var(--fg2);font-size:14px;margin:0 0 34px;line-height:1.6;max-width:60ch}}
+  .card{{display:block;background:var(--bg2);border:1px solid var(--line);border-radius:9px;
+    padding:18px 20px;margin-bottom:12px;text-decoration:none;transition:border-color .15s}}
+  .card:hover{{border-color:#43505f}}
+  .card h2{{margin:0;font-size:17px;color:var(--fg);font-weight:650}}
+  .card .sub{{margin:4px 0 0;font-size:13px;color:var(--fg2)}}
+  .card .meta{{margin:8px 0 0;font-size:11.5px;color:var(--fg3);font-variant-numeric:tabular-nums}}
+  footer{{margin-top:34px;font-size:12px;color:var(--fg3);line-height:1.6}}
+  footer a{{color:var(--pre);text-decoration:none}}
+  footer a:hover{{text-decoration:underline}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Disaster Imagery Viewer</h1>
+    <p class="lede">What imagery exists over a disaster area and how old it is, what
+    Tasking Manager mappers are looking at, and how the ground compares before and
+    after the event.</p>
+{chr(10).join(cards)}
+    <footer>
+      Catalogues refreshed {generated}.
+      <a href="https://github.com/cgiovando/disaster-imagery-viewer">Source on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>
+"""
+    with open(os.path.join(ROOT, "index.html"), "w") as f:
+        f.write(html)
+    print(f"  wrote index.html ({len(events)} event(s))")
+
+
 def main():
     wanted = sys.argv[1:]
     configs = sorted(
@@ -420,9 +518,25 @@ def main():
             print(f"No matching event config for {wanted}", file=sys.stderr)
             return 1
     failed = []
+    built = []
     for c in configs:
-        if build(c) is None:
+        cat = build(c)
+        if cat is None:
             failed.append(os.path.basename(c)[:-5])
+            # Keep the previous catalogue for the landing page counts.
+            eid = os.path.basename(c)[:-5]
+            try:
+                with open(os.path.join(DATA_DIR, f"{eid}.catalog.json")) as f:
+                    cat = json.load(f)
+            except (OSError, ValueError):
+                cat = {}
+        with open(c) as f:
+            cfg = json.load(f)
+        write_event_page(cfg)
+        built.append((cfg, cat))
+
+    print("\nPages:")
+    write_landing(built)
     if failed:
         print(f"\nStale (kept previous catalogue): {', '.join(failed)}", file=sys.stderr)
         return 2

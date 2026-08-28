@@ -32,8 +32,13 @@ Two things this surfaced immediately for the Nepal response:
 
 ```
 python3 -m http.server 8000
-open http://localhost:8000/?event=nepal-floods-2026
+open http://localhost:8000/nepal-floods-2026/
 ```
+
+The root page lists every configured event. Each event has its own URL:
+
+- <https://cgiovando.github.io/disaster-imagery-viewer/> - event index
+- <https://cgiovando.github.io/disaster-imagery-viewer/nepal-floods-2026/> - Nepal Floods 2026
 
 There is no build step and no dependencies to install for the front end.
 
@@ -45,11 +50,13 @@ basemap and a position can be shared as a link.
 1. Copy `events/_template.json` to `events/<event-id>.json` and fill it in.
    Use the event name HOT is using on the OSM wiki and Tasking Manager
    campaign, so the viewer, the wiki and the campaign all agree.
-2. Build the catalogue:
+2. Build the catalogue and pages:
    ```
-   python3 scripts/build_catalog.py <event-id>
+   python3 scripts/build_catalog.py
    ```
-3. Open `?event=<event-id>`.
+   This writes `data/<event-id>.catalog.json`, generates `<event-id>/index.html`
+   from `shell.html`, and rebuilds the root event index.
+3. Open `/<event-id>/`.
 
 CI rebuilds every configured event automatically.
 
@@ -151,5 +158,5 @@ not recorded per scene in OpenAerialMap metadata, so judge it visually.
 
 ## AI-assisted development
 
-This project was developed with AI assistance. All code and content have been
-reviewed by a human before publication.
+AI-assisted development: substantial parts of this repository were written with
+Claude Code.

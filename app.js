@@ -17,6 +17,10 @@ const INSTA_TM = 'https://pub-9f93f222eb8648a08829b4d1cd8edcfb.r2.dev';
 const OVERPASS = 'https://overpass-api.de/api/interpreter';
 const DEFAULT_EVENT = 'nepal-floods-2026';
 
+// Event pages are served from /<event-id>/, one level below the app assets, and
+// declare window.APP_BASE so fetches still resolve.
+const BASE = window.APP_BASE || '';
+
 // Task states, in the order a task moves through them.
 const TASK_COLORS = {
   READY:                 '#3b4655',
@@ -851,7 +855,7 @@ function renderTaskLegend() {
 async function loadTaskGrid() {
   if (state.taskGrid) return;
   try {
-    const r = await fetch(`data/${state.cfg.id}.taskgrid.json`);
+    const r = await fetch(`${BASE}data/${state.cfg.id}.taskgrid.json`);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     state.taskGrid = await r.json();
   } catch (e) {
@@ -1624,19 +1628,23 @@ function readHash() {
 /* -------------------------------------------------------------------- boot */
 
 function eventIdFromUrl() {
-  const p = new URLSearchParams(location.search).get('event');
-  if (p) return p;
-  const h = readHash();
+  if (window.EVENT_ID) return window.EVENT_ID;
+  const q = new URLSearchParams(location.search).get('event');
+  if (q) return q;
   const m = location.hash.match(/e=([\w-]+)/);
-  return (m && m[1]) || DEFAULT_EVENT;
+  if (m) return m[1];
+  // /disaster-imagery-viewer/<event-id>/ style paths
+  const seg = location.pathname.replace(/\/+$/, '').split('/').pop();
+  if (seg && seg !== 'index.html' && /^[\w-]+$/.test(seg)) return seg;
+  return DEFAULT_EVENT;
 }
 
 async function boot() {
   const id = eventIdFromUrl();
   try {
     const [cfgR, catR] = await Promise.all([
-      fetch(`events/${id}.json`),
-      fetch(`data/${id}.catalog.json`)
+      fetch(`${BASE}events/${id}.json`),
+      fetch(`${BASE}data/${id}.catalog.json`)
     ]);
     if (!cfgR.ok) throw new Error(`No event config for "${id}"`);
     if (!catR.ok) throw new Error(`No catalogue for "${id}" - run scripts/build_catalog.py`);

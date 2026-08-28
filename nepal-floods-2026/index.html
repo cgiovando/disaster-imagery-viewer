@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nepal Floods 2026 - Imagery Viewer</title>
+<meta property="og:title" content="Nepal Floods 2026 - Imagery Viewer">
+<meta property="og:description" content="Bhote Koshi / Trishuli corridor, Rasuwa & Nuwakot">
+<meta name="description" content="What imagery exists over a disaster area, how old it is, and what mappers are actually looking at.">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<div id="app">
+  <aside id="sidebar">
+    <header id="brand">
+      <div class="brand-row">
+        <div>
+          <h1 id="event-name">Loading&hellip;</h1>
+          <p class="sub" id="event-sub"></p>
+        </div>
+        <button id="collapse" title="Hide panel" aria-label="Hide panel">&#10094;</button>
+      </div>
+      <p class="meta" id="freshness"></p>
+      <p class="osm-headline loading" id="osm-headline" hidden></p>
+    </header>
+
+    <nav id="tabs" role="tablist">
+      <button class="tab active" data-tab="imagery" role="tab">Imagery</button>
+      <button class="tab" data-tab="reference" role="tab">Reference</button>
+      <button class="tab" data-tab="about" role="tab">About</button>
+    </nav>
+
+    <div class="tabwrap">
+
+      <section class="panel active" id="tab-imagery">
+        <div class="block" id="active-block" hidden>
+          <div class="block-head">
+            <h2>Active imagery</h2>
+            <button class="linkbtn" id="clear-active">clear</button>
+          </div>
+          <div id="active-list"></div>
+          <div class="compare-box">
+            <label class="chk">
+              <input type="checkbox" id="compare-toggle">
+              <span>Swipe compare</span>
+            </label>
+            <div id="compare-controls" hidden>
+              <div class="cmp-row"><span class="cmp-tag left">Left</span><select id="cmp-left"></select></div>
+              <div class="cmp-row"><span class="cmp-tag right">Right</span><select id="cmp-right"></select></div>
+              <p class="hint">Drag the divider on the map.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-head">
+            <h2>Imagery catalogue</h2>
+            <span class="count" id="scene-count"></span>
+          </div>
+          <div class="filters">
+            <label class="chk"><input type="checkbox" id="aoi-only" checked><span>Corridor AOI only</span></label>
+            <input type="search" id="scene-search" placeholder="Filter by name, provider, year&hellip;">
+          </div>
+          <div id="scene-groups"></div>
+        </div>
+
+        <div class="block">
+          <div class="block-head"><h2>Regional mosaics</h2></div>
+          <div id="mosaic-list"></div>
+        </div>
+
+        <div class="block">
+          <div class="block-head">
+            <h2>Sentinel-1 radar</h2>
+            <span class="count" id="sar-count"></span>
+          </div>
+          <p class="hint">Radar sees through cloud, which optical cannot do here in monsoon season. Queried live from the Planetary Computer, so a new pass appears as soon as it is published.</p>
+          <div id="sar-mode" class="modebox"></div>
+          <div id="sar-list"><p class="empty">Searching&hellip;</p></div>
+          <p class="meta" id="sar-note"></p>
+        </div>
+
+        <div class="block">
+          <div class="block-head">
+            <h2>Sentinel-2 optical</h2>
+            <span class="count" id="s2-count"></span>
+          </div>
+          <p class="hint">Free 10 m optical, queried live. SWIR cuts through haze that defeats true colour.</p>
+          <div id="s2-mode" class="modebox"></div>
+          <div id="s2-list"><p class="empty">Searching&hellip;</p></div>
+        </div>
+
+        <div class="block">
+          <div class="block-head"><h2>Basemap</h2></div>
+          <div id="basemap-list"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="tab-reference">
+        <div class="block">
+          <div class="block-head"><h2>Tasking Manager</h2><span class="count" id="tm-src"></span></div>
+          <div id="tm-toggles"></div>
+          <div id="tm-legend" class="legend" hidden></div>
+          <div id="tm-list"></div>
+        </div>
+        <div class="block">
+          <div class="block-head"><h2>Impact &amp; extent</h2></div>
+          <div id="impact-list"></div>
+        </div>
+        <div class="block">
+          <div class="block-head"><h2>Live OpenStreetMap</h2><span class="count" id="osm-fresh"></span></div>
+          <p class="hint">Fetched on demand from HOT&rsquo;s Raw Data API for the current view. Features edited since the event are highlighted, so this doubles as a view of mapping progress.</p>
+          <div id="osm-stats" class="stats"></div>
+          <p class="meta" id="osm-aoi-status"></p>
+          <div id="osm-aoi-toggle-wrap" hidden>
+            <label class="chk"><input type="checkbox" id="osm-aoi-toggle"><span>Draw activation-area overlay</span></label>
+          </div>
+          <p class="hint">Or fetch just the current view:</p>
+          <label class="chk"><input type="checkbox" id="osm-buildings" checked><span>Buildings</span></label>
+          <label class="chk"><input type="checkbox" id="osm-highways" checked><span>Roads &amp; tracks</span></label>
+          <button id="osm-load" class="btn">Load for this view</button>
+          <button id="osm-clear" class="btn subtle" hidden>Clear</button>
+          <div id="osm-legend" class="legend" hidden></div>
+          <p class="meta" id="osm-status"></p>
+        </div>
+        <div class="block">
+          <div class="block-head"><h2>Data packages</h2></div>
+          <div id="hdx-list"></div>
+        </div>
+        <div class="block">
+          <div class="block-head"><h2>Response links</h2></div>
+          <div id="link-list"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="tab-about"><div class="block" id="about-body"></div></section>
+    </div>
+  </aside>
+
+  <main id="mapwrap">
+    <div id="map"></div>
+    <div id="map-b" hidden></div>
+    <div id="swipe-handle" hidden><span></span></div>
+    <button id="expand" title="Show panel" aria-label="Show panel" hidden>&#10095;</button>
+    <div id="places"></div>
+    <div id="readout"><span id="coords"></span></div>
+  </main>
+</div>
+
+<script>window.APP_BASE = "../"; window.EVENT_ID = "nepal-floods-2026";</script>
+<script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js"></script>
+<script src="../app.js"></script>
+</body>
+</html>
