@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-29T04:08:08Z",
+ "generated": "2026-08-29T05:08:03Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -10214,8 +10214,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 99,
-   "percent_validated": 20,
+   "percent_mapped": 100,
+   "percent_validated": 22,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
     "type": "MultiPolygon",
@@ -16544,7 +16544,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-29T04:06:55.382000Z",
+   "last_updated": "2026-08-29T04:33:34.810000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
@@ -16634,7 +16634,7 @@
     "638": "MAPPED",
     "526": "VALIDATED",
     "394": "MAPPED",
-    "558": "LOCKED_FOR_VALIDATION",
+    "558": "VALIDATED",
     "632": "MAPPED",
     "366": "VALIDATED",
     "312": "MAPPED",
@@ -17048,7 +17048,6 @@
     "501": "MAPPED",
     "500": "MAPPED",
     "517": "MAPPED",
-    "523": "MAPPED",
     "521": "MAPPED",
     "505": "MAPPED",
     "510": "MAPPED",
@@ -17073,11 +17072,9 @@
     "515": "VALIDATED",
     "496": "VALIDATED",
     "511": "VALIDATED",
-    "524": "MAPPED",
-    "542": "MAPPED",
+    "523": "VALIDATED",
     "539": "MAPPED",
     "540": "MAPPED",
-    "541": "MAPPED",
     "538": "MAPPED",
     "551": "MAPPED",
     "549": "MAPPED",
@@ -17098,6 +17095,9 @@
     "528": "VALIDATED",
     "546": "VALIDATED",
     "544": "VALIDATED",
+    "524": "VALIDATED",
+    "542": "VALIDATED",
+    "541": "VALIDATED",
     "579": "BADIMAGERY",
     "569": "MAPPED",
     "583": "MAPPED",
@@ -17105,8 +17105,6 @@
     "570": "MAPPED",
     "555": "MAPPED",
     "556": "MAPPED",
-    "557": "MAPPED",
-    "572": "MAPPED",
     "571": "MAPPED",
     "566": "MAPPED",
     "567": "MAPPED",
@@ -17123,9 +17121,10 @@
     "560": "VALIDATED",
     "574": "VALIDATED",
     "559": "VALIDATED",
-    "573": "LOCKED_FOR_VALIDATION",
+    "573": "VALIDATED",
+    "572": "VALIDATED",
+    "557": "VALIDATED",
     "613": "BADIMAGERY",
-    "586": "MAPPED",
     "596": "VALIDATED",
     "605": "VALIDATED",
     "612": "VALIDATED",
@@ -17149,7 +17148,8 @@
     "590": "VALIDATED",
     "589": "VALIDATED",
     "588": "VALIDATED",
-    "587": "LOCKED_FOR_VALIDATION",
+    "587": "VALIDATED",
+    "586": "VALIDATED",
     "618": "VALIDATED",
     "616": "VALIDATED",
     "615": "VALIDATED",
@@ -17197,10 +17197,9 @@
     "9": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 502,
-    "VALIDATED": 134,
-    "BADIMAGERY": 9,
-    "LOCKED_FOR_VALIDATION": 3
+    "MAPPED": 495,
+    "VALIDATED": 144,
+    "BADIMAGERY": 9
    }
   }
  ],
