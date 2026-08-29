@@ -1,9 +1,9 @@
 {
- "generated": "2026-08-29T14:23:31Z",
+ "generated": "2026-08-29T15:08:04Z",
  "sources": {
   "scenes": {
    "status": "ok",
-   "count": 128
+   "count": 129
   },
   "tasking_manager": {
    "status": "ok",
@@ -333,39 +333,6 @@
    ]
   },
   {
-   "id": "6a9166a5835b65a3708c893e",
-   "title": "[POST] Vantor WV02 Image B030001100CF1210",
-   "tms": "https://tiles.openaerialmap.org/6a91646d835b65a3708c804c/0/6a91646d835b65a3708c804d/{z}/{x}/{y}",
-   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a91646d835b65a3708c804c/0/6a91646d835b65a3708c804d.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a91646d835b65a3708c804c%2F0%2F6a91646d835b65a3708c804d.tif",
-   "acquired": "2026-08-28T03:07:00.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2026-08-28T03:07:00.000Z",
-   "phase": "post",
-   "gsd_cm": 54.2,
-   "provider": "Vantor",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.048495,
-    27.841418,
-    85.226054,
-    27.998211
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/6a9166a5835b65a3708c893e",
-   "group": "post-satellite",
-   "catalog_id": "B030001100CF1210",
-   "cloud_pct": 74.0,
-   "sensor": "maxar",
-   "bands": [
-    "red",
-    "green",
-    "blue"
-   ]
-  },
-  {
    "id": "6a91663a835b65a3708c87c9",
    "title": "[POST] Vantor WV02 Image B030001100CF1110",
    "tms": "https://tiles.openaerialmap.org/6a916437835b65a3708c8011/0/6a916437835b65a3708c8012/{z}/{x}/{y}",
@@ -391,6 +358,39 @@
    "group": "post-satellite",
    "catalog_id": "B030001100CF1110",
    "cloud_pct": 81.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
+  },
+  {
+   "id": "6a9166a5835b65a3708c893e",
+   "title": "[POST] Vantor WV02 Image B030001100CF1210",
+   "tms": "https://tiles.openaerialmap.org/6a91646d835b65a3708c804c/0/6a91646d835b65a3708c804d/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a91646d835b65a3708c804c/0/6a91646d835b65a3708c804d.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a91646d835b65a3708c804c%2F0%2F6a91646d835b65a3708c804d.tif",
+   "acquired": "2026-08-28T03:07:00.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2026-08-28T03:07:00.000Z",
+   "phase": "post",
+   "gsd_cm": 54.2,
+   "provider": "Vantor",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.048495,
+    27.841418,
+    85.226054,
+    27.998211
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/6a9166a5835b65a3708c893e",
+   "group": "post-satellite",
+   "catalog_id": "B030001100CF1210",
+   "cloud_pct": 74.0,
    "sensor": "maxar",
    "bands": [
     "red",
@@ -1614,6 +1614,39 @@
    "group": "pre-satellite"
   },
   {
+   "id": "6a92f09910691da75dd828c3",
+   "title": "[PRE] Vantor LG06 Image B160001100CDB210",
+   "tms": "https://tiles.openaerialmap.org/6a92ed7310691da75dd8222f/0/6a92ed7310691da75dd82230/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a92ed7310691da75dd8222f/0/6a92ed7310691da75dd82230.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a92ed7310691da75dd8222f%2F0%2F6a92ed7310691da75dd82230.tif",
+   "acquired": "2026-02-05T07:17:00.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2026-02-05T07:17:00.000Z",
+   "phase": "pre",
+   "gsd_cm": 38.5,
+   "provider": "Vantor",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.064231,
+    27.815848,
+    85.174894,
+    28.037158
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/6a92f09910691da75dd828c3",
+   "group": "pre-satellite",
+   "catalog_id": "B160001100CDB210",
+   "cloud_pct": 0.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
+  },
+  {
    "id": "6a8fa0148f75f1daf8b408fd",
    "title": "Simle to Betrawati (Trishuli)",
    "tms": "https://tiles.openaerialmap.org/6a8f9da28f75f1daf8b405b5/0/6a8f9da28f75f1daf8b405b6/{z}/{x}/{y}",
@@ -1813,6 +1846,56 @@
    "group": "archive"
   },
   {
+   "id": "59e62b793d6412ef7220947e",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-3.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b17/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b17.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b17.tif",
+   "acquired": "2015-04-29T05:39:40.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-29T05:39:40.000Z",
+   "phase": "pre",
+   "gsd_cm": 50.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.051225,
+    27.978016666666665,
+    85.10300833333332,
+    28.029419444444443
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef7220947e",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b793d6412ef72209472",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-6.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b15/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b15.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b15.tif",
+   "acquired": "2015-04-29T05:39:40.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-29T05:39:40.000Z",
+   "phase": "pre",
+   "gsd_cm": 50.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.10125,
+    27.928033333333335,
+    85.15298055555556,
+    27.9794
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef72209472",
+   "group": "archive"
+  },
+  {
    "id": "59e62b783d6412ef72209465",
    "title": "356f564e3a0dc9d15553c17cf4583f21-2.tif",
    "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b13/{z}/{x}/{y}.png",
@@ -1838,11 +1921,11 @@
    "group": "archive"
   },
   {
-   "id": "59e62b793d6412ef7220947e",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-3.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b17/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b17.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b17.tif",
+   "id": "59e62b783d6412ef72209434",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-26.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b0c/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b0c.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b0c.tif",
    "acquired": "2015-04-29T05:39:40.000Z",
    "acquired_source": "oam",
    "oam_acquired": "2015-04-29T05:39:40.000Z",
@@ -1853,13 +1936,13 @@
    "is_drone": false,
    "license": null,
    "bbox": [
-    85.051225,
-    27.978016666666665,
-    85.10300833333332,
-    28.029419444444443
+    85.30133888888889,
+    27.97810833333333,
+    85.35288888888888,
+    28.029330555555553
    ],
    "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef7220947e",
+   "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef72209434",
    "group": "archive"
   },
   {
@@ -1913,31 +1996,6 @@
    "group": "archive"
   },
   {
-   "id": "59e62b783d6412ef72209434",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-26.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b0c/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b0c.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b0c.tif",
-   "acquired": "2015-04-29T05:39:40.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-29T05:39:40.000Z",
-   "phase": "pre",
-   "gsd_cm": 50.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.30133888888889,
-    27.97810833333333,
-    85.35288888888888,
-    28.029330555555553
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef72209434",
-   "group": "archive"
-  },
-  {
    "id": "59e62b793d6412ef72209469",
    "title": "356f564e3a0dc9d15553c17cf4583f21-5.tif",
    "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b14/{z}/{x}/{y}.png",
@@ -1960,31 +2018,6 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef72209469",
-   "group": "archive"
-  },
-  {
-   "id": "59e62b793d6412ef72209485",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-9.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b19/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b19.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b19.tif",
-   "acquired": "2015-04-29T05:39:40.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-29T05:39:40.000Z",
-   "phase": "pre",
-   "gsd_cm": 50.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.15127500000001,
-    27.878058333333335,
-    85.20295555555556,
-    27.929383333333334
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef72209485",
    "group": "archive"
   },
   {
@@ -2013,11 +2046,11 @@
    "group": "archive"
   },
   {
-   "id": "59e62b793d6412ef72209472",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-6.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b15/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b15.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b15.tif",
+   "id": "59e62b793d6412ef72209485",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-9.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b19/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b19.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b19.tif",
    "acquired": "2015-04-29T05:39:40.000Z",
    "acquired_source": "oam",
    "oam_acquired": "2015-04-29T05:39:40.000Z",
@@ -2028,13 +2061,13 @@
    "is_drone": false,
    "license": null,
    "bbox": [
-    85.10125,
-    27.928033333333335,
-    85.15298055555556,
-    27.9794
+    85.15127500000001,
+    27.878058333333335,
+    85.20295555555556,
+    27.929383333333334
    ],
    "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef72209472",
+   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef72209485",
    "group": "archive"
   },
   {
@@ -2063,56 +2096,6 @@
    "group": "archive"
   },
   {
-   "id": "59e62b793d6412ef722094a7",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-10.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b1f/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b1f.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b1f.tif",
-   "acquired": "2015-04-29T05:39:40.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-29T05:39:40.000Z",
-   "phase": "pre",
-   "gsd_cm": 50.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.15127222222223,
-    27.928058333333336,
-    85.20295833333334,
-    27.979386111111108
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef722094a7",
-   "group": "archive"
-  },
-  {
-   "id": "59e62b783d6412ef72209425",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-16.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b09/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b09.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b09.tif",
-   "acquired": "2015-04-29T05:39:40.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-29T05:39:40.000Z",
-   "phase": "pre",
-   "gsd_cm": 50.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.20129444444444,
-    27.978074999999997,
-    85.25293888888889,
-    28.029366666666665
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef72209425",
-   "group": "archive"
-  },
-  {
    "id": "59e62b793d6412ef72209492",
    "title": "356f564e3a0dc9d15553c17cf4583f21-15.tif",
    "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b1b/{z}/{x}/{y}.png",
@@ -2135,6 +2118,31 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef72209492",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b793d6412ef722094aa",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-21.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b20/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b20.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b20.tif",
+   "acquired": "2015-04-29T05:39:40.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-29T05:39:40.000Z",
+   "phase": "pre",
+   "gsd_cm": 50.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.25131666666667,
+    27.978091666666664,
+    85.30291388888888,
+    28.02934722222222
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef722094aa",
    "group": "archive"
   },
   {
@@ -2288,56 +2296,6 @@
    "group": "archive"
   },
   {
-   "id": "59e62b783d6412ef7220942e",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-24.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b0b/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b0b.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b0b.tif",
-   "acquired": "2015-04-29T05:39:40.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-29T05:39:40.000Z",
-   "phase": "pre",
-   "gsd_cm": 50.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.30134444444444,
-    27.878108333333333,
-    85.35288888888888,
-    27.92932777777778
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef7220942e",
-   "group": "archive"
-  },
-  {
-   "id": "59e62b793d6412ef722094aa",
-   "title": "356f564e3a0dc9d15553c17cf4583f21-21.tif",
-   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b20/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b20.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b20.tif",
-   "acquired": "2015-04-29T05:39:40.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-29T05:39:40.000Z",
-   "phase": "pre",
-   "gsd_cm": 50.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.25131666666667,
-    27.978091666666664,
-    85.30291388888888,
-    28.02934722222222
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef722094aa",
-   "group": "archive"
-  },
-  {
    "id": "59e62b783d6412ef7220943b",
    "title": "356f564e3a0dc9d15553c17cf4583f21-17.tif",
    "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b0d/{z}/{x}/{y}.png",
@@ -2360,6 +2318,31 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef7220943b",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b783d6412ef7220942e",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-24.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b0b/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b0b.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b0b.tif",
+   "acquired": "2015-04-29T05:39:40.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-29T05:39:40.000Z",
+   "phase": "pre",
+   "gsd_cm": 50.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.30134444444444,
+    27.878108333333333,
+    85.35288888888888,
+    27.92932777777778
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef7220942e",
    "group": "archive"
   },
   {
@@ -2413,6 +2396,56 @@
    "group": "archive"
   },
   {
+   "id": "59e62b793d6412ef722094a7",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-10.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b1f/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b1f.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b1f.tif",
+   "acquired": "2015-04-29T05:39:40.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-29T05:39:40.000Z",
+   "phase": "pre",
+   "gsd_cm": 50.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.15127222222223,
+    27.928058333333336,
+    85.20295833333334,
+    27.979386111111108
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b793d6412ef722094a7",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b783d6412ef72209425",
+   "title": "356f564e3a0dc9d15553c17cf4583f21-16.tif",
+   "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b09/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/15/0/5593111848ee4503008a7b09.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F15%2F0%2F5593111848ee4503008a7b09.tif",
+   "acquired": "2015-04-29T05:39:40.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-29T05:39:40.000Z",
+   "phase": "pre",
+   "gsd_cm": 50.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.20129444444444,
+    27.978074999999997,
+    85.25293888888889,
+    28.029366666666665
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef72209425",
+   "group": "archive"
+  },
+  {
    "id": "59e62b793d6412ef72209478",
    "title": "356f564e3a0dc9d15553c17cf4583f21-22.tif",
    "tms": "https://tiles.openaerialmap.org/15/0/5593111848ee4503008a7b16/{z}/{x}/{y}.png",
@@ -2460,6 +2493,31 @@
    ],
    "in_aoi": true,
    "oam_url": "https://map.openaerialmap.org/#/59e62b783d6412ef72209447",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b763d6412ef72209297",
+   "title": "15APR27052125-S3DS_R06C3-054335918020_01_P001.TIF",
+   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f493/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f493.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f493.tif",
+   "acquired": "2015-04-27T05:21:25.857Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-27T05:21:25.857Z",
+   "phase": "pre",
+   "gsd_cm": 40.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.43311666666668,
+    27.850583333333336,
+    85.46681111111111,
+    27.88052777777778
+   ],
+   "in_aoi": false,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b763d6412ef72209297",
    "group": "archive"
   },
   {
@@ -2838,31 +2896,6 @@
    "group": "archive"
   },
   {
-   "id": "59e62b743d6412ef722091cb",
-   "title": "15APR27052125-S3DS_R03C6-054335918020_01_P001.TIF",
-   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f46c/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f46c.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f46c.tif",
-   "acquired": "2015-04-27T05:21:25.857Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-27T05:21:25.857Z",
-   "phase": "pre",
-   "gsd_cm": 40.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.53175555555555,
-    27.940394444444443,
-    85.56282777777777,
-    27.970288888888888
-   ],
-   "in_aoi": false,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b743d6412ef722091cb",
-   "group": "archive"
-  },
-  {
    "id": "59e62b723d6412ef72209098",
    "title": "15APR27052125-S3DS_R02C6-054335918020_01_P001.TIF",
    "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f436/{z}/{x}/{y}.png",
@@ -2885,6 +2918,31 @@
    ],
    "in_aoi": false,
    "oam_url": "https://map.openaerialmap.org/#/59e62b723d6412ef72209098",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b743d6412ef722091cb",
+   "title": "15APR27052125-S3DS_R03C6-054335918020_01_P001.TIF",
+   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f46c/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f46c.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f46c.tif",
+   "acquired": "2015-04-27T05:21:25.857Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-27T05:21:25.857Z",
+   "phase": "pre",
+   "gsd_cm": 40.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.53175555555555,
+    27.940394444444443,
+    85.56282777777777,
+    27.970288888888888
+   ],
+   "in_aoi": false,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b743d6412ef722091cb",
    "group": "archive"
   },
   {
@@ -2935,6 +2993,31 @@
    ],
    "in_aoi": false,
    "oam_url": "https://map.openaerialmap.org/#/59e62b763d6412ef722092db",
+   "group": "archive"
+  },
+  {
+   "id": "59e62b703d6412ef72208f8c",
+   "title": "15APR27052125-S3DS_R01C5-054335918020_01_P001.TIF",
+   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f404/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f404.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f404.tif",
+   "acquired": "2015-04-27T05:21:25.857Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-27T05:21:25.857Z",
+   "phase": "pre",
+   "gsd_cm": 40.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.49762777777778,
+    27.999175,
+    85.53135555555555,
+    28.029108333333333
+   ],
+   "in_aoi": false,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b703d6412ef72208f8c",
    "group": "archive"
   },
   {
@@ -3013,11 +3096,11 @@
    "group": "archive"
   },
   {
-   "id": "59e62b703d6412ef72208f8c",
-   "title": "15APR27052125-S3DS_R01C5-054335918020_01_P001.TIF",
-   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f404/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f404.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f404.tif",
+   "id": "59e62b773d6412ef722093e2",
+   "title": "15APR27052125-S3DS_R04C5-054335918020_01_P001.TIF",
+   "tms": "https://tiles.openaerialmap.org/14/0/55bf966b2b67227a79b4f4cf/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966b2b67227a79b4f4cf.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966b2b67227a79b4f4cf.tif",
    "acquired": "2015-04-27T05:21:25.857Z",
    "acquired_source": "oam",
    "oam_acquired": "2015-04-27T05:21:25.857Z",
@@ -3028,13 +3111,13 @@
    "is_drone": false,
    "license": null,
    "bbox": [
-    85.49762777777778,
-    27.999175,
-    85.53135555555555,
-    28.029108333333333
+    85.49885833333333,
+    27.910463888888888,
+    85.53255555555556,
+    27.940394444444443
    ],
    "in_aoi": false,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b703d6412ef72208f8c",
+   "oam_url": "https://map.openaerialmap.org/#/59e62b773d6412ef722093e2",
    "group": "archive"
   },
   {
@@ -3060,31 +3143,6 @@
    ],
    "in_aoi": false,
    "oam_url": "https://map.openaerialmap.org/#/59e62b763d6412ef722092a7",
-   "group": "archive"
-  },
-  {
-   "id": "59e62b773d6412ef722093e2",
-   "title": "15APR27052125-S3DS_R04C5-054335918020_01_P001.TIF",
-   "tms": "https://tiles.openaerialmap.org/14/0/55bf966b2b67227a79b4f4cf/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966b2b67227a79b4f4cf.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966b2b67227a79b4f4cf.tif",
-   "acquired": "2015-04-27T05:21:25.857Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-27T05:21:25.857Z",
-   "phase": "pre",
-   "gsd_cm": 40.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.49885833333333,
-    27.910463888888888,
-    85.53255555555556,
-    27.940394444444443
-   ],
-   "in_aoi": false,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b773d6412ef722093e2",
    "group": "archive"
   },
   {
@@ -3238,6 +3296,31 @@
    "group": "archive"
   },
   {
+   "id": "59e62b773d6412ef722093a2",
+   "title": "15APR27052125-S3DS_R05C6-054335918020_01_P001.TIF",
+   "tms": "https://tiles.openaerialmap.org/14/0/55bf966b2b67227a79b4f4c2/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966b2b67227a79b4f4c2.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966b2b67227a79b4f4c2.tif",
+   "acquired": "2015-04-27T05:21:25.857Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2015-04-27T05:21:25.857Z",
+   "phase": "pre",
+   "gsd_cm": 40.0,
+   "provider": "DigitalGlobe (archive)",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.53255555555556,
+    27.881252777777778,
+    85.56268055555556,
+    27.91113611111111
+   ],
+   "in_aoi": false,
+   "oam_url": "https://map.openaerialmap.org/#/59e62b773d6412ef722093a2",
+   "group": "archive"
+  },
+  {
    "id": "59e62b783d6412ef722093f8",
    "title": "15APR27052125-S3DS_R04C6-054335918020_01_P001.TIF",
    "tms": "https://tiles.openaerialmap.org/14/0/55bf966b2b67227a79b4f4d3/{z}/{x}/{y}.png",
@@ -3310,56 +3393,6 @@
    ],
    "in_aoi": false,
    "oam_url": "https://map.openaerialmap.org/#/59e62b733d6412ef72209152",
-   "group": "archive"
-  },
-  {
-   "id": "59e62b703d6412ef72208fae",
-   "title": "15APR27052125-S3DS_R08C5-054335918020_01_P001.TIF",
-   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f40b/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f40b.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f40b.tif",
-   "acquired": "2015-04-27T05:21:25.857Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-27T05:21:25.857Z",
-   "phase": "pre",
-   "gsd_cm": 40.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.5004888888889,
-    27.792180555555557,
-    85.53414722222222,
-    27.822108333333333
-   ],
-   "in_aoi": false,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b703d6412ef72208fae",
-   "group": "archive"
-  },
-  {
-   "id": "59e62b773d6412ef722093a2",
-   "title": "15APR27052125-S3DS_R05C6-054335918020_01_P001.TIF",
-   "tms": "https://tiles.openaerialmap.org/14/0/55bf966b2b67227a79b4f4c2/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966b2b67227a79b4f4c2.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966b2b67227a79b4f4c2.tif",
-   "acquired": "2015-04-27T05:21:25.857Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2015-04-27T05:21:25.857Z",
-   "phase": "pre",
-   "gsd_cm": 40.0,
-   "provider": "DigitalGlobe (archive)",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    85.53255555555556,
-    27.881252777777778,
-    85.56268055555556,
-    27.91113611111111
-   ],
-   "in_aoi": false,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b773d6412ef722093a2",
    "group": "archive"
   },
   {
@@ -3513,11 +3546,11 @@
    "group": "archive"
   },
   {
-   "id": "59e62b763d6412ef72209297",
-   "title": "15APR27052125-S3DS_R06C3-054335918020_01_P001.TIF",
-   "tms": "https://tiles.openaerialmap.org/14/0/55bf966a2b67227a79b4f493/{z}/{x}/{y}.png",
-   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966a2b67227a79b4f493.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966a2b67227a79b4f493.tif",
+   "id": "59e62b773d6412ef722093aa",
+   "title": "15APR27052125-S3DS_R02C3-054335918020_01_P001.TIF",
+   "tms": "https://tiles.openaerialmap.org/14/0/55bf966b2b67227a79b4f4c4/{z}/{x}/{y}.png",
+   "cog": "https://oin-hotosm-temp.s3.amazonaws.com/14/0/55bf966b2b67227a79b4f4c4.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.amazonaws.com%2F14%2F0%2F55bf966b2b67227a79b4f4c4.tif",
    "acquired": "2015-04-27T05:21:25.857Z",
    "acquired_source": "oam",
    "oam_acquired": "2015-04-27T05:21:25.857Z",
@@ -3528,13 +3561,13 @@
    "is_drone": false,
    "license": null,
    "bbox": [
-    85.43311666666668,
-    27.850583333333336,
-    85.46681111111111,
-    27.88052777777778
+    85.43141111111112,
+    27.96886111111111,
+    85.46514444444445,
+    27.998808333333333
    ],
    "in_aoi": false,
-   "oam_url": "https://map.openaerialmap.org/#/59e62b763d6412ef72209297",
+   "oam_url": "https://map.openaerialmap.org/#/59e62b773d6412ef722093aa",
    "group": "archive"
   },
   {
@@ -3669,7 +3702,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 11,
+   "percent_mapped": 12,
    "percent_validated": 0,
    "url": "https://tasks.hotosm.org/projects/63236",
    "aoi": {
@@ -6379,7 +6412,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-08-29T14:23:03.743000Z",
+   "last_updated": "2026-08-29T14:59:05.603000Z",
    "total_tasks": null,
    "task_status": {
     "565": "MAPPED",
@@ -6392,9 +6425,11 @@
     "264": "MAPPED",
     "146": "MAPPED",
     "742": "MAPPED",
+    "14": "MAPPED",
     "794": "MAPPED",
     "331": "MAPPED",
     "723": "MAPPED",
+    "272": "MAPPED",
     "1": "READY",
     "2": "READY",
     "4": "READY",
@@ -6407,7 +6442,6 @@
     "11": "READY",
     "12": "READY",
     "13": "READY",
-    "14": "READY",
     "15": "READY",
     "16": "READY",
     "17": "READY",
@@ -6422,13 +6456,13 @@
     "26": "READY",
     "27": "READY",
     "28": "READY",
-    "29": "READY",
-    "30": "READY",
-    "31": "READY",
     "32": "READY",
     "33": "READY",
     "34": "READY",
-    "3": "LOCKED_FOR_MAPPING",
+    "3": "READY",
+    "29": "MAPPED",
+    "30": "MAPPED",
+    "31": "READY",
     "35": "READY",
     "36": "READY",
     "37": "READY",
@@ -6641,7 +6675,6 @@
     "240": "MAPPED",
     "234": "MAPPED",
     "226": "MAPPED",
-    "261": "READY",
     "252": "MAPPED",
     "251": "MAPPED",
     "250": "MAPPED",
@@ -6653,9 +6686,7 @@
     "258": "MAPPED",
     "259": "MAPPED",
     "260": "MAPPED",
-    "262": "READY",
-    "271": "READY",
-    "272": "READY",
+    "261": "MAPPED",
     "273": "READY",
     "274": "READY",
     "275": "READY",
@@ -6689,6 +6720,8 @@
     "268": "MAPPED",
     "269": "MAPPED",
     "270": "MAPPED",
+    "262": "MAPPED",
+    "271": "MAPPED",
     "300": "READY",
     "301": "READY",
     "302": "READY",
@@ -6747,7 +6780,6 @@
     "357": "READY",
     "358": "READY",
     "359": "READY",
-    "360": "READY",
     "361": "READY",
     "362": "READY",
     "363": "READY",
@@ -6759,6 +6791,7 @@
     "369": "READY",
     "370": "READY",
     "371": "READY",
+    "360": "LOCKED_FOR_MAPPING",
     "372": "READY",
     "373": "READY",
     "374": "READY",
@@ -6778,7 +6811,6 @@
     "388": "READY",
     "389": "READY",
     "390": "READY",
-    "391": "READY",
     "393": "READY",
     "394": "READY",
     "395": "READY",
@@ -6795,6 +6827,7 @@
     "406": "READY",
     "407": "READY",
     "392": "MAPPED",
+    "391": "LOCKED_FOR_MAPPING",
     "408": "READY",
     "409": "READY",
     "410": "READY",
@@ -6971,7 +7004,7 @@
     "586": "READY",
     "587": "READY",
     "564": "MAPPED",
-    "563": "LOCKED_FOR_MAPPING",
+    "563": "MAPPED",
     "588": "READY",
     "589": "READY",
     "590": "READY",
@@ -7151,7 +7184,6 @@
     "771": "READY",
     "772": "READY",
     "773": "READY",
-    "774": "READY",
     "776": "READY",
     "777": "READY",
     "778": "READY",
@@ -7181,6 +7213,7 @@
     "783": "READY",
     "790": "MAPPED",
     "782": "READY",
+    "774": "READY",
     "806": "READY",
     "808": "READY",
     "809": "READY",
@@ -7249,7 +7282,7 @@
     "846": "MAPPED",
     "858": "MAPPED",
     "848": "MAPPED",
-    "860": "READY",
+    "860": "LOCKED_FOR_MAPPING",
     "881": "READY",
     "882": "READY",
     "883": "READY",
@@ -7266,7 +7299,6 @@
     "897": "READY",
     "898": "READY",
     "899": "READY",
-    "902": "READY",
     "904": "READY",
     "905": "READY",
     "884": "MAPPED",
@@ -7280,6 +7312,7 @@
     "900": "MAPPED",
     "901": "READY",
     "903": "MAPPED",
+    "902": "LOCKED_FOR_MAPPING",
     "810": "MAPPED",
     "807": "MAPPED",
     "802": "MAPPED",
@@ -7294,9 +7327,9 @@
     "705": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 104,
-    "READY": 804,
-    "LOCKED_FOR_MAPPING": 2
+    "MAPPED": 112,
+    "READY": 794,
+    "LOCKED_FOR_MAPPING": 4
    }
   },
   {
@@ -7304,7 +7337,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [ROAD]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 7,
+   "percent_mapped": 10,
    "percent_validated": 0,
    "url": "https://tasks.hotosm.org/projects/63235",
    "aoi": {
@@ -10014,20 +10047,21 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:05:10.563000Z",
-   "last_updated": "2026-08-29T14:19:47.171000Z",
+   "last_updated": "2026-08-29T14:58:21.594000Z",
    "total_tasks": null,
    "task_status": {
-    "1": "READY",
-    "2": "READY",
+    "4": "MAPPED",
     "3": "READY",
-    "4": "READY",
     "5": "READY",
     "6": "READY",
     "7": "READY",
     "8": "READY",
     "9": "READY",
+    "1": "MAPPED",
+    "2": "MAPPED",
+    "22": "MAPPED",
+    "11": "MAPPED",
     "10": "READY",
-    "11": "READY",
     "12": "READY",
     "13": "READY",
     "14": "READY",
@@ -10038,7 +10072,6 @@
     "19": "READY",
     "20": "READY",
     "21": "READY",
-    "22": "READY",
     "23": "READY",
     "24": "READY",
     "25": "READY",
@@ -10196,16 +10229,16 @@
     "177": "READY",
     "178": "READY",
     "180": "READY",
-    "181": "READY",
     "182": "READY",
-    "183": "READY",
     "186": "READY",
-    "187": "READY",
     "188": "READY",
     "189": "READY",
     "179": "MAPPED",
     "185": "MAPPED",
-    "184": "LOCKED_FOR_MAPPING",
+    "184": "MAPPED",
+    "183": "MAPPED",
+    "187": "MAPPED",
+    "181": "LOCKED_FOR_MAPPING",
     "190": "READY",
     "191": "READY",
     "192": "READY",
@@ -10300,8 +10333,8 @@
     "270": "MAPPED"
    },
    "task_counts": {
-    "READY": 259,
-    "MAPPED": 21,
+    "MAPPED": 29,
+    "READY": 251,
     "LOCKED_FOR_MAPPING": 1
    }
   },
