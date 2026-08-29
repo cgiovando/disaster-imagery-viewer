@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-29T13:08:12Z",
+ "generated": "2026-08-29T14:08:00Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -3669,7 +3669,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 9,
+   "percent_mapped": 10,
    "percent_validated": 0,
    "url": "https://tasks.hotosm.org/projects/63236",
    "aoi": {
@@ -6379,7 +6379,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-08-29T12:59:35.814000Z",
+   "last_updated": "2026-08-29T14:03:10.467000Z",
    "total_tasks": null,
    "task_status": {
     "565": "MAPPED",
@@ -6391,6 +6391,7 @@
     "263": "MAPPED",
     "264": "MAPPED",
     "146": "MAPPED",
+    "742": "MAPPED",
     "794": "MAPPED",
     "331": "MAPPED",
     "723": "MAPPED",
@@ -6625,13 +6626,9 @@
     "233": "READY",
     "234": "READY",
     "235": "READY",
-    "236": "READY",
     "237": "READY",
     "238": "READY",
     "239": "READY",
-    "240": "READY",
-    "241": "READY",
-    "242": "READY",
     "244": "MAPPED",
     "245": "MAPPED",
     "246": "MAPPED",
@@ -6640,9 +6637,10 @@
     "249": "MAPPED",
     "243": "MAPPED",
     "248": "MAPPED",
-    "258": "READY",
-    "259": "READY",
-    "260": "READY",
+    "236": "MAPPED",
+    "242": "MAPPED",
+    "241": "MAPPED",
+    "240": "LOCKED_FOR_MAPPING",
     "261": "READY",
     "252": "MAPPED",
     "251": "MAPPED",
@@ -6652,12 +6650,10 @@
     "255": "MAPPED",
     "256": "MAPPED",
     "257": "MAPPED",
+    "258": "MAPPED",
+    "259": "MAPPED",
+    "260": "MAPPED",
     "262": "READY",
-    "266": "READY",
-    "267": "READY",
-    "268": "READY",
-    "269": "READY",
-    "270": "READY",
     "271": "READY",
     "272": "READY",
     "273": "READY",
@@ -6688,6 +6684,11 @@
     "298": "READY",
     "299": "READY",
     "265": "MAPPED",
+    "266": "MAPPED",
+    "267": "MAPPED",
+    "268": "MAPPED",
+    "269": "MAPPED",
+    "270": "MAPPED",
     "300": "READY",
     "301": "READY",
     "302": "READY",
@@ -6947,7 +6948,6 @@
     "560": "READY",
     "561": "READY",
     "562": "READY",
-    "563": "READY",
     "566": "READY",
     "567": "READY",
     "568": "READY",
@@ -6971,6 +6971,7 @@
     "586": "READY",
     "587": "READY",
     "564": "MAPPED",
+    "563": "LOCKED_FOR_MAPPING",
     "588": "READY",
     "589": "READY",
     "590": "READY",
@@ -7040,7 +7041,6 @@
     "657": "READY",
     "658": "READY",
     "638": "READY",
-    "659": "READY",
     "660": "READY",
     "661": "READY",
     "662": "READY",
@@ -7075,6 +7075,7 @@
     "691": "READY",
     "692": "READY",
     "693": "READY",
+    "659": "LOCKED_FOR_MAPPING",
     "694": "READY",
     "695": "READY",
     "696": "READY",
@@ -7115,13 +7116,10 @@
     "733": "READY",
     "734": "READY",
     "735": "READY",
-    "736": "READY",
     "737": "READY",
     "738": "READY",
     "739": "READY",
     "740": "READY",
-    "742": "READY",
-    "743": "READY",
     "744": "READY",
     "745": "READY",
     "746": "READY",
@@ -7146,6 +7144,8 @@
     "766": "READY",
     "767": "READY",
     "741": "MAPPED",
+    "736": "MAPPED",
+    "743": "MAPPED",
     "769": "READY",
     "770": "READY",
     "771": "READY",
@@ -7158,7 +7158,6 @@
     "779": "READY",
     "780": "READY",
     "781": "READY",
-    "782": "READY",
     "784": "READY",
     "785": "READY",
     "786": "READY",
@@ -7180,7 +7179,8 @@
     "804": "READY",
     "805": "READY",
     "775": "READY",
-    "783": "LOCKED_FOR_MAPPING",
+    "783": "READY",
+    "782": "LOCKED_FOR_MAPPING",
     "806": "READY",
     "808": "READY",
     "809": "READY",
@@ -7279,7 +7279,7 @@
     "906": "MAPPED",
     "900": "MAPPED",
     "901": "READY",
-    "903": "LOCKED_FOR_MAPPING",
+    "903": "MAPPED",
     "810": "MAPPED",
     "807": "MAPPED",
     "802": "MAPPED",
@@ -7294,9 +7294,9 @@
     "705": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 84,
-    "READY": 823,
-    "LOCKED_FOR_MAPPING": 3
+    "MAPPED": 99,
+    "READY": 806,
+    "LOCKED_FOR_MAPPING": 5
    }
   },
   {
@@ -7304,7 +7304,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [ROAD]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 6,
+   "percent_mapped": 7,
    "percent_validated": 0,
    "url": "https://tasks.hotosm.org/projects/63235",
    "aoi": {
@@ -10014,7 +10014,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:05:10.563000Z",
-   "last_updated": "2026-08-29T13:03:01.366000Z",
+   "last_updated": "2026-08-29T13:37:08.183000Z",
    "total_tasks": null,
    "task_status": {
     "1": "READY",
@@ -10286,10 +10286,8 @@
     "267": "READY",
     "268": "READY",
     "269": "READY",
-    "270": "READY",
     "271": "READY",
     "272": "READY",
-    "273": "READY",
     "274": "READY",
     "275": "READY",
     "277": "READY",
@@ -10297,12 +10295,13 @@
     "280": "READY",
     "281": "READY",
     "279": "MAPPED",
-    "276": "LOCKED_FOR_MAPPING"
+    "276": "MAPPED",
+    "273": "MAPPED",
+    "270": "MAPPED"
    },
    "task_counts": {
-    "READY": 263,
-    "MAPPED": 17,
-    "LOCKED_FOR_MAPPING": 1
+    "READY": 261,
+    "MAPPED": 20
    }
   },
   {
@@ -16640,7 +16639,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T10:05:13.518000Z",
-   "last_updated": "2026-08-29T00:39:07.566000Z",
+   "last_updated": "2026-08-29T13:59:46.775000Z",
    "total_tasks": null,
    "task_status": {
     "88": "MAPPED",
@@ -16855,7 +16854,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 99,
+   "percent_mapped": 100,
    "percent_validated": 25,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
@@ -23185,7 +23184,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-29T13:07:47.277000Z",
+   "last_updated": "2026-08-29T13:58:55.033000Z",
    "total_tasks": null,
    "task_status": {
     "62": "MAPPED",
@@ -23281,7 +23280,6 @@
     "248": "MAPPED",
     "69": "MAPPED",
     "634": "MAPPED",
-    "34": "MAPPED",
     "33": "MAPPED",
     "8": "VALIDATED",
     "2": "VALIDATED",
@@ -23307,6 +23305,7 @@
     "31": "VALIDATED",
     "32": "MAPPED",
     "35": "VALIDATED",
+    "34": "VALIDATED",
     "47": "MAPPED",
     "54": "MAPPED",
     "68": "MAPPED",
@@ -23335,7 +23334,7 @@
     "38": "MAPPED",
     "45": "MAPPED",
     "40": "MAPPED",
-    "36": "LOCKED_FOR_VALIDATION",
+    "36": "VALIDATED",
     "96": "MAPPED",
     "98": "MAPPED",
     "101": "MAPPED",
@@ -23838,10 +23837,9 @@
     "519": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 476,
-    "VALIDATED": 162,
-    "BADIMAGERY": 9,
-    "LOCKED_FOR_VALIDATION": 1
+    "MAPPED": 475,
+    "VALIDATED": 164,
+    "BADIMAGERY": 9
    }
   }
  ],
@@ -23850,15 +23848,15 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-08-29T13:06:31.399872",
+   "last_modified": "2026-08-29T13:29:46.184111",
    "num_resources": 92
   },
   {
    "slug": "hot_flood_npl_corridor",
    "title": "Nepal Flood 2026 River Corridor, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl_corridor",
-   "last_modified": "2026-08-29T12:36:04.865074",
-   "num_resources": 93
+   "last_modified": "2026-08-29T13:28:06.450311",
+   "num_resources": 89
   },
   {
    "slug": "2026-nepal-flash-flood",
