@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-28T23:08:00Z",
+ "generated": "2026-08-29T01:07:57Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -3484,8 +3484,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [ROAD]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 99,
-   "percent_validated": 7,
+   "percent_mapped": 100,
+   "percent_validated": 8,
    "url": "https://tasks.hotosm.org/projects/63102",
    "aoi": {
     "type": "MultiPolygon",
@@ -9814,7 +9814,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T10:05:13.518000Z",
-   "last_updated": "2026-08-28T20:57:31.843000Z",
+   "last_updated": "2026-08-29T00:39:07.566000Z",
    "total_tasks": null,
    "task_status": {
     "88": "MAPPED",
@@ -9943,7 +9943,6 @@
     "130": "MAPPED",
     "113": "MAPPED",
     "111": "MAPPED",
-    "129": "MAPPED",
     "133": "MAPPED",
     "112": "MAPPED",
     "108": "MAPPED",
@@ -9951,7 +9950,8 @@
     "122": "VALIDATED",
     "116": "VALIDATED",
     "115": "VALIDATED",
-    "128": "LOCKED_FOR_VALIDATION",
+    "128": "VALIDATED",
+    "129": "VALIDATED",
     "150": "MAPPED",
     "143": "MAPPED",
     "156": "MAPPED",
@@ -10019,10 +10019,9 @@
     "11": "BADIMAGERY"
    },
    "task_counts": {
-    "MAPPED": 183,
-    "VALIDATED": 14,
-    "BADIMAGERY": 2,
-    "LOCKED_FOR_VALIDATION": 1
+    "MAPPED": 182,
+    "VALIDATED": 16,
+    "BADIMAGERY": 2
    }
   },
   {
