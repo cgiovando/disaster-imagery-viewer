@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-29T08:57:04Z",
+ "generated": "2026-08-29T09:08:04Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -6379,9 +6379,11 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-08-29T08:54:56.232000Z",
+   "last_updated": "2026-08-29T09:06:59.713000Z",
    "total_tasks": null,
    "task_status": {
+    "794": "MAPPED",
+    "331": "MAPPED",
     "1": "READY",
     "2": "READY",
     "3": "READY",
@@ -6711,7 +6713,6 @@
     "328": "READY",
     "329": "READY",
     "330": "READY",
-    "331": "READY",
     "332": "READY",
     "333": "READY",
     "334": "READY",
@@ -6878,7 +6879,6 @@
     "494": "READY",
     "495": "READY",
     "496": "READY",
-    "497": "READY",
     "498": "READY",
     "499": "READY",
     "500": "READY",
@@ -7128,7 +7128,6 @@
     "745": "READY",
     "746": "READY",
     "747": "READY",
-    "748": "READY",
     "749": "READY",
     "750": "READY",
     "751": "READY",
@@ -7148,6 +7147,7 @@
     "765": "READY",
     "766": "READY",
     "767": "READY",
+    "748": "LOCKED_FOR_MAPPING",
     "769": "READY",
     "770": "READY",
     "771": "READY",
@@ -7183,7 +7183,6 @@
     "803": "READY",
     "804": "READY",
     "805": "READY",
-    "794": "LOCKED_FOR_MAPPING",
     "806": "READY",
     "808": "READY",
     "809": "READY",
@@ -7204,7 +7203,6 @@
     "826": "READY",
     "827": "READY",
     "828": "READY",
-    "829": "READY",
     "830": "READY",
     "831": "READY",
     "832": "READY",
@@ -7218,6 +7216,7 @@
     "840": "READY",
     "841": "READY",
     "817": "LOCKED_FOR_MAPPING",
+    "829": "MAPPED",
     "843": "READY",
     "844": "READY",
     "846": "READY",
@@ -7254,7 +7253,6 @@
     "879": "READY",
     "880": "READY",
     "867": "MAPPED",
-    "842": "LOCKED_FOR_MAPPING",
     "881": "READY",
     "882": "READY",
     "883": "READY",
@@ -7263,7 +7261,6 @@
     "887": "READY",
     "888": "READY",
     "889": "READY",
-    "890": "READY",
     "891": "READY",
     "892": "READY",
     "893": "READY",
@@ -7285,18 +7282,21 @@
     "910": "READY",
     "884": "MAPPED",
     "895": "MAPPED",
+    "890": "MAPPED",
     "810": "MAPPED",
     "807": "MAPPED",
     "802": "MAPPED",
-    "768": "LOCKED_FOR_MAPPING",
     "845": "MAPPED",
+    "768": "READY",
     "654": "MAPPED",
-    "868": "MAPPED"
+    "868": "MAPPED",
+    "842": "MAPPED",
+    "497": "MAPPED"
    },
    "task_counts": {
-    "READY": 894,
-    "MAPPED": 11,
-    "LOCKED_FOR_MAPPING": 5
+    "MAPPED": 17,
+    "READY": 890,
+    "LOCKED_FOR_MAPPING": 3
    }
   },
   {
@@ -10014,7 +10014,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:05:10.563000Z",
-   "last_updated": "2026-08-29T08:47:21.483000Z",
+   "last_updated": "2026-08-29T09:02:53.684000Z",
    "total_tasks": null,
    "task_status": {
     "1": "READY",
@@ -10250,12 +10250,12 @@
     "232": "READY",
     "233": "READY",
     "234": "READY",
-    "235": "READY",
     "236": "READY",
     "237": "READY",
     "238": "READY",
     "239": "READY",
-    "231": "LOCKED_FOR_MAPPING",
+    "231": "MAPPED",
+    "235": "LOCKED_FOR_MAPPING",
     "240": "READY",
     "241": "READY",
     "242": "READY",
@@ -10300,8 +10300,8 @@
     "281": "READY"
    },
    "task_counts": {
-    "READY": 275,
-    "MAPPED": 4,
+    "READY": 274,
+    "MAPPED": 5,
     "LOCKED_FOR_MAPPING": 2
    }
   },
@@ -16855,7 +16855,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 99,
+   "percent_mapped": 100,
    "percent_validated": 23,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
