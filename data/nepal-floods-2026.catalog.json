@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-30T01:08:13Z",
+ "generated": "2026-08-30T02:08:01Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -6725,7 +6725,6 @@
     "279": "READY",
     "301": "READY",
     "304": "READY",
-    "305": "READY",
     "307": "READY",
     "308": "READY",
     "310": "READY",
@@ -6755,9 +6754,10 @@
     "300": "MAPPED",
     "302": "BADIMAGERY",
     "314": "MAPPED",
-    "334": "READY",
     "306": "READY",
     "303": "READY",
+    "305": "READY",
+    "334": "READY",
     "336": "READY",
     "337": "READY",
     "338": "READY",
@@ -6781,7 +6781,6 @@
     "361": "READY",
     "362": "READY",
     "363": "READY",
-    "365": "READY",
     "366": "READY",
     "367": "READY",
     "368": "READY",
@@ -6793,6 +6792,7 @@
     "364": "MAPPED",
     "350": "MAPPED",
     "357": "MAPPED",
+    "365": "LOCKED_FOR_MAPPING",
     "372": "READY",
     "373": "READY",
     "374": "READY",
@@ -6900,12 +6900,12 @@
     "482": "READY",
     "483": "READY",
     "484": "READY",
-    "485": "READY",
     "475": "MAPPED",
     "464": "MAPPED",
     "451": "MAPPED",
     "487": "MAPPED",
     "486": "MAPPED",
+    "485": "LOCKED_FOR_MAPPING",
     "489": "READY",
     "490": "READY",
     "491": "READY",
@@ -7148,7 +7148,6 @@
     "739": "READY",
     "740": "READY",
     "744": "READY",
-    "745": "READY",
     "747": "READY",
     "749": "READY",
     "750": "READY",
@@ -7173,6 +7172,7 @@
     "767": "READY",
     "746": "READY",
     "760": "READY",
+    "745": "READY",
     "769": "READY",
     "770": "READY",
     "771": "READY",
@@ -7206,7 +7206,7 @@
     "788": "READY",
     "780": "READY",
     "773": "MAPPED",
-    "801": "LOCKED_FOR_MAPPING",
+    "801": "READY",
     "806": "READY",
     "808": "READY",
     "809": "READY",
@@ -7337,9 +7337,9 @@
    },
    "task_counts": {
     "MAPPED": 249,
-    "READY": 668,
+    "READY": 667,
     "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 1
+    "LOCKED_FOR_MAPPING": 2
    }
   },
   {
@@ -23898,7 +23898,7 @@
    "slug": "hot_flood_npl_corridor",
    "title": "Nepal Flood 2026 River Corridor, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl_corridor",
-   "last_modified": "2026-08-29T13:28:06.450311",
+   "last_modified": "2026-08-30T01:09:27.780160",
    "num_resources": 89
   },
   {
