@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31T01:20:25Z",
+ "generated": "2026-08-31T02:08:05Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -6412,7 +6412,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-08-31T01:11:01.701000Z",
+   "last_updated": "2026-08-31T01:52:44.817000Z",
    "total_tasks": null,
    "task_status": {
     "565": "MAPPED",
@@ -6726,7 +6726,6 @@
     "294": "MAPPED",
     "292": "VALIDATED",
     "310": "READY",
-    "321": "READY",
     "322": "READY",
     "326": "READY",
     "327": "READY",
@@ -6736,7 +6735,6 @@
     "314": "MAPPED",
     "334": "READY",
     "304": "MAPPED",
-    "316": "READY",
     "333": "MAPPED",
     "306": "MAPPED",
     "305": "MAPPED",
@@ -6754,7 +6752,9 @@
     "300": "MAPPED",
     "307": "MAPPED",
     "301": "VALIDATED",
-    "308": "LOCKED_FOR_MAPPING",
+    "308": "MAPPED",
+    "316": "READY",
+    "321": "LOCKED_FOR_MAPPING",
     "341": "READY",
     "346": "READY",
     "348": "READY",
@@ -7345,9 +7345,9 @@
     "280": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 503,
+    "MAPPED": 504,
     "VALIDATED": 85,
-    "READY": 336,
+    "READY": 335,
     "BADIMAGERY": 1,
     "LOCKED_FOR_MAPPING": 2,
     "INVALIDATED": 1
@@ -10068,7 +10068,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:05:10.563000Z",
-   "last_updated": "2026-08-31T00:55:32.506000Z",
+   "last_updated": "2026-08-31T01:35:26.596000Z",
    "total_tasks": null,
    "task_status": {
     "254": "MAPPED",
@@ -10145,11 +10145,10 @@
     "45": "MAPPED",
     "68": "MAPPED",
     "73": "READY",
-    "51": "LOCKED_FOR_MAPPING",
+    "51": "READY",
     "76": "READY",
     "78": "READY",
     "80": "READY",
-    "81": "READY",
     "82": "READY",
     "83": "READY",
     "84": "READY",
@@ -10174,6 +10173,7 @@
     "103": "MAPPED",
     "93": "READY",
     "79": "READY",
+    "81": "READY",
     "105": "READY",
     "106": "READY",
     "108": "READY",
@@ -10184,7 +10184,6 @@
     "117": "READY",
     "120": "READY",
     "121": "READY",
-    "126": "READY",
     "125": "MAPPED",
     "124": "MAPPED",
     "123": "MAPPED",
@@ -10196,6 +10195,7 @@
     "122": "MAPPED",
     "109": "READY",
     "107": "VALIDATED",
+    "126": "MAPPED",
     "130": "READY",
     "131": "READY",
     "132": "READY",
@@ -10360,10 +10360,9 @@
     "256": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 129,
+    "MAPPED": 130,
     "READY": 148,
-    "VALIDATED": 9,
-    "LOCKED_FOR_MAPPING": 1
+    "VALIDATED": 9
    }
   },
   {
