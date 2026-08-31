@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31T17:01:18Z",
+ "generated": "2026-08-31T17:08:06Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -9431,8 +9431,8 @@
     "15": "READY",
     "17": "READY",
     "18": "READY",
-    "19": "READY",
     "20": "READY",
+    "19": "LOCKED_FOR_MAPPING",
     "23": "READY",
     "24": "READY",
     "25": "BADIMAGERY",
@@ -9442,7 +9442,7 @@
     "32": "READY",
     "34": "READY",
     "36": "READY",
-    "33": "LOCKED_FOR_MAPPING",
+    "33": "READY",
     "27": "READY",
     "28": "READY",
     "26": "MAPPED",
@@ -9470,8 +9470,8 @@
    "task_counts": {
     "READY": 39,
     "MAPPED": 4,
-    "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 2
+    "LOCKED_FOR_MAPPING": 2,
+    "BADIMAGERY": 1
    }
   },
   {
@@ -22550,7 +22550,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-08-31T16:59:32.620000Z",
+   "last_updated": "2026-08-31T17:07:29.716000Z",
    "total_tasks": null,
    "task_status": {
     "479": "VALIDATED",
@@ -22733,7 +22733,6 @@
     "129": "MAPPED",
     "109": "VALIDATED",
     "114": "VALIDATED",
-    "128": "LOCKED_FOR_MAPPING",
     "152": "VALIDATED",
     "172": "VALIDATED",
     "158": "VALIDATED",
@@ -23218,13 +23217,17 @@
     "675": "READY",
     "676": "READY",
     "677": "READY",
-    "678": "LOCKED_FOR_MAPPING"
+    "678": "MAPPED",
+    "683": "READY",
+    "684": "READY",
+    "685": "READY",
+    "686": "READY"
    },
    "task_counts": {
     "VALIDATED": 640,
-    "READY": 13,
-    "MAPPED": 10,
-    "LOCKED_FOR_MAPPING": 3
+    "READY": 17,
+    "MAPPED": 11,
+    "LOCKED_FOR_MAPPING": 1
    }
   }
  ],
@@ -23233,7 +23236,7 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-08-31T16:43:24.214489",
+   "last_modified": "2026-08-31T17:07:19.363047",
    "num_resources": 93
   },
   {
