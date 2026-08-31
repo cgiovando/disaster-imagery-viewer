@@ -90,7 +90,10 @@ const state = {
   compare: false, splitPct: 50,
   mapA: null, mapB: null, syncing: false,
   vectorsOn: new Set(),
-  collapsed: new Set(['archive']),
+  collapsed: new Set(['phase:archive']),
+  groupBy: 'phase', sortBy: 'date-desc',
+  providersOn: new Set(),    // selected providers; empty means no provider filter
+  activeOnly: false,
   taskGrid: null,        // { projectId: [geometry, ...] }
   showTaskGrid: false,
   tmOn: new Set(),       // project ids currently drawn
@@ -438,12 +441,39 @@ function addVectors(map) {
       const data = state._geojson && state._geojson[layer.id];
       if (!data) continue;
       map.addSource(layer.id, { type: 'geojson', data, attribution: layer.attribution || '' });
+
+      /* One source can carry polygons, lines and points at once (the UNOSAT and
+       * SERTIT services do), so filter each draw layer by geometry type rather
+       * than assuming polygons. `geometry-type` reports Polygon for MultiPolygon
+       * and LineString for MultiLineString.
+       */
+      const color = layerColor(layer);
+      const isPoly = ['==', ['geometry-type'], 'Polygon'];
+      const isLine = ['==', ['geometry-type'], 'LineString'];
+      const isPoint = ['==', ['geometry-type'], 'Point'];
+
       if (layer.fill !== false) {
-        map.addLayer({ id: layer.id + '-fill', type: 'fill', source: layer.id,
-          paint: { 'fill-color': layer.color || '#d73f3f', 'fill-opacity': 0.25 } });
+        map.addLayer({ id: layer.id + '-fill', type: 'fill', source: layer.id, filter: isPoly,
+          paint: {
+            'fill-color': color,
+            'fill-opacity': layer.fillOpacity != null ? layer.fillOpacity : 0.25
+          } });
       }
       map.addLayer({ id: layer.id + '-line', type: 'line', source: layer.id,
-        paint: { 'line-color': layer.color || '#d73f3f', 'line-width': 1.6, 'line-opacity': 0.95 } });
+        filter: ['any', isPoly, isLine],
+        paint: {
+          'line-color': color,
+          'line-width': layer.lineWidth || 1.6,
+          'line-opacity': 0.95
+        } });
+      map.addLayer({ id: layer.id + '-point', type: 'circle', source: layer.id, filter: isPoint,
+        paint: {
+          'circle-color': color,
+          'circle-radius': ['interpolate', ['linear'], ['zoom'], 9, 3, 14, 6, 17, 9],
+          'circle-stroke-width': 1,
+          'circle-stroke-color': 'rgba(0,0,0,0.75)',
+          'circle-opacity': 0.9
+        } });
 
     } else if (layer.type === 'pmtiles') {
       map.addSource(layer.id, {
@@ -743,34 +773,199 @@ function renderActive() {
   }
 }
 
-function renderCatalog() {
-  const wrap = $('#scene-groups');
+
+/* Grouping and sorting for the imagery catalogue.
+ *
+ * Every option here is a plain property of the scene: when it was taken, how
+ * coarse it is, who published it. None of them rank scenes by suitability. A
+ * scene's usefulness depends on where the reader is looking and what they need
+ * to see, which is not something this catalogue knows.
+ */
+const GSD_BANDS = [
+  { id: 'gsd-0',  name: 'Under 25 cm',   test: (v) => v != null && v < 25 },
+  { id: 'gsd-25', name: '25 to 50 cm',   test: (v) => v != null && v >= 25 && v < 50 },
+  { id: 'gsd-50', name: '50 cm to 1 m',  test: (v) => v != null && v >= 50 && v < 100 },
+  { id: 'gsd-100', name: '1 m and coarser', test: (v) => v != null && v >= 100 },
+  { id: 'gsd-na', name: 'Resolution not stated', test: (v) => v == null }
+];
+
+function groupsFor(scenes) {
+  const mode = state.groupBy;
+
+  if (mode === 'phase') {
+    return GROUPS
+      .map((g) => ({ id: 'phase:' + g.id, name: g.name, color: g.color,
+                     scenes: scenes.filter((s) => s.group === g.id) }))
+      .filter((g) => g.scenes.length);
+  }
+
+  if (mode === 'provider') {
+    const by = new Map();
+    for (const s of scenes) {
+      const k = sourceKey(s);
+      if (!by.has(k)) by.set(k, []);
+      by.get(k).push(s);
+    }
+    return [...by.entries()]
+      .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+      .map(([name, list]) => ({ id: 'provider:' + name, name, color: '#7f8a99', scenes: list }));
+  }
+
+  if (mode === 'date') {
+    const by = new Map();
+    for (const s of scenes) {
+      const k = (s.acquired || '').slice(0, 10) || 'Date unknown';
+      if (!by.has(k)) by.set(k, []);
+      by.get(k).push(s);
+    }
+    return [...by.entries()]
+      .sort((a, b) => b[0].localeCompare(a[0]))
+      .map(([k, list]) => ({
+        id: 'date:' + k,
+        name: k === 'Date unknown' ? k : fmtDate(k),
+        color: (list[0] && list[0].phase === 'post') ? '#f0883e' : '#4d9de0',
+        scenes: list
+      }));
+  }
+
+  return GSD_BANDS
+    .map((b) => ({ id: b.id, name: b.name, color: '#7f8a99',
+                   scenes: scenes.filter((s) => b.test(s.gsd_cm)) }))
+    .filter((g) => g.scenes.length);
+}
+
+function sortScenes(list) {
+  const t = (s) => parseUtc(s.acquired) || 0;
+  const g = (s) => (s.gsd_cm == null ? Infinity : s.gsd_cm);
+  const c = (s) => (s.cloud_pct == null ? Infinity : s.cloud_pct);
+  const out = list.slice();
+  switch (state.sortBy) {
+    case 'date-asc':  out.sort((a, b) => t(a) - t(b)); break;
+    case 'gsd-asc':   out.sort((a, b) => g(a) - g(b) || t(b) - t(a)); break;
+    case 'gsd-desc':  out.sort((a, b) => g(b) - g(a) || t(b) - t(a)); break;
+    case 'cloud-asc': out.sort((a, b) => c(a) - c(b) || t(b) - t(a)); break;
+    case 'provider':  out.sort((a, b) =>
+      sourceKey(a).localeCompare(sourceKey(b)) || t(b) - t(a)); break;
+    default:          out.sort((a, b) => t(b) - t(a));
+  }
+  return out;
+}
+
+/* Scenes surviving every filter except the provider chips. The chips need
+ * counts computed before they themselves are applied, or a provider would drop
+ * to zero the moment it was switched off and could never be switched back. */
+/* Bucket a scene falls into for the chips and for provider grouping.
+ *
+ * Drone captures are bucketed as "Drone" rather than by publisher. Ground teams
+ * fly under many different names, and a chip per team would fragment the one
+ * category a reader actually wants to pick out. The builder decides what counts
+ * as a drone from platform and GSD together, because OAM's platform field is
+ * unreliable here: one of the two orthos over this corridor is tagged
+ * "satellite" despite being a 3.5 cm flight. Attribution is not lost, the
+ * publisher still appears on the scene row.
+ *
+ * For everything else the publisher name is used, with trailing dots and
+ * whitespace stripped: OAM attribution is free text, so the same organisation
+ * arrives both with and without a full stop and would otherwise occupy two
+ * chips. No fuzzy matching beyond that, which could merge distinct publishers.
+ */
+function sourceKey(scene) {
+  if (String(scene.group || '').includes('drone')) return 'Drone';
+  return String(scene.provider || 'Unattributed').trim().replace(/[.\s]+$/, '') || 'Unattributed';
+}
+
+function scenesBeforeProviderFilter() {
   const q = ($('#scene-search').value || '').trim().toLowerCase();
   const aoiOnly = $('#aoi-only').checked;
+  let list = state.scenes;
+  if (aoiOnly) list = list.filter((s) => s.in_aoi);
+  if (state.activeOnly) list = list.filter((s) => isActive(sceneKey(s)));
+  if (q) {
+    list = list.filter((s) =>
+      (s.title || '').toLowerCase().includes(q) ||
+      (s.provider || '').toLowerCase().includes(q) ||
+      (s.sensor || '').toLowerCase().includes(q) ||
+      (s.acquired || '').toLowerCase().includes(q));
+  }
+  return list;
+}
+
+/* Chips select rather than exclude: pressing Planet shows Planet. Selecting
+ * several widens the selection, and pressing a selected chip again removes it.
+ * No selection at all means no provider filter, so the catalogue starts whole.
+ */
+function renderProviderChips(pool) {
+  const wrap = $('#provider-chips');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  const counts = new Map();
+  for (const s of pool) {
+    const k = sourceKey(s);
+    counts.set(k, (counts.get(k) || 0) + 1);
+  }
+  const names = [...counts.keys()].sort((a, b) =>
+    counts.get(b) - counts.get(a) || a.localeCompare(b));
+  const anySelected = state.providersOn.size > 0;
+
+  /* A selection already in force must stay on screen even when the narrowed
+   * pool holds fewer than two providers, otherwise a reader can end up staring
+   * at "no scenes match" with the filter that caused it invisible and no way to
+   * undo it. Names absent from the pool are still listed, at count zero, so a
+   * selection can always be seen and lifted.
+   */
+  if (names.length < 2 && !anySelected) return;
+  for (const sel of state.providersOn) {
+    if (!counts.has(sel)) { counts.set(sel, 0); names.push(sel); }
+  }
+  for (const name of names) {
+    const on = state.providersOn.has(name);
+    const chip = el('button', 'chip' + (on ? ' on' : (anySelected ? ' dim' : '')));
+    chip.innerHTML = `${esc(name)}<span class="n">${counts.get(name)}</span>`;
+    chip.title = on ? `Stop showing only ${name}` : `Show only ${name}`;
+    chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+    chip.onclick = () => {
+      if (on) state.providersOn.delete(name); else state.providersOn.add(name);
+      renderCatalog();
+    };
+    wrap.appendChild(chip);
+  }
+  if (anySelected) {
+    const clear = el('button', 'chip clear', 'All providers');
+    clear.onclick = () => { state.providersOn.clear(); renderCatalog(); };
+    wrap.appendChild(clear);
+  }
+}
+
+function renderCatalog() {
+  const wrap = $('#scene-groups');
   wrap.innerHTML = '';
 
-  let shown = 0;
-  for (const g of GROUPS) {
-    let scenes = state.scenes.filter((s) => s.group === g.id);
-    if (aoiOnly) scenes = scenes.filter((s) => s.in_aoi);
-    if (q) {
-      scenes = scenes.filter((s) =>
-        (s.title || '').toLowerCase().includes(q) ||
-        (s.provider || '').toLowerCase().includes(q) ||
-        (s.sensor || '').toLowerCase().includes(q) ||
-        (s.acquired || '').toLowerCase().includes(q));
-    }
-    if (!scenes.length) continue;
-    shown += scenes.length;
+  const pool = scenesBeforeProviderFilter();
+  renderProviderChips(pool);
+  const filtered = state.providersOn.size
+    ? pool.filter((s) => state.providersOn.has(sourceKey(s)))
+    : pool;
 
-    const box = el('div', 'group' + (state.collapsed.has(g.id) ? ' collapsed' : ''));
+  const caveat = $('#sort-caveat');
+  if (caveat) caveat.hidden = state.sortBy !== 'cloud-asc';
+
+  let shown = 0;
+  for (const g of groupsFor(filtered)) {
+    const scenes = sortScenes(g.scenes);
+    shown += scenes.length;
+    const onMap = scenes.filter((s) => isActive(sceneKey(s))).length;
+    const collapsed = state.collapsed.has(g.id);
+
+    const box = el('div', 'group' + (collapsed ? ' collapsed' : ''));
     const head = el('button', 'group-head');
     head.innerHTML =
-      `<span class="caret">${state.collapsed.has(g.id) ? '&#9654;' : '&#9660;'}</span>` +
+      `<span class="caret">${collapsed ? '&#9654;' : '&#9660;'}</span>` +
       `<span class="dot" style="background:${g.color}"></span>` +
-      `<span>${esc(g.name)}</span><span class="n">${scenes.length}</span>`;
+      `<span>${esc(g.name)}</span>` +
+      (onMap ? `<span class="n on-map">${onMap} on map</span>` : '') +
+      `<span class="n">${scenes.length}</span>`;
     head.onclick = () => {
-      if (state.collapsed.has(g.id)) state.collapsed.delete(g.id); else state.collapsed.add(g.id);
+      if (collapsed) state.collapsed.delete(g.id); else state.collapsed.add(g.id);
       renderCatalog();
     };
     box.appendChild(head);
@@ -781,9 +976,17 @@ function renderCatalog() {
     wrap.appendChild(box);
   }
 
-  if (!shown) wrap.appendChild(el('p', 'empty', 'No scenes match this filter.'));
+  if (!shown) {
+    wrap.appendChild(el('p', 'empty', state.activeOnly && !state.active.length
+      ? 'Nothing is on the map yet.'
+      : 'No scenes match this filter.'));
+  }
+
+  const aoiOnly = $('#aoi-only').checked;
   const total = state.scenes.filter((s) => !aoiOnly || s.in_aoi).length;
-  $('#scene-count').textContent = `${shown} of ${total}`;
+  const live = state.scenes.filter((s) => isActive(sceneKey(s))).length;
+  $('#scene-count').textContent =
+    `${shown} of ${total}` + (live ? ` \u00b7 ${live} on map` : '');
 }
 
 function sceneRow(s) {
@@ -799,6 +1002,17 @@ function sceneRow(s) {
   const body = el('div', 'body');
   const gsd = fmtGsd(s.gsd_cm);
   let badges = '';
+  /* Says outright that a scene is drawn, and in compare mode which side it is
+   * on. The row tint alone reads as selection, which is not the same question
+   * as "what am I actually looking at".
+   */
+  if (on) {
+    const a = state.active.find((x) => x.key === sceneKey(s));
+    const side = state.compare && a
+      ? (a.side === 'left' ? ' left' : ' right')
+      : '';
+    badges += `<span class="badge onmap">on map${side}</span>`;
+  }
   if (s.phase === 'post') badges += '<span class="badge post">post</span>';
   if (s.gsd_cm != null && s.gsd_cm <= 25) badges += '<span class="badge hires">hi-res</span>';
   if (s.gsd_cm != null && s.gsd_cm >= 300) badges += '<span class="badge coarse">coarse</span>';
@@ -883,6 +1097,69 @@ function fitBbox(b) {
 /* One row renderer for every config-driven layer. Rasters join the imagery
  * stack (so they get an opacity slider and can be swiped); GeoJSON and PMTiles
  * are vector overlays toggled on top. */
+/* Class key for a layer coloured by a property. Lists only classes the loaded
+ * data actually contains: the paint keeps every stop, so a class appearing later
+ * still colours correctly, but a key naming classes with no features implies
+ * findings that are not there. Returns null when the layer has no classes.
+ * Before data loads there is nothing to filter against, so all stops show.
+ */
+function classKey(layer) {
+  if (!layer.colorBy || !layer.colorBy.stops) return null;
+  const loaded = state._geojson && state._geojson[layer.id];
+  let present = null;
+  if (loaded && Array.isArray(loaded.features)) {
+    present = new Set(loaded.features.map((f) => f.properties && f.properties[layer.colorBy.property]));
+  }
+  const key = el('div', 'legend inline');
+  for (const [value, col] of Object.entries(layer.colorBy.stops)) {
+    if (present && !present.has(value)) continue;
+    const item = el('span', 'lg');
+    const dot = document.createElement('i');
+    dot.style.background = col;
+    item.appendChild(dot);
+    item.appendChild(document.createTextNode(value));
+    key.appendChild(item);
+  }
+
+  /* These are live services. If a publisher adds a class we have no stop for,
+   * those features draw in the default colour, and a key that omits them would
+   * leave visible features unexplained. Name them rather than hide them.
+   */
+  if (present) {
+    const known = new Set(Object.keys(layer.colorBy.stops));
+    const other = [...present].filter((v) => !known.has(v));
+    if (other.length) {
+      const item = el('span', 'lg');
+      const dot = document.createElement('i');
+      dot.style.background = layer.colorBy.default || layer.color || '#7a7a86';
+      item.appendChild(dot);
+      const named = other.filter((v) => v !== undefined && v !== null && v !== '');
+      item.appendChild(document.createTextNode(
+        named.length && named.length <= 2 ? named.join(', ') : 'other'));
+      key.appendChild(item);
+    }
+  }
+  return key;
+}
+
+/* Warns when a merged layer drew only some of its endpoints. The layer
+ * descriptions quote totals across every AOI, so a partial load silently
+ * contradicts what the panel says about it.
+ */
+function partialNote(layer) {
+  const p = state._partial && state._partial[layer.id];
+  if (!p) return null;
+  if (p.fatal) {
+    return el('div', 'warn',
+      p.total > 1
+        ? `Could not be loaded: all ${p.total} sources failed. See the console for detail.`
+        : 'Could not be loaded. See the console for detail.');
+  }
+  return el('div', 'warn',
+    `Showing ${p.total - p.failed} of ${p.total} sources. ` +
+    `${p.failed} could not be loaded, so counts above are incomplete.`);
+}
+
 function layerRow(layer) {
   const isRaster = layer.type === 'raster';
   const key = 'x:' + layer.id;
@@ -895,18 +1172,40 @@ function layerRow(layer) {
     if (isRaster) { toggleExtraRaster(layer); return; }
     if (cb.checked) {
       state.vectorsOn.add(layer.id);
-      if (layer.type === 'geojson') await loadGeojson(layer);
+      if (layer.type === 'geojson') {
+        await loadGeojson(layer);
+        const fresh = classKey(layer);
+        const old = ref.querySelector('.legend');
+        if (fresh && old) ref.replaceChild(fresh, old);
+        const oldNote = ref.querySelector('.warn');
+        if (oldNote) oldNote.remove();
+        const note = partialNote(layer);
+        if (note) ref.appendChild(note);
+        cb.checked = state.vectorsOn.has(layer.id);
+      }
     } else {
       state.vectorsOn.delete(layer.id);
+      if (state._partial) delete state._partial[layer.id];
+      const stale = ref.querySelector('.warn');
+      if (stale) stale.remove();
     }
     renderAll(); writeHash();
   };
   top.appendChild(cb);
-  if (layer.color) {
+  if (layer.color && !(layer.colorBy && layer.colorBy.stops)) {
     const sw = el('span', 'sw'); sw.style.background = layer.color; top.appendChild(sw);
   }
   top.appendChild(el('span', 'nm', esc(layer.name)));
   ref.appendChild(top);
+
+  /* A layer coloured by class is unreadable without a key, and a key built
+   * separately from the paint expression drifts out of step with it. Both come
+   * from the same `colorBy.stops`, so they cannot disagree.
+   */
+  const key0 = classKey(layer);
+  if (key0) ref.appendChild(key0);
+  const note0 = partialNote(layer);
+  if (note0) ref.appendChild(note0);
 
   if (layer.info) {
     ref.appendChild(el('div', 'd', esc(layer.info) +
@@ -944,6 +1243,21 @@ function renderBasemaps() {
   }
 }
 
+/* The task grid belongs to one project's AOI, so it must not outlive that
+ * project being switched off: a grid of coloured squares floating over no
+ * extent reads as though it belongs to whatever else happens to be on screen.
+ * Returns whether it cleared anything, so callers know to redraw the panel and
+ * the grid legend rather than leaving a stale "hide task grid" button.
+ */
+function syncTaskGridToProjects() {
+  if (state.showTaskGrid && !state.tmOn.has(state.gridProject)) {
+    state.showTaskGrid = false;
+    state.gridProject = null;
+    return true;
+  }
+  return false;
+}
+
 function renderTM() {
   const wrap = $('#tm-list');
   const toggles = $('#tm-toggles');
@@ -963,6 +1277,7 @@ function renderTM() {
     const cb = el('input'); cb.type = 'checkbox'; cb.checked = state.tmOn.has(p.id);
     cb.onchange = () => {
       cb.checked ? state.tmOn.add(p.id) : state.tmOn.delete(p.id);
+      if (syncTaskGridToProjects()) { renderTM(); renderTaskLegend(); }
       renderAll(); writeHash();
     };
     top.appendChild(cb);
@@ -1077,17 +1392,74 @@ function seamlineSummary() {
   return `${f.length} source images, ${years[0]} to ${years[years.length - 1]}, median ${median}`;
 }
 
+/* Flat colour, or a categorical one driven by a property. Layers that carry a
+ * damage classification are unreadable in a single colour, and a legend that
+ * disagrees with the map is worse than no legend, so both are built from the
+ * same `colorBy` block in the event config.
+ */
+function layerColor(layer) {
+  const cb = layer.colorBy;
+  if (!cb || !cb.property || !cb.stops) return layer.color || '#d73f3f';
+  const expr = ['match', ['get', cb.property]];
+  for (const [value, col] of Object.entries(cb.stops)) expr.push(value, col);
+  expr.push(cb.default || layer.color || '#d73f3f');
+  return expr;
+}
+
 async function loadGeojson(layer) {
   state._geojson = state._geojson || {};
+  state._partial = state._partial || {};
   if (state._geojson[layer.id]) return;
-  try {
-    const r = await fetch(layer.url);
+
+  /* `urls` merges several endpoints into one layer. Copernicus publishes each
+   * grading theme separately per AOI, so without this the panel would carry a
+   * toggle per AOI per theme and a reader would have to combine them by eye.
+   *
+   * Settled rather than all-or-nothing: during a response, one AOI present with
+   * a visible warning beats the whole impact layer vanishing because the other
+   * endpoint blinked.
+   */
+  const urls = Array.isArray(layer.urls) ? layer.urls : [layer.url];
+  const results = await Promise.allSettled(urls.map(async (u) => {
+    const r = await fetch(u);
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    state._geojson[layer.id] = await r.json();
-  } catch (e) {
-    console.warn(`Could not load ${layer.id}:`, e);
+    const j = await r.json();
+    /* ArcGIS answers 200 with {"error": {...}} and no features, so status alone
+     * does not mean success. Verified against the UNOSAT service: a bad layer id
+     * returns 200 with error code 400. Without this check the layer would cache
+     * as empty, stay switched on, and draw nothing without saying why.
+     */
+    if (j && j.error) {
+      throw new Error(`service error ${j.error.code || ''} ${j.error.message || ''}`.trim());
+    }
+    if (!j || !Array.isArray(j.features)) throw new Error('response is not a FeatureCollection');
+    return j.features;
+  }));
+
+  const features = [];
+  const failed = [];
+  results.forEach((res, i) => {
+    if (res.status === 'fulfilled') features.push(...res.value);
+    else failed.push(`${urls[i]}: ${res.reason && res.reason.message}`);
+  });
+
+  /* Only a total failure to fetch is an outage. A publisher legitimately
+   * returning zero features is a fact about the data, not a fault, and calling
+   * it a load failure would raise a false alarm during a response.
+   */
+  if (failed.length === urls.length) {
+    console.warn(`Could not load ${layer.id}:`, failed);
     state.vectorsOn.delete(layer.id);
+    state._partial[layer.id] = { failed: failed.length, total: urls.length, fatal: true };
+    return;
   }
+  if (failed.length) {
+    console.warn(`${layer.id}: ${failed.length} of ${urls.length} sources failed`, failed);
+    state._partial[layer.id] = { failed: failed.length, total: urls.length };
+  } else {
+    delete state._partial[layer.id];
+  }
+  state._geojson[layer.id] = { type: 'FeatureCollection', features };
 }
 
 function renderLists() {
@@ -1919,7 +2291,24 @@ async function boot() {
     // Restore layers from the permalink.
     for (const key of hash.layers) {
       if (key.startsWith('s:')) {
-        const s = state.sceneById.get(key.slice(2));
+        /* sceneKey() appends ':<render-id>' for scenes with several renderings,
+         * so the id cannot be taken as the whole remainder of the key. Restore
+         * the rendering first, or the layer comes back in the wrong one and
+         * under a key that no longer matches the catalogue row.
+         */
+        const rest = key.slice(2);
+        let s = state.sceneById.get(rest);
+        if (!s) {
+          const cut = rest.lastIndexOf(':');
+          if (cut > 0) {
+            const cand = state.sceneById.get(rest.slice(0, cut));
+            const wanted = rest.slice(cut + 1);
+            if (cand && (sceneRenders(cand) || []).some((r) => r.id === wanted)) {
+              state.renderChoice[cand.id] = wanted;
+              s = cand;
+            }
+          }
+        }
         if (s) toggleScene(s);
       } else if (key.startsWith('x:')) {
         const l = (state.cfg.extraLayers || []).find((x) => x.id === key.slice(2));
@@ -1971,6 +2360,16 @@ async function boot() {
   });
   $('#scene-search').oninput = renderCatalog;
   $('#aoi-only').onchange = renderCatalog;
+  $('#active-only').onchange = (e) => { state.activeOnly = e.target.checked; renderCatalog(); };
+  $('#scene-groupby').onchange = (e) => {
+    state.groupBy = e.target.value;
+    /* Collapsed state is keyed by group id, and ids are namespaced per mode, so
+     * switching modes cannot leave unrelated groups mysteriously shut. */
+    state.collapsed.clear();
+    if (state.groupBy === 'phase') state.collapsed.add('phase:archive');
+    renderCatalog();
+  };
+  $('#scene-sort').onchange = (e) => { state.sortBy = e.target.value; renderCatalog(); };
   $('#clear-active').onclick = () => {
     state.active = []; renderActive(); renderCatalog(); renderMosaics(); renderAll(); writeHash();
   };

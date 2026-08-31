@@ -59,8 +59,35 @@
             <span class="count" id="scene-count"></span>
           </div>
           <div class="filters">
-            <label class="chk"><input type="checkbox" id="aoi-only" checked><span>Corridor AOI only</span></label>
             <input type="search" id="scene-search" placeholder="Filter by name, provider, year&hellip;">
+            <div class="ctl-row">
+              <label class="ctl"><span>Group</span>
+                <select id="scene-groupby">
+                  <option value="phase">Phase and platform</option>
+                  <option value="provider">Provider</option>
+                  <option value="date">Acquisition date</option>
+                  <option value="gsd">Resolution band</option>
+                </select>
+              </label>
+              <label class="ctl"><span>Sort</span>
+                <select id="scene-sort">
+                  <option value="date-desc">Newest first</option>
+                  <option value="date-asc">Oldest first</option>
+                  <option value="gsd-asc">Finest resolution</option>
+                  <option value="gsd-desc">Coarsest resolution</option>
+                  <option value="cloud-asc">Cloud, lowest first</option>
+                  <option value="provider">Provider A to Z</option>
+                </select>
+              </label>
+            </div>
+            <p class="hint" id="sort-caveat" hidden>Cloud is a scene-wide average from the
+              provider. A low figure does not mean this corridor is clear, and a high one does
+              not mean it is obscured.</p>
+            <div class="chk-row">
+              <label class="chk"><input type="checkbox" id="aoi-only" checked><span>Corridor AOI only</span></label>
+              <label class="chk"><input type="checkbox" id="active-only"><span>On the map only</span></label>
+            </div>
+            <div id="provider-chips" class="chips"></div>
           </div>
           <div id="scene-groups"></div>
         </div>

@@ -200,3 +200,27 @@ input[type=search]:focus,select:focus{outline:none;border-color:#43505f}
 .render-row{display:flex;align-items:center;gap:6px;margin-top:5px}
 .render-row select{font-size:11px;padding:3px 6px}
 .render-row .lbl{font-size:10.5px;color:var(--fg3);flex:0 0 auto}
+
+/* Imagery catalogue controls: grouping, sorting and provider filtering. */
+.ctl-row{display:flex;gap:8px;margin-top:7px}
+.ctl{flex:1 1 0;display:flex;flex-direction:column;gap:3px;min-width:0}
+.ctl>span{font-size:10px;color:var(--fg3);letter-spacing:.03em;text-transform:uppercase}
+.ctl select{width:100%;font-size:11.5px;padding:4px 6px}
+.chk-row{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:8px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.chip{
+  display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:11px;
+  font-size:10.5px;line-height:1.5;cursor:pointer;
+  background:var(--bg3);border:1px solid var(--line);color:var(--fg2);
+}
+.chip:hover{border-color:#43505f;color:var(--fg)}
+.chip .n{font-variant-numeric:tabular-nums;color:var(--fg3)}
+.chip.on{background:rgba(215,63,63,.16);border-color:rgba(215,63,63,.5);color:var(--fg)}
+.chip.on .n{color:var(--fg2)}
+.chip.dim{opacity:.5}
+.chip.clear{background:none;border-style:dashed}
+.group-head .n.on-map{
+  background:rgba(94,194,106,.16);color:var(--drone);
+  padding:0 6px;border-radius:8px;
+}
+.badge.onmap{background:rgba(94,194,106,.18);color:var(--drone)}

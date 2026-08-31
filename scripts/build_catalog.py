@@ -17,6 +17,7 @@ Usage:
 """
 
 import json
+import hashlib
 import os
 import re
 import sys
@@ -264,6 +265,15 @@ def fetch_oam(cfg):
             # Derived products (land use classifications and the like) are not
             # imagery and only clutter the catalogue.
             if any(x.lower() in title.lower() for x in cfg.get("excludeTitles", [])):
+                continue
+
+            provider_now = normalise_provider(it)
+            # Whole publishers can be irrelevant to an event. The 2015 DigitalGlobe
+            # open release over Nepal is a case in point: 75 scenes with hash
+            # filenames, a decade older than the event, that bury the imagery
+            # anyone is actually looking for.
+            if any(x.lower() in (provider_now or "").lower()
+                   for x in cfg.get("excludeProviders", [])):
                 continue
 
             cog = it.get("uuid") or ""
@@ -839,8 +849,14 @@ def write_event_page(cfg):
         html = f.read()
 
     # Assets live one level up from the event directory.
-    html = html.replace('href="style.css"', 'href="../style.css"')
-    html = html.replace('src="app.js"', 'src="../app.js"')
+    # Cache key from the file's own content. Without one a browser keeps serving
+    # the app.js it already has after a deploy, which is silent: the page looks
+    # current while running old code. This bit us during development, where a
+    # stale app.js made a fixed bug look unfixed.
+    app_v = asset_version("app.js")
+    css_v = asset_version("style.css")
+    html = html.replace('href="style.css"', f'href="../style.css?v={css_v}"')
+    html = html.replace('src="app.js"', f'src="../app.js?v={app_v}"')
     html = html.replace(
         "<title>Disaster Imagery Viewer</title>",
         f"<title>{cfg['name']} - Imagery Viewer</title>",
@@ -866,6 +882,15 @@ def write_event_page(cfg):
     print(f"  wrote {eid}/index.html")
 
 
+def asset_version(name):
+    """Short content hash of a repo-root asset, for cache-busting its URL."""
+    try:
+        with open(os.path.join(ROOT, name), "rb") as f:
+            return hashlib.sha256(f.read()).hexdigest()[:10]
+    except OSError:
+        return "0"
+
+
 def write_landing(events):
     """Root page listing every configured event."""
     cards = []
@@ -881,6 +906,7 @@ def write_landing(events):
             f'    </a>'
         )
     generated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    css_v = asset_version("style.css")
     html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -888,7 +914,7 @@ def write_landing(events):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Disaster Imagery Viewer</title>
 <meta name="description" content="Imagery and response viewer for humanitarian mapping activations.">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v={css_v}">
 <style>
   body{{display:block;padding:0}}
   .wrap{{max-width:760px;margin:0 auto;padding:56px 24px 72px}}

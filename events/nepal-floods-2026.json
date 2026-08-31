@@ -32,7 +32,7 @@
   "hdxDatasets": [
     "hot_flood_npl",
     "hot_flood_npl_corridor",
-    "hot_flood_npl_buildings_fair",
+    "hot_flood_npl_buildings_damage",
     "2026-nepal-flash-flood"
   ],
   "places": [
@@ -124,6 +124,169 @@
       "minzoom": 8,
       "maxzoom": 14,
       "opacity": 0.55
+    },
+    {
+      "id": "unosat-mudflow-live",
+      "type": "geojson",
+      "group": "impact",
+      "name": "UNOSAT mudflow / rockflow extent",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#ff7043",
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "Flow footprint delineated by UNOSAT from Sentinel-2 (27 Aug) and Planet (26 Aug). Pulled live from the UNOSAT service, so it updates as they revise it.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "unosat-detachment",
+      "type": "geojson",
+      "group": "impact",
+      "name": "UNOSAT detachment zone",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/7/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#ffd54f",
+      "fillOpacity": 0.18,
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "Where the flow initiated, mapped by UNOSAT from Landsat 9 on 26 Aug. Upstream of everything else in this panel.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "sertit-flood-trace",
+      "type": "geojson",
+      "group": "impact",
+      "name": "SERTIT flood trace (Pleiades)",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#4dd0e1",
+      "fillOpacity": 0.2,
+      "attribution": "(c) ICube-SERTIT 2026, International Charter Call 1209",
+      "info": "127 ha flood trace photo-interpreted from Pleiades, dated 28 Aug. Human-delineated, not automated.",
+      "link": "https://disasterscharter.org/"
+    },
+    {
+      "id": "sertit-builtup",
+      "type": "geojson",
+      "group": "impact",
+      "name": "SERTIT built-up damage (Pleiades)",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#d73f3f",
+      "colorBy": {
+        "property": "DAMAGE",
+        "stops": {
+          "Destroyed": "#d73f3f",
+          "Damaged": "#f08c2e",
+          "No visible damage": "#4caf7d"
+        },
+        "default": "#7a7a86"
+      },
+      "attribution": "(c) ICube-SERTIT 2026, International Charter Call 1209",
+      "info": "63 structures assessed by photo-interpretation of Pleiades: 62 destroyed, 1 damaged. 38 industrial, 25 residential. Independent of the AI assessment below, and from a sensor not otherwise in this viewer.",
+      "link": "https://disasterscharter.org/"
+    },
+    {
+      "id": "sertit-roads",
+      "type": "geojson",
+      "group": "impact",
+      "name": "SERTIT road damage (Pleiades)",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/3/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#d73f3f",
+      "lineWidth": 3,
+      "colorBy": {
+        "property": "DAMAGE",
+        "stops": {
+          "Destroyed": "#d73f3f",
+          "Damaged": "#f08c2e",
+          "No visible damage": "#4caf7d"
+        },
+        "default": "#7a7a86"
+      },
+      "attribution": "(c) ICube-SERTIT 2026, International Charter Call 1209",
+      "info": "35 road segments on OSM geometry, scored from Pleiades: 13 destroyed, 22 no visible damage. 9 are primary roads.",
+      "link": "https://disasterscharter.org/"
+    },
+    {
+      "id": "hot-fair-damage",
+      "type": "geojson",
+      "group": "impact",
+      "name": "HOT fAIr building damage (AI)",
+      "url": "https://production-raw-data-api.s3.amazonaws.com/ISO3/NPL/buildings/hot_flood_npl_buildings_damage.geojson",
+      "color": "#d73f3f",
+      "fillOpacity": 0.55,
+      "colorBy": {
+        "property": "damage",
+        "stops": {
+          "destroyed": "#d73f3f",
+          "major-damage": "#f08c2e",
+          "minor-damage": "#f5d547",
+          "no-damage": "#4caf7d",
+          "no-data": "#7a7a86"
+        },
+        "default": "#7a7a86"
+      },
+      "attribution": "Humanitarian OpenStreetMap Team, fAIr",
+      "info": "fAIr damage scoring applied to 1,053 existing OpenStreetMap footprints (the geometry is OSM, the classification is fAIr) against the open Vantor post-event imagery, about 18 sq km: 677 destroyed, 105 major, 155 minor, 113 no damage. HOT's own caveat: cross-sensor pre versus post, plus cloud in the post imagery, can inflate destroyed calls, and the post-event Vantor scenes here run 74 to 85 percent cloud. Median confidence is 1.00 for destroyed but 0.11 for minor and 0.23 for major, so treat the middle classes as unreliable. Intact means damage could not be seen from nadir optical.",
+      "link": "https://data.humdata.org/dataset/hot_flood_npl_buildings_damage"
+    },
+    {
+      "id": "copernicus-buildings",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Copernicus EMS building grading",
+      "urls": [
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/3/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/11/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+      ],
+      "color": "#d73f3f",
+      "colorBy": {
+        "property": "damage_gra",
+        "stops": {
+          "Destroyed": "#d73f3f",
+          "Damaged": "#f08c2e",
+          "Possibly damaged": "#f5d547",
+          "No visible damage": "#4caf7d"
+        },
+        "default": "#7a7a86"
+      },
+      "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
+      "info": "864 buildings graded across the Syapru Besi and Timure AOIs: 695 destroyed, 65 damaged, 104 possibly damaged. Photo-interpreted, not automated. Two separate EMS AOIs are merged here into one layer.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "copernicus-roads",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Copernicus EMS road grading",
+      "urls": [
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/7/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/14/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+      ],
+      "color": "#d73f3f",
+      "lineWidth": 3,
+      "colorBy": {
+        "property": "damage_gra",
+        "stops": {
+          "Destroyed": "#d73f3f",
+          "Damaged": "#f08c2e",
+          "Possibly damaged": "#f5d547",
+          "No visible damage": "#4caf7d"
+        },
+        "default": "#7a7a86"
+      },
+      "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
+      "info": "46 road segments across both EMS AOIs: 28 destroyed, 7 possibly damaged, 11 no visible damage.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "copernicus-observed",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Copernicus EMS observed event",
+      "urls": [
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/13/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+      ],
+      "color": "#b388ff",
+      "fillOpacity": 0.22,
+      "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
+      "info": "Observed event extent for both EMS AOIs, classified as mass movement rather than flooding. A useful cross-check on the UNOSAT mudflow delineation, which was drawn from different sensors.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     }
   ],
   "links": [
@@ -242,5 +405,8 @@
         "info": "Normalised difference water index. Blue is water."
       }
     ]
-  }
+  },
+  "excludeProviders": [
+    "DigitalGlobe"
+  ]
 }

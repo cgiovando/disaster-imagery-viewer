@@ -22,14 +22,20 @@ Tasking Manager, provider STAC indexes, OpenAerialMap and HDX.
 Nobody has one view of it, so the same questions get asked repeatedly and
 useful imagery goes unused.
 
-Two things this surfaced immediately for the Nepal response:
+Three things this surfaced for the Nepal response:
 
-- Both published Tasking Manager projects were configured to use **Esri World
-  Imagery**, which is from **2017** over this corridor, while three Vantor
-  archive scenes from 2021, 2023 and 2024 sat unused on OpenAerialMap.
+- Every published Tasking Manager project was configured to use **Esri World
+  Imagery**, whose source images over this corridor have a **median capture year
+  of 2018**, while Vantor archive scenes sat unused on OpenAerialMap. As of 31
+  August one project (63399) has switched to an OpenAerialMap layer; three
+  others are still on Esri.
 - Two **drone orthophotos at 3.5 cm and 6 cm** covering Rasuwagadhi-Timure and
   Simle-to-Betrawati, flown in September 2025, were already published and were
-  far better pre-event reference than any available satellite scene.
+  finer than any available satellite scene.
+- Published damage assessments existed in three independent places, none of them
+  side by side: HOT's fAIr scoring on HDX, SERTIT's Pleiades photo-interpretation
+  under the International Charter, and Copernicus EMS grading. Where they
+  disagree is information in itself.
 
 ## Usage
 
@@ -62,7 +68,18 @@ basemap and a position can be shared as a link.
 3. Open `/<event-id>/`.
 
 CI rebuilds every configured event hourly, and on any push. Trigger a run by
-hand from the Actions tab when something has just been released.
+hand with `gh workflow run refresh.yml` when something has just been released.
+
+The hourly schedule is driven by a **Cloudflare Worker** (`worker/`) rather than
+by GitHub's own `schedule` trigger, which proved unusable for this repository: it
+delivered one event in roughly 24 hourly slots, and that one 25 minutes late.
+The Worker fires a `repository_dispatch` at :07 each hour. The Actions cron is
+left in place as a harmless backup. See `worker/README.md`.
+
+A build only commits when something other than the run timestamp changed, so the
+history reflects real catalogue changes rather than an hourly no-op. The deploy
+runs regardless and builds from the working tree, so the live page always shows
+its true last-checked time.
 
 ## How it works
 
@@ -99,7 +116,7 @@ with stale data.
 Task grids come from the Tasking Manager tasks endpoint, which also sends no
 CORS header. Task geometry never changes for a project, so it is written once
 to `data/<event>.taskgrid.json` and only the per-task status is rewritten on
-each build, which keeps the 20-minute CI commits small.
+each build, which keeps the hourly CI commits small.
 
 On load, the activation-area AOI polygon is fetched in the background and the
 panel reports **how many buildings and how many kilometres of road have been
@@ -155,6 +172,45 @@ Radar answers the persistent monsoon cloud that defeats optical here. Note that
 in steep terrain radar shadow also reads as smooth, so the water mask is
 indicative and not a validated flood product.
 
+**Published impact layers are read live from their publishers**, so a revision
+appears without a rebuild. UNOSAT's mudflow extent and detachment zone, SERTIT's
+flood trace and built-up and road damage, and Copernicus EMS building and road
+grading all come from the UNOSAT ArcGIS services for event `FL20260826NPL`,
+queried as GeoJSON. HOT's fAIr building damage comes from the Raw Data API S3
+bucket referenced by its HDX record. Every one of these endpoints sends
+`Access-Control-Allow-Origin`, so no proxy is involved.
+
+Two details there are worth knowing if you extend this. Copernicus publishes each
+grading theme separately per area of interest, so a layer may list several `urls`
+which are merged into one toggle; if some endpoints fail the layer draws what it
+has and says so, rather than vanishing. And ArcGIS answers `200 OK` with an
+`{"error": ...}` body rather than an HTTP error status, so each response is
+checked for that and for being a real FeatureCollection before it is accepted.
+
+Layers coloured by a classification generate their key from the same stops as the
+map paint, so the two cannot drift apart. Once a layer is switched on and its
+data has arrived, the key narrows to the classes actually present, and names any
+class the publisher has added that the config has no colour for. Before that it
+lists every configured class, since there is nothing yet to narrow against.
+
+The imagery catalogue can be **grouped** by phase and platform, provider,
+acquisition date or resolution band; **sorted** by date, resolution, cloud or
+provider; and **filtered** by provider chips, corridor AOI, free text, or to just
+what is currently drawn. Every one of those is a plain property of the scene.
+Drone captures are bucketed together regardless of publisher, since ground teams
+fly under many names; the builder identifies them from platform and ground
+sample distance together, because OpenAerialMap's `platform` field is unreliable
+here (the 3.5 cm flight over this corridor is tagged `satellite`).
+
+Whole publishers can be excluded per event with `excludeProviders`. The Nepal
+config drops the 2015 DigitalGlobe open release: 75 scenes with hash filenames, a
+decade older than the event, which buried everything anyone was looking for.
+
+Generated pages, event pages and the root index alike, reference `app.js` and
+`style.css` with a **content-hash cache key**. Without one a browser keeps
+running the JavaScript it already has after a deploy, which is silent and looks
+exactly like a page that is up to date.
+
 ## Stack
 
 MapLibre GL JS 5.6.1, PMTiles 4.5.0, fflate 0.8.2, vanilla JavaScript, no build
@@ -169,6 +225,10 @@ Pages.
 | HOT Tasking Manager | Project extents, progress, imagery settings | ODbL / CC-BY-SA |
 | [UNOSAT](https://unosat.org) | SAR-derived flood and mudflow extent | As published by UNOSAT |
 | Microsoft AI for Good Lab | Regional mosaics, republished UNOSAT extent | As published |
+| UNOSAT ArcGIS services (`FL20260826NPL`) | Mudflow extent, detachment zone, baseline data, queried live | As published by UNOSAT |
+| [ICube-SERTIT](https://sertit.unistra.fr/) via International Charter Call 1209 | Pleiades flood trace, built-up and road damage | (c) ICube-SERTIT 2026, as published |
+| [Copernicus EMS](https://emergency.copernicus.eu/) | Building and road damage grading, observed event extent | Copernicus, as published |
+| HOT fAIr, via [HDX](https://data.humdata.org/dataset/hot_flood_npl_buildings_damage) | AI building damage scoring on OSM footprints | ODbL / CC-BY, as published |
 | [HOT Raw Data API](https://api-prod.raw-data.hotosm.org/v1/docs) | Live OpenStreetMap features | ODbL |
 | [Overpass API](https://overpass-api.de) | Fallback for live OSM | ODbL |
 | [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/) | Sentinel-1 radar tiles | Copernicus open licence |
@@ -179,11 +239,30 @@ Pages.
 
 ## Caveats
 
-This viewer shows imagery and published extents. **It does not classify damage**,
-and nothing shown here is a damage assessment. Absence of a scene means no scene
-has been published to OpenAerialMap, not that no imagery exists. Cloud cover is
-shown where the provider publishes it; OpenAerialMap does not carry it, so
-scenes without a figure must be judged visually.
+**This project produces no analysis of its own.** It classifies nothing and
+ranks nothing. The damage layers it displays are other organisations' published
+products, shown with their own classes and their own caveats, and the viewer
+takes no position on which is correct.
+
+Read those layers with their limits in mind:
+
+- HOT's fAIr layer is **AI-generated and preliminary**. HOT's own caveat is that
+  cross-sensor pre versus post comparison, plus cloud in the post imagery, can
+  inflate destroyed calls. Its middle classes are weak: median confidence is
+  0.11 for minor damage and 0.23 for major, against 1.00 for destroyed.
+- SERTIT and Copernicus EMS grading is human photo-interpretation of nadir
+  optical imagery. Damage invisible from directly overhead is not recorded, so
+  "no visible damage" is not the same as undamaged.
+
+**Cloud cover figures are scene-wide averages** from the provider. These scenes
+are long river strips, so a low figure does not mean any particular place is
+clear, and a high one does not mean it is obscured. The catalogue can sort by
+cloud but never ranks scenes by suitability, because whether a scene is useful
+depends on where the reader is looking, which the catalogue does not know.
+
+Absence of a scene means no scene has been published to OpenAerialMap, not that
+no imagery exists. OpenAerialMap does not carry cloud cover, so scenes without a
+figure must be judged visually.
 
 ## AI-assisted development
 

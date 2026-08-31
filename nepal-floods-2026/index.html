@@ -8,7 +8,7 @@
 <meta property="og:description" content="Bhote Koshi / Trishuli corridor, Rasuwa & Nuwakot">
 <meta name="description" content="What imagery exists over a disaster area, how old it is, and what mappers are actually looking at.">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.css" integrity="sha384-Nq6PQ+9vJPvw7U/VfDELyrWoGQMsy0gi6QShhaSrGzkpF5KkM40csg2leky+YMTd" crossorigin="anonymous">
-<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="../style.css?v=dd4a274d10">
 </head>
 <body>
 
@@ -61,8 +61,35 @@
             <span class="count" id="scene-count"></span>
           </div>
           <div class="filters">
-            <label class="chk"><input type="checkbox" id="aoi-only" checked><span>Corridor AOI only</span></label>
             <input type="search" id="scene-search" placeholder="Filter by name, provider, year&hellip;">
+            <div class="ctl-row">
+              <label class="ctl"><span>Group</span>
+                <select id="scene-groupby">
+                  <option value="phase">Phase and platform</option>
+                  <option value="provider">Provider</option>
+                  <option value="date">Acquisition date</option>
+                  <option value="gsd">Resolution band</option>
+                </select>
+              </label>
+              <label class="ctl"><span>Sort</span>
+                <select id="scene-sort">
+                  <option value="date-desc">Newest first</option>
+                  <option value="date-asc">Oldest first</option>
+                  <option value="gsd-asc">Finest resolution</option>
+                  <option value="gsd-desc">Coarsest resolution</option>
+                  <option value="cloud-asc">Cloud, lowest first</option>
+                  <option value="provider">Provider A to Z</option>
+                </select>
+              </label>
+            </div>
+            <p class="hint" id="sort-caveat" hidden>Cloud is a scene-wide average from the
+              provider. A low figure does not mean this corridor is clear, and a high one does
+              not mean it is obscured.</p>
+            <div class="chk-row">
+              <label class="chk"><input type="checkbox" id="aoi-only" checked><span>Corridor AOI only</span></label>
+              <label class="chk"><input type="checkbox" id="active-only"><span>On the map only</span></label>
+            </div>
+            <div id="provider-chips" class="chips"></div>
           </div>
           <div id="scene-groups"></div>
         </div>
@@ -162,6 +189,6 @@
 <script src="https://unpkg.com/maplibre-gl@5.6.1/dist/maplibre-gl.js" integrity="sha384-/L1njH4bbgNt9Uk3HwJ272N9fxJzRBQCxhtwGkZiqgl+Nxpq2ETUNZhNMNV1RgyW" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js" integrity="sha384-pbKNZbDshUsLnZMIVsn/t+j3xEY9PGfuX5Z22l5rcy/obXz3EwaMx1F5d9sRsJMn" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/fflate@0.8.2/umd/index.js" integrity="sha384-DT0Ls0mO7JmjTnT+oBuMhEJzYJO1zUqzuuMXNdnOmOQRIpN2BgSjvBV/j50NngIT" crossorigin="anonymous"></script>
-<script src="../app.js"></script>
+<script src="../app.js?v=4561e3bd26"></script>
 </body>
 </html>
