@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31T01:08:04Z",
+ "generated": "2026-08-31T01:20:25Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -6412,7 +6412,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-08-31T01:07:19.487000Z",
+   "last_updated": "2026-08-31T01:11:01.701000Z",
    "total_tasks": null,
    "task_status": {
     "565": "MAPPED",
@@ -6428,6 +6428,7 @@
     "56": "VALIDATED",
     "759": "MAPPED",
     "402": "MAPPED",
+    "800": "MAPPED",
     "163": "MAPPED",
     "658": "MAPPED",
     "263": "MAPPED",
@@ -6724,7 +6725,6 @@
     "288": "MAPPED",
     "294": "MAPPED",
     "292": "VALIDATED",
-    "308": "READY",
     "310": "READY",
     "321": "READY",
     "322": "READY",
@@ -6754,6 +6754,7 @@
     "300": "MAPPED",
     "307": "MAPPED",
     "301": "VALIDATED",
+    "308": "LOCKED_FOR_MAPPING",
     "341": "READY",
     "346": "READY",
     "348": "READY",
@@ -7183,7 +7184,6 @@
     "774": "MAPPED",
     "788": "MAPPED",
     "791": "READY",
-    "800": "LOCKED_FOR_MAPPING",
     "812": "READY",
     "813": "READY",
     "839": "READY",
@@ -7345,9 +7345,9 @@
     "280": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 502,
+    "MAPPED": 503,
     "VALIDATED": 85,
-    "READY": 337,
+    "READY": 336,
     "BADIMAGERY": 1,
     "LOCKED_FOR_MAPPING": 2,
     "INVALIDATED": 1
@@ -10118,7 +10118,6 @@
     "46": "READY",
     "47": "READY",
     "48": "READY",
-    "51": "READY",
     "52": "READY",
     "54": "READY",
     "57": "READY",
@@ -10146,6 +10145,7 @@
     "45": "MAPPED",
     "68": "MAPPED",
     "73": "READY",
+    "51": "LOCKED_FOR_MAPPING",
     "76": "READY",
     "78": "READY",
     "80": "READY",
@@ -10361,8 +10361,9 @@
    },
    "task_counts": {
     "MAPPED": 129,
-    "READY": 149,
-    "VALIDATED": 9
+    "READY": 148,
+    "VALIDATED": 9,
+    "LOCKED_FOR_MAPPING": 1
    }
   },
   {
