@@ -1,5 +1,5 @@
 {
- "generated": "2026-08-31T21:05:24Z",
+ "generated": "2026-08-31T21:13:04Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,7 +1940,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 53,
+   "percent_mapped": 55,
    "percent_validated": 2,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-08-31T20:32:23.534000Z",
+   "last_updated": "2026-08-31T21:08:04.977000Z",
    "total_tasks": null,
    "task_status": {
     "3": "READY",
@@ -7648,9 +7648,9 @@
     "35": "MAPPED",
     "30": "MAPPED",
     "27": "MAPPED",
-    "29": "LOCKED_FOR_MAPPING",
     "26": "MAPPED",
     "28": "MAPPED",
+    "29": "MAPPED",
     "37": "MAPPED",
     "38": "READY",
     "42": "READY",
@@ -7674,10 +7674,9 @@
    },
    "task_counts": {
     "READY": 20,
-    "MAPPED": 23,
+    "MAPPED": 24,
     "VALIDATED": 1,
-    "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 1
+    "BADIMAGERY": 1
    }
   },
   {
@@ -14119,7 +14118,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:05:10.563000Z",
-   "last_updated": "2026-08-31T20:48:16.547000Z",
+   "last_updated": "2026-08-31T21:07:27.177000Z",
    "total_tasks": null,
    "task_status": {
     "254": "MAPPED",
@@ -14144,7 +14143,6 @@
     "12": "VALIDATED",
     "16": "READY",
     "30": "READY",
-    "44": "READY",
     "38": "READY",
     "41": "MAPPED",
     "21": "MAPPED",
@@ -14169,7 +14167,8 @@
     "43": "MAPPED",
     "24": "MAPPED",
     "35": "MAPPED",
-    "36": "LOCKED_FOR_MAPPING",
+    "36": "MAPPED",
+    "44": "LOCKED_FOR_MAPPING",
     "46": "READY",
     "47": "READY",
     "48": "READY",
@@ -14417,8 +14416,8 @@
     "153": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 231,
-    "READY": 34,
+    "MAPPED": 232,
+    "READY": 33,
     "VALIDATED": 24,
     "LOCKED_FOR_MAPPING": 3,
     "BADIMAGERY": 1
