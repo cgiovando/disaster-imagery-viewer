@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T19:08:29Z",
+ "generated": "2026-09-01T20:57:21Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,8 +1940,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 100,
-   "percent_validated": 74,
+   "percent_mapped": 98,
+   "percent_validated": 80,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T18:57:01.115000Z",
+   "last_updated": "2026-09-01T20:51:39.615000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
@@ -7648,12 +7648,12 @@
     "29": "VALIDATED",
     "27": "VALIDATED",
     "37": "VALIDATED",
-    "38": "MAPPED",
     "42": "VALIDATED",
     "41": "VALIDATED",
     "39": "VALIDATED",
     "40": "VALIDATED",
-    "43": "MAPPED",
+    "43": "VALIDATED",
+    "38": "LOCKED_FOR_VALIDATION",
     "44": "VALIDATED",
     "46": "VALIDATED",
     "47": "VALIDATED",
@@ -7671,17 +7671,19 @@
     "23": "VALIDATED",
     "20": "VALIDATED",
     "8": "VALIDATED",
-    "61": "MAPPED",
-    "58": "MAPPED",
-    "59": "MAPPED",
+    "61": "VALIDATED",
     "60": "VALIDATED",
+    "59": "VALIDATED",
+    "58": "INVALIDATED",
     "57": "VALIDATED",
     "22": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 38,
-    "MAPPED": 13,
-    "BADIMAGERY": 1
+    "VALIDATED": 41,
+    "MAPPED": 8,
+    "BADIMAGERY": 1,
+    "LOCKED_FOR_VALIDATION": 1,
+    "INVALIDATED": 1
    }
   }
  ],
