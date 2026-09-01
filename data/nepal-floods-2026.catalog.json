@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T00:08:05Z",
+ "generated": "2026-09-01T01:08:10Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,7 +1940,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 57,
+   "percent_mapped": 58,
    "percent_validated": 2,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
@@ -7622,9 +7622,13 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-08-31T22:01:28.175000Z",
+   "last_updated": "2026-09-01T00:56:29.425000Z",
    "total_tasks": null,
    "task_status": {
+    "56": "MAPPED",
+    "55": "READY",
+    "54": "LOCKED_FOR_MAPPING",
+    "57": "READY",
     "3": "READY",
     "4": "READY",
     "21": "READY",
@@ -7635,7 +7639,6 @@
     "13": "MAPPED",
     "12": "MAPPED",
     "17": "READY",
-    "18": "READY",
     "19": "VALIDATED",
     "25": "BADIMAGERY",
     "24": "READY",
@@ -7643,10 +7646,10 @@
     "31": "READY",
     "32": "MAPPED",
     "34": "MAPPED",
-    "33": "READY",
     "36": "MAPPED",
     "35": "MAPPED",
     "30": "MAPPED",
+    "33": "MAPPED",
     "27": "MAPPED",
     "26": "MAPPED",
     "28": "MAPPED",
@@ -7660,21 +7663,22 @@
     "43": "READY",
     "44": "READY",
     "45": "READY",
-    "48": "READY",
     "46": "MAPPED",
     "49": "READY",
     "47": "MAPPED",
+    "48": "LOCKED_FOR_MAPPING",
     "51": "MAPPED",
     "53": "MAPPED",
     "52": "MAPPED",
     "50": "MAPPED",
-    "16": "READY",
+    "16": "LOCKED_FOR_MAPPING",
     "22": "READY",
     "20": "MAPPED"
    },
    "task_counts": {
-    "READY": 19,
-    "MAPPED": 25,
+    "MAPPED": 27,
+    "READY": 17,
+    "LOCKED_FOR_MAPPING": 3,
     "VALIDATED": 1,
     "BADIMAGERY": 1
    }
@@ -14116,7 +14120,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:05:10.563000Z",
-   "last_updated": "2026-08-31T21:31:19.186000Z",
+   "last_updated": "2026-09-01T01:07:42.448000Z",
    "total_tasks": null,
    "task_status": {
     "254": "MAPPED",
@@ -14264,9 +14268,9 @@
     "139": "MAPPED",
     "146": "MAPPED",
     "132": "MAPPED",
-    "152": "READY",
     "130": "MAPPED",
     "148": "MAPPED",
+    "152": "LOCKED_FOR_MAPPING",
     "161": "MAPPED",
     "166": "MAPPED",
     "155": "MAPPED",
@@ -14415,8 +14419,9 @@
    },
    "task_counts": {
     "MAPPED": 234,
-    "READY": 34,
+    "READY": 33,
     "VALIDATED": 24,
+    "LOCKED_FOR_MAPPING": 1,
     "BADIMAGERY": 1
    }
   },
