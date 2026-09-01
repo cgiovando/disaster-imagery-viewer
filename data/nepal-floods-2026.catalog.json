@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T02:08:09Z",
+ "generated": "2026-09-01T03:08:02Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,8 +1940,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 64,
-   "percent_validated": 2,
+   "percent_mapped": 60,
+   "percent_validated": 6,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,16 +7622,16 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T01:21:47.614000Z",
+   "last_updated": "2026-09-01T03:04:37.931000Z",
    "total_tasks": null,
    "task_status": {
-    "56": "MAPPED",
-    "54": "LOCKED_FOR_MAPPING",
     "55": "READY",
+    "54": "READY",
+    "56": "INVALIDATED",
     "57": "READY",
-    "4": "READY",
     "21": "READY",
     "1": "MAPPED",
+    "4": "READY",
     "7": "MAPPED",
     "8": "MAPPED",
     "15": "READY",
@@ -7654,13 +7654,13 @@
     "26": "MAPPED",
     "28": "MAPPED",
     "29": "MAPPED",
-    "37": "MAPPED",
-    "38": "READY",
-    "42": "LOCKED_FOR_MAPPING",
+    "37": "VALIDATED",
     "41": "MAPPED",
     "40": "MAPPED",
     "39": "MAPPED",
     "43": "READY",
+    "42": "READY",
+    "38": "LOCKED_FOR_MAPPING",
     "44": "READY",
     "45": "READY",
     "46": "MAPPED",
@@ -7673,14 +7673,15 @@
     "50": "MAPPED",
     "16": "READY",
     "22": "READY",
-    "20": "MAPPED"
+    "20": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 30,
-    "LOCKED_FOR_MAPPING": 2,
-    "READY": 15,
-    "VALIDATED": 1,
-    "BADIMAGERY": 1
+    "READY": 16,
+    "INVALIDATED": 1,
+    "MAPPED": 27,
+    "VALIDATED": 3,
+    "BADIMAGERY": 1,
+    "LOCKED_FOR_MAPPING": 1
    }
   },
   {
@@ -14235,7 +14236,6 @@
     "122": "VALIDATED",
     "111": "VALIDATED",
     "105": "MAPPED",
-    "114": "READY",
     "112": "MAPPED",
     "115": "MAPPED",
     "110": "MAPPED",
@@ -14244,6 +14244,7 @@
     "120": "MAPPED",
     "117": "MAPPED",
     "109": "READY",
+    "114": "LOCKED_FOR_MAPPING",
     "127": "MAPPED",
     "141": "MAPPED",
     "136": "MAPPED",
@@ -14420,7 +14421,8 @@
    "task_counts": {
     "MAPPED": 248,
     "VALIDATED": 24,
-    "READY": 20,
+    "READY": 19,
+    "LOCKED_FOR_MAPPING": 1,
     "BADIMAGERY": 1
    }
   },
@@ -14430,7 +14432,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 99,
-   "percent_validated": 97,
+   "percent_validated": 98,
    "url": "https://tasks.hotosm.org/projects/63069",
    "aoi": {
     "type": "MultiPolygon",
@@ -20759,7 +20761,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-27T09:52:23.754000Z",
-   "last_updated": "2026-09-01T01:58:31.275000Z",
+   "last_updated": "2026-09-01T03:07:22.571000Z",
    "total_tasks": null,
    "task_status": {
     "479": "VALIDATED",
@@ -21408,17 +21410,17 @@
     "664": "VALIDATED",
     "665": "VALIDATED",
     "663": "VALIDATED",
-    "670": "MAPPED",
-    "668": "MAPPED",
+    "670": "VALIDATED",
+    "668": "VALIDATED",
     "185": "VALIDATED",
     "229": "VALIDATED",
     "249": "VALIDATED",
     "268": "VALIDATED",
     "186": "VALIDATED",
     "672": "MAPPED",
-    "674": "MAPPED",
     "673": "VALIDATED",
     "671": "MAPPED",
+    "674": "LOCKED_FOR_VALIDATION",
     "680": "VALIDATED",
     "682": "VALIDATED",
     "681": "VALIDATED",
@@ -21426,19 +21428,21 @@
     "281": "VALIDATED",
     "613": "VALIDATED",
     "62": "VALIDATED",
-    "675": "READY",
     "678": "VALIDATED",
     "677": "MAPPED",
-    "676": "READY",
+    "675": "READY",
+    "676": "LOCKED_FOR_MAPPING",
     "685": "VALIDATED",
     "686": "VALIDATED",
     "683": "MAPPED",
     "684": "READY"
    },
    "task_counts": {
-    "VALIDATED": 658,
-    "MAPPED": 11,
-    "READY": 3
+    "VALIDATED": 660,
+    "MAPPED": 8,
+    "LOCKED_FOR_VALIDATION": 1,
+    "READY": 2,
+    "LOCKED_FOR_MAPPING": 1
    }
   }
  ],
