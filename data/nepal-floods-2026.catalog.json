@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T12:08:04Z",
+ "generated": "2026-09-01T13:08:07Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,8 +1940,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 94,
-   "percent_validated": 45,
+   "percent_mapped": 98,
+   "percent_validated": 50,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,12 +7622,12 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T11:31:43.744000Z",
+   "last_updated": "2026-09-01T12:53:48.668000Z",
    "total_tasks": null,
    "task_status": {
-    "55": "MAPPED",
-    "54": "MAPPED",
-    "56": "MAPPED",
+    "54": "VALIDATED",
+    "55": "VALIDATED",
+    "56": "LOCKED_FOR_MAPPING",
     "4": "VALIDATED",
     "7": "VALIDATED",
     "13": "MAPPED",
@@ -7663,28 +7663,26 @@
     "53": "MAPPED",
     "52": "MAPPED",
     "51": "VALIDATED",
-    "16": "LOCKED_FOR_VALIDATION",
+    "21": "VALIDATED",
+    "16": "MAPPED",
     "1": "VALIDATED",
     "17": "MAPPED",
     "15": "MAPPED",
-    "21": "MAPPED",
     "23": "VALIDATED",
     "20": "VALIDATED",
     "8": "VALIDATED",
     "61": "MAPPED",
     "60": "MAPPED",
-    "58": "LOCKED_FOR_MAPPING",
-    "59": "READY",
+    "58": "MAPPED",
+    "59": "MAPPED",
     "57": "MAPPED",
     "22": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 25,
-    "VALIDATED": 23,
-    "BADIMAGERY": 1,
-    "LOCKED_FOR_VALIDATION": 1,
+    "VALIDATED": 26,
     "LOCKED_FOR_MAPPING": 1,
-    "READY": 1
+    "MAPPED": 24,
+    "BADIMAGERY": 1
    }
   },
   {
@@ -10701,7 +10699,7 @@
     "348": "VALIDATED",
     "347": "VALIDATED",
     "349": "VALIDATED",
-    "366": "LOCKED_FOR_MAPPING",
+    "366": "INVALIDATED",
     "379": "VALIDATED",
     "376": "VALIDATED",
     "377": "VALIDATED",
@@ -11410,7 +11408,7 @@
     "VALIDATED": 994,
     "MAPPED": 4,
     "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 1
+    "INVALIDATED": 1
    }
   }
  ],
