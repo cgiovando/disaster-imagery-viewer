@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T22:08:57Z",
+ "generated": "2026-09-01T23:08:30Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,8 +1940,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 94,
-   "percent_validated": 94,
+   "percent_mapped": 100,
+   "percent_validated": 100,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T22:03:17.569000Z",
+   "last_updated": "2026-09-01T22:08:51.860000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
@@ -7631,7 +7631,6 @@
     "4": "VALIDATED",
     "7": "VALIDATED",
     "12": "VALIDATED",
-    "13": "LOCKED_FOR_VALIDATION",
     "19": "VALIDATED",
     "3": "VALIDATED",
     "25": "BADIMAGERY",
@@ -7640,9 +7639,9 @@
     "33": "VALIDATED",
     "32": "VALIDATED",
     "36": "VALIDATED",
-    "34": "LOCKED_FOR_VALIDATION",
     "30": "VALIDATED",
     "31": "VALIDATED",
+    "34": "VALIDATED",
     "26": "VALIDATED",
     "28": "VALIDATED",
     "29": "VALIDATED",
@@ -7662,7 +7661,8 @@
     "50": "VALIDATED",
     "51": "VALIDATED",
     "52": "VALIDATED",
-    "53": "LOCKED_FOR_VALIDATION",
+    "53": "VALIDATED",
+    "13": "VALIDATED",
     "21": "VALIDATED",
     "15": "VALIDATED",
     "1": "VALIDATED",
@@ -7679,8 +7679,7 @@
     "22": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 48,
-    "LOCKED_FOR_VALIDATION": 3,
+    "VALIDATED": 51,
     "BADIMAGERY": 1
    }
   },
@@ -40756,7 +40755,7 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-09-01T22:06:13.653489",
+   "last_modified": "2026-09-01T23:01:29.970131",
    "num_resources": 78
   },
   {
