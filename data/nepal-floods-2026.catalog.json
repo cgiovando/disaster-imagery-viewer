@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T18:08:15Z",
+ "generated": "2026-09-01T19:08:29Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1941,7 +1941,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 70,
+   "percent_validated": 74,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T17:25:22.402000Z",
+   "last_updated": "2026-09-01T18:57:01.115000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
@@ -7638,11 +7638,11 @@
     "24": "MAPPED",
     "34": "MAPPED",
     "30": "MAPPED",
-    "33": "MAPPED",
-    "32": "MAPPED",
     "31": "MAPPED",
     "36": "MAPPED",
     "35": "VALIDATED",
+    "33": "VALIDATED",
+    "32": "VALIDATED",
     "26": "VALIDATED",
     "28": "VALIDATED",
     "29": "VALIDATED",
@@ -7679,8 +7679,8 @@
     "22": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 36,
-    "MAPPED": 15,
+    "VALIDATED": 38,
+    "MAPPED": 13,
     "BADIMAGERY": 1
    }
   }
@@ -7690,14 +7690,14 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-09-01T06:09:47.392755",
+   "last_modified": "2026-09-01T18:20:05.796494",
    "num_resources": 78
   },
   {
    "slug": "hot_flood_npl_corridor",
    "title": "Nepal Flood 2026 River Corridor, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl_corridor",
-   "last_modified": "2026-09-01T06:45:49.477592",
+   "last_modified": "2026-09-01T18:37:05.540476",
    "num_resources": 74
   },
   {
