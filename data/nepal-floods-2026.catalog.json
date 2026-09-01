@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T20:57:21Z",
+ "generated": "2026-09-01T21:08:09Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,7 +1940,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 98,
+   "percent_mapped": 96,
    "percent_validated": 80,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
