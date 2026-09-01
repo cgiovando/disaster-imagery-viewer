@@ -582,13 +582,74 @@ function addVectors(map) {
   }
 }
 
-function shortProjectName(name) {
-  return String(name || '')
-    .replace(/^Nepal Flood 2026 Response - /, '')
-    .replace(/Upper Trishuli and Bhote Koshi Corridor\s*/, '')
-    .replace(/[\[\]]/g, '')
-    .trim() || 'project';
+/* Campaign project names share a long boilerplate prefix, and often a long
+ * shared tail as well, leaving a few words that actually distinguish them.
+ * Those shared parts are derived from the names present rather than hardcoded,
+ * so this works for any event and cannot strip one project's identity while
+ * leaving another's. Hardcoding was the previous approach and it removed
+ * "Upper Trishuli and Bhote Koshi Corridor" but not "Lower", hiding the very
+ * distinction that mattered, and reduced two projects to the word "project".
+ */
+function commonEdges() {
+  if (state._nameEdges) return state._nameEdges;
+  const names = (state.catalog.tm_projects || [])
+    .map((p) => String(p.name || '').trim()).filter(Boolean);
+  // Do not cache an answer derived from nothing: a later render would keep it.
+  if (!names.length) return { prefix: '', suffix: '' };
+
+  const words = (str) => str.split(/\s+/).filter(Boolean);
+
+  const toBoundary = (str) => str.replace(/[^\s\-\u2013:]*$/, '');
+  let prefix = '';
+  if (names.length > 1) {
+    prefix = names[0];
+    for (const n of names.slice(1)) {
+      let i = 0;
+      while (i < prefix.length && i < n.length && prefix[i] === n[i]) i++;
+      prefix = prefix.slice(0, i);
+    }
+    prefix = toBoundary(prefix);
+  }
+
+  /* Shared tail of the remainders, compared by whole words. Comparing by
+   * character can cut inside a word, turning "Bhotekoshi" into "Bhote" when
+   * another project ends in "koshi". Never consume an entire area either, or a
+   * project whose name is exactly the shared tail would lose its identity while
+   * its neighbours kept theirs.
+   */
+  const areas = names.map((n) => (n.startsWith(prefix) ? n.slice(prefix.length) : n)
+    .replace(/\[[^\]]*\]/g, '').trim()).filter(Boolean);
+  let suffixWords = [];
+  if (areas.length > 1) {
+    const lists = areas.map(words);
+    const shortest = Math.min(...lists.map((l) => l.length));
+    let k = 0;
+    while (k < shortest &&
+           lists.every((l) => l[l.length - 1 - k] === lists[0][lists[0].length - 1 - k])) k++;
+    k = Math.min(k, Math.max(0, shortest - 1));
+    if (k) suffixWords = lists[0].slice(lists[0].length - k);
+  }
+
+  state._nameEdges = { prefix, suffix: suffixWords.join(' '), suffixWords };
+  return state._nameEdges;
 }
+
+function shortProjectName(name) {
+  const raw = String(name || '').trim();
+  const { prefix, suffixWords } = commonEdges();
+  let rest = (prefix && raw.startsWith(prefix)) ? raw.slice(prefix.length) : raw;
+  const theme = (rest.match(/\[([^\]]+)\]/) || [])[1] || '';
+  let aw = rest.replace(/\[[^\]]*\]/g, '').trim().split(/\s+/).filter(Boolean);
+  const sw = suffixWords || [];
+  if (sw.length && aw.length > sw.length &&
+      sw.every((w, i) => aw[aw.length - sw.length + i] === w)) {
+    aw = aw.slice(0, aw.length - sw.length);
+  }
+  const area = aw.join(' ').replace(/[\s\-\u2013,]+$/, '');
+  const parts = [area, theme].filter(Boolean);
+  return parts.length ? parts.join(' \u00b7 ') : (raw || 'project');
+}
+
 
 /* --------------------------------------------------------------- compare */
 
@@ -1269,9 +1330,22 @@ function renderTM() {
     return;
   }
 
+  const isArchived = (p) => String(p.status || '').toUpperCase() === 'ARCHIVED';
+  let archivedHeadingDone = false;
+
   projects.forEach((p, i) => {
+    /* The builder sorts live projects first. Separate the archived tail under a
+     * heading: it is the record of what was mapped, not work to pick up.
+     */
+    if (isArchived(p) && !archivedHeadingDone) {
+      archivedHeadingDone = true;
+      const n = projects.filter(isArchived).length;
+      wrap.appendChild(el('p', 'subhead',
+        `Completed and archived (${n})`));
+    }
+
     const color = PROJECT_COLORS[i % PROJECT_COLORS.length];
-    const ref = el('div', 'ref');
+    const ref = el('div', 'ref' + (isArchived(p) ? ' archived' : ''));
 
     const top = el('div', 'top');
     const cb = el('input'); cb.type = 'checkbox'; cb.checked = state.tmOn.has(p.id);
@@ -1284,10 +1358,18 @@ function renderTM() {
     const sw = el('span', 'sw'); sw.style.background = color; top.appendChild(sw);
     top.appendChild(el('span', 'nm',
       `<a href="${esc(p.url)}" target="_blank" rel="noopener">#${p.id}</a> ${esc(shortProjectName(p.name))}`));
-    const pr = (p.priority || '').toLowerCase();
-    if (p.priority) {
-      top.appendChild(el('span',
-        `pill ${pr === 'urgent' ? 'urgent' : pr === 'high' ? 'high' : 'other'}`, esc(p.priority)));
+    if (isArchived(p)) {
+      /* An archived project keeps whatever priority it had when live, and an
+       * URGENT pill on finished work reads as a call to action. State first.
+       */
+      const done = p.percent_mapped === 100;
+      top.appendChild(el('span', 'pill archived', done ? 'complete' : 'archived'));
+    } else {
+      const pr = (p.priority || '').toLowerCase();
+      if (p.priority) {
+        top.appendChild(el('span',
+          `pill ${pr === 'urgent' ? 'urgent' : pr === 'high' ? 'high' : 'other'}`, esc(p.priority)));
+      }
     }
     ref.appendChild(top);
 

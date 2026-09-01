@@ -224,3 +224,7 @@ input[type=search]:focus,select:focus{outline:none;border-color:#43505f}
   padding:0 6px;border-radius:8px;
 }
 .badge.onmap{background:rgba(94,194,106,.18);color:var(--drone)}
+.subhead{margin:13px 0 5px;font-size:10px;font-weight:650;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--fg3)}
+.ref.archived .nm{color:var(--fg2)}
+.pill.archived{background:rgba(154,167,182,.16);color:var(--fg2)}

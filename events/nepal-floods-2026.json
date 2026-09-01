@@ -130,10 +130,10 @@
       "type": "geojson",
       "group": "impact",
       "name": "UNOSAT mudflow / rockflow extent",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/41/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#ff7043",
       "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
-      "info": "Flow footprint delineated by UNOSAT from Sentinel-2 (27 Aug) and Planet (26 Aug). Pulled live from the UNOSAT service, so it updates as they revise it.",
+      "info": "Flow footprint delineated by UNOSAT from imagery of 26 and 27 Aug, revised since first publication and now six polygons rather than one. Pulled live from the UNOSAT service, so it tracks their revisions.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     },
     {
@@ -286,6 +286,68 @@
       "fillOpacity": 0.22,
       "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
       "info": "Observed event extent for both EMS AOIs, classified as mass movement rather than flooding. A useful cross-check on the UNOSAT mudflow delineation, which was drawn from different sensors.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "unosat-barrier-lakes",
+      "type": "geojson",
+      "group": "impact",
+      "name": "UNOSAT barrier lakes",
+      "urls": [
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/33/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/35/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+      ],
+      "color": "#29b6f6",
+      "fillOpacity": 0.35,
+      "lineWidth": 2,
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "Two landslide-dammed lakes mapped by UNOSAT from imagery of 28 Aug, with their point locations. A barrier lake is a live hazard rather than a damage record: it can breach.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "unosat-heritage",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Damaged cultural heritage sites",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Cultural_Heritage/MapServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#ce93d8",
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "Two sites assessed as damaged: Rasuwa Fort (Rasuwa Gadhi) and Duksangag Choeling Monastery, from Pleiades and Pleiades Neo. One is recorded as verified on the ground, the other seen in multiple images; UNOSAT rates confidence very high and high respectively.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "unosat-affected-buildings",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Buildings within the affected area",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/29/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#ffab91",
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "882 building points falling inside UNOSAT's affected area. This is exposure, not damage: the layer carries no damage classification, so a building appearing here has not been assessed as damaged. Use the damage layers for that.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "unosat-affected-roads",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Roads within the affected area",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/31/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#ffcc80",
+      "lineWidth": 2.4,
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "156 road segments inside UNOSAT's affected area, including the Pasang Lhamu Highway and two suspension bridges. Spans Nuwakot (104), Rasuwa (49) and Dhading (3). Exposure rather than damage: no damage classification is attached.",
+      "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
+    },
+    {
+      "id": "unosat-cropland",
+      "type": "geojson",
+      "group": "impact",
+      "name": "Potentially affected cropland",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/39/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "color": "#aed581",
+      "fillOpacity": 0.28,
+      "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
+      "info": "344 ha of cropland UNOSAT flags as potentially affected. Not field validated.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     }
   ],

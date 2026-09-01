@@ -334,13 +334,31 @@ def fetch_tm(cfg):
     campaign = cfg.get("tmCampaign")
     if not campaign:
         return []
-    q = urllib.parse.urlencode({"campaign": campaign, "omitMapResults": "true"})
-    listing = try_json(f"{TM_API}/projects/?{q}", "TM listing")
-    if not listing:
+
+    # The listing endpoint returns only PUBLISHED projects, so a project being
+    # archived on completion makes it vanish from the campaign. Ask for archived
+    # ones too and keep them, marked: the record of what was mapped is part of
+    # the picture, and during a wind-down it is most of it. On 1 Sep 2026 six of
+    # the seven Nepal projects were archived, four of them at 100% mapped.
+    results = {}
+    for statuses in (None, "ARCHIVED"):
+        params = {"campaign": campaign, "omitMapResults": "true"}
+        if statuses:
+            params["projectStatuses"] = statuses
+        q = urllib.parse.urlencode(params)
+        label = f"TM listing{' (' + statuses + ')' if statuses else ''}"
+        listing = try_json(f"{TM_API}/projects/?{q}", label)
+        if not listing:
+            continue
+        for r in listing.get("results", []):
+            pid = r.get("projectId")
+            if pid is not None:
+                results.setdefault(pid, r)
+    if not results:
         return []
 
     out = []
-    for r in listing.get("results", []):
+    for r in results.values():
         pid = r.get("projectId")
         entry = {
             "id": pid,
@@ -362,7 +380,8 @@ def fetch_tm(cfg):
             entry["total_tasks"] = detail.get("totalTasks")
         out.append(entry)
 
-    out.sort(key=lambda p: p["id"], reverse=True)
+    # Live projects first: an archived one is history, not somewhere to go and map.
+    out.sort(key=lambda p: (str(p.get("status")).upper() == "ARCHIVED", -p["id"]))
     return out
 
 
@@ -765,6 +784,12 @@ def build(cfg_path):
     hdx = fetch_hdx(cfg)
     print(f"    {len(hdx)} datasets")
 
+    print("  Impact layer endpoints ...")
+    source_scope("impact_layers")
+    n_checked = check_extra_layers(cfg)
+    broken = sum(1 for f in FAILURES if f["source"] == "impact_layers")
+    print(f"    {n_checked} endpoints checked, {broken} failing")
+
     # Carry forward any section that came back empty while its source was
     # failing, and record what happened so the viewer can say so out loud.
     sources = {}
@@ -880,6 +905,66 @@ def write_event_page(cfg):
     with open(os.path.join(out_dir, "index.html"), "w") as f:
         f.write(html)
     print(f"  wrote {eid}/index.html")
+
+
+def check_extra_layers(cfg):
+    """Probe each browser-side geojson layer so upstream changes surface here.
+
+    These layers are fetched by the browser, never by this script, so nothing
+    else notices when a publisher renumbers or withdraws one. UNOSAT renumbered
+    its mudflow layer from 5 to 41 on 1 Sep 2026 and the configured URL began
+    answering `error 400`; without this the only signal was a reader toggling
+    that layer and seeing it fail.
+
+    Kept cheap: ArcGIS is asked for a count rather than geometry, and anything
+    else has only the first 2 KB of its body read, enough to confirm it really is
+    a FeatureCollection rather than an HTML error page served with a 200.
+    Failures are tagged, so the existing health banner reports them without
+    further plumbing.
+    """
+    checked = 0
+    for layer in cfg.get("extraLayers", []):
+        if layer.get("type") != "geojson":
+            continue
+        # Read the id once, defensively: a malformed config entry must be
+        # reported, and layer["id"] inside the except block below would raise a
+        # KeyError outside the handler and take the whole hourly build down.
+        lid = layer.get("id", "<no id>")
+        for url in (layer.get("urls") or [layer.get("url")]):
+            if not url:
+                continue
+            checked += 1
+            try:
+                if "/query?" in url and "f=geojson" in url:
+                    probe = url.replace("f=geojson", "f=json") + "&returnCountOnly=true"
+                    with urllib.request.urlopen(probe, timeout=60) as r:
+                        body = json.loads(r.read().decode("utf-8", "replace"))
+                    if "error" in body:
+                        err = body["error"]
+                        _fail(f"layer {lid}",
+                              f"service error {err.get('code')}: {str(err.get('message'))[:80]}")
+                    elif body.get("count") == 0:
+                        # Not an error: a real layer can legitimately be empty.
+                        print(f"    note: {lid} returned 0 features")
+                else:
+                    # A HEAD would only catch HTTP failures. An endpoint can
+                    # answer 200 with an HTML error page or truncated JSON, and
+                    # the browser would then reject what this claimed was fine.
+                    # Read just the head of the body and check it looks like a
+                    # FeatureCollection; a range request keeps it to bytes.
+                    req = urllib.request.Request(url, headers={"Range": "bytes=0-2047"})
+                    with urllib.request.urlopen(req, timeout=60) as r:
+                        if r.status >= 400:
+                            _fail(f"layer {lid}", f"HTTP {r.status}")
+                            continue
+                        head = r.read(2048).decode("utf-8", "replace")
+                    if '"FeatureCollection"' not in head:
+                        ctype = "HTML" if head.lstrip()[:1] == "<" else "unrecognised"
+                        _fail(f"layer {lid}",
+                              f"200 but body is not a FeatureCollection ({ctype})")
+            except Exception as exc:  # noqa: BLE001 - report, never abort the build
+                _fail(f"layer {lid}", f"{type(exc).__name__}: {str(exc)[:80]}")
+    return checked
 
 
 def asset_version(name):
