@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T21:58:32Z",
+ "generated": "2026-09-01T22:08:57Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,8 +1940,8 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 98,
-   "percent_validated": 88,
+   "percent_mapped": 94,
+   "percent_validated": 94,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T21:51:37.575000Z",
+   "last_updated": "2026-09-01T22:03:17.569000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
@@ -7635,14 +7635,14 @@
     "19": "VALIDATED",
     "3": "VALIDATED",
     "25": "BADIMAGERY",
-    "24": "MAPPED",
+    "24": "VALIDATED",
     "35": "VALIDATED",
     "33": "VALIDATED",
     "32": "VALIDATED",
     "36": "VALIDATED",
     "34": "LOCKED_FOR_VALIDATION",
     "30": "VALIDATED",
-    "31": "LOCKED_FOR_VALIDATION",
+    "31": "VALIDATED",
     "26": "VALIDATED",
     "28": "VALIDATED",
     "29": "VALIDATED",
@@ -7673,16 +7673,15 @@
     "61": "VALIDATED",
     "60": "VALIDATED",
     "59": "VALIDATED",
-    "58": "LOCKED_FOR_VALIDATION",
+    "58": "VALIDATED",
     "57": "VALIDATED",
     "16": "VALIDATED",
     "22": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 45,
-    "LOCKED_FOR_VALIDATION": 5,
-    "BADIMAGERY": 1,
-    "MAPPED": 1
+    "VALIDATED": 48,
+    "LOCKED_FOR_VALIDATION": 3,
+    "BADIMAGERY": 1
    }
   },
   {
@@ -40757,7 +40756,7 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-09-01T18:20:05.796494",
+   "last_modified": "2026-09-01T22:06:13.653489",
    "num_resources": 78
   },
   {
