@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T13:08:07Z",
+ "generated": "2026-09-01T13:26:45Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -10400,7 +10400,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-09-01T11:29:14.691000Z",
+   "last_updated": "2026-09-01T13:22:06.531000Z",
    "total_tasks": null,
    "task_status": {
     "323": "VALIDATED",
@@ -10481,7 +10481,7 @@
     "66": "VALIDATED",
     "65": "VALIDATED",
     "47": "VALIDATED",
-    "58": "MAPPED",
+    "58": "VALIDATED",
     "84": "VALIDATED",
     "85": "VALIDATED",
     "86": "VALIDATED",
@@ -10699,7 +10699,6 @@
     "348": "VALIDATED",
     "347": "VALIDATED",
     "349": "VALIDATED",
-    "366": "INVALIDATED",
     "379": "VALIDATED",
     "376": "VALIDATED",
     "377": "VALIDATED",
@@ -10911,7 +10910,7 @@
     "717": "VALIDATED",
     "711": "VALIDATED",
     "710": "VALIDATED",
-    "714": "MAPPED",
+    "714": "VALIDATED",
     "764": "VALIDATED",
     "757": "VALIDATED",
     "747": "VALIDATED",
@@ -11050,7 +11049,7 @@
     "1025": "VALIDATED",
     "497": "VALIDATED",
     "481": "VALIDATED",
-    "748": "MAPPED",
+    "748": "VALIDATED",
     "343": "VALIDATED",
     "705": "VALIDATED",
     "186": "VALIDATED",
@@ -11167,6 +11166,10 @@
     "992": "VALIDATED",
     "993": "VALIDATED",
     "96": "VALIDATED",
+    "1032": "READY",
+    "1034": "READY",
+    "1033": "MAPPED",
+    "1031": "LOCKED_FOR_MAPPING",
     "948": "VALIDATED",
     "995": "VALIDATED",
     "996": "VALIDATED",
@@ -11322,7 +11325,7 @@
     "727": "VALIDATED",
     "730": "VALIDATED",
     "746": "VALIDATED",
-    "721": "MAPPED",
+    "721": "VALIDATED",
     "374": "VALIDATED",
     "1015": "VALIDATED",
     "1017": "VALIDATED",
@@ -11405,10 +11408,11 @@
     "1029": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 994,
-    "MAPPED": 4,
+    "VALIDATED": 998,
     "BADIMAGERY": 1,
-    "INVALIDATED": 1
+    "READY": 2,
+    "MAPPED": 1,
+    "LOCKED_FOR_MAPPING": 1
    }
   }
  ],
