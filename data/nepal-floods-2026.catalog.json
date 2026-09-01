@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T17:08:30Z",
+ "generated": "2026-09-01T17:47:31Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1941,7 +1941,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 98,
-   "percent_validated": 68,
+   "percent_validated": 70,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
     "type": "MultiPolygon",
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T16:41:10.104000Z",
+   "last_updated": "2026-09-01T17:25:22.402000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
@@ -7652,8 +7652,8 @@
     "42": "VALIDATED",
     "41": "VALIDATED",
     "39": "VALIDATED",
-    "43": "MAPPED",
     "40": "VALIDATED",
+    "43": "LOCKED_FOR_VALIDATION",
     "44": "VALIDATED",
     "46": "VALIDATED",
     "47": "VALIDATED",
@@ -7662,7 +7662,7 @@
     "50": "VALIDATED",
     "53": "MAPPED",
     "51": "VALIDATED",
-    "52": "LOCKED_FOR_VALIDATION",
+    "52": "VALIDATED",
     "21": "VALIDATED",
     "15": "VALIDATED",
     "16": "MAPPED",
@@ -7679,8 +7679,8 @@
     "22": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 35,
-    "MAPPED": 15,
+    "VALIDATED": 36,
+    "MAPPED": 14,
     "BADIMAGERY": 1,
     "LOCKED_FOR_VALIDATION": 1
    }
