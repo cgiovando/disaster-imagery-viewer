@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-01T14:08:26Z",
+ "generated": "2026-09-01T15:08:07Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1940,7 +1940,7 @@
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 100,
+   "percent_mapped": 92,
    "percent_validated": 50,
    "url": "https://tasks.hotosm.org/projects/63399",
    "aoi": {
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T13:43:36.048000Z",
+   "last_updated": "2026-09-01T14:48:14.757000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
@@ -7631,7 +7631,7 @@
     "4": "VALIDATED",
     "7": "VALIDATED",
     "13": "MAPPED",
-    "12": "MAPPED",
+    "12": "LOCKED_FOR_VALIDATION",
     "19": "VALIDATED",
     "3": "VALIDATED",
     "25": "BADIMAGERY",
@@ -7641,8 +7641,8 @@
     "35": "MAPPED",
     "30": "MAPPED",
     "33": "MAPPED",
-    "31": "MAPPED",
     "32": "MAPPED",
+    "31": "LOCKED_FOR_VALIDATION",
     "27": "MAPPED",
     "29": "MAPPED",
     "26": "VALIDATED",
@@ -7667,20 +7667,21 @@
     "16": "MAPPED",
     "1": "VALIDATED",
     "17": "MAPPED",
-    "15": "MAPPED",
+    "15": "LOCKED_FOR_VALIDATION",
     "23": "VALIDATED",
     "20": "VALIDATED",
     "8": "VALIDATED",
     "61": "MAPPED",
-    "60": "MAPPED",
     "58": "MAPPED",
     "59": "MAPPED",
+    "60": "LOCKED_FOR_VALIDATION",
     "57": "MAPPED",
     "22": "VALIDATED"
    },
    "task_counts": {
     "VALIDATED": 26,
-    "MAPPED": 25,
+    "MAPPED": 21,
+    "LOCKED_FOR_VALIDATION": 4,
     "BADIMAGERY": 1
    }
   },
@@ -7689,7 +7690,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [BUILDING]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 100,
+   "percent_mapped": 99,
    "percent_validated": 99,
    "url": "https://tasks.hotosm.org/projects/63236",
    "aoi": {
@@ -10399,7 +10400,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-08-29T08:07:49.336000Z",
-   "last_updated": "2026-09-01T13:58:12.344000Z",
+   "last_updated": "2026-09-01T14:48:49.939000Z",
    "total_tasks": null,
    "task_status": {
     "323": "VALIDATED",
@@ -11166,9 +11167,9 @@
     "993": "VALIDATED",
     "96": "VALIDATED",
     "1034": "MAPPED",
-    "1032": "MAPPED",
     "1033": "MAPPED",
     "1031": "MAPPED",
+    "1032": "LOCKED_FOR_VALIDATION",
     "948": "VALIDATED",
     "995": "VALIDATED",
     "996": "VALIDATED",
@@ -11409,7 +11410,8 @@
    "task_counts": {
     "VALIDATED": 998,
     "BADIMAGERY": 1,
-    "MAPPED": 4
+    "MAPPED": 3,
+    "LOCKED_FOR_VALIDATION": 1
    }
   }
  ],
