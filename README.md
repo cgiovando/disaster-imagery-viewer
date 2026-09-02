@@ -85,6 +85,7 @@ because a second event needed them:
 | `sar.enabled`, `optical.enabled` | Sentinel-1 backscatter earns its place in a flood and adds little to an earthquake. Set `false` and the whole section is gone, not just empty. |
 | `excludeProviders` | Whole publishers can be irrelevant. The Nepal config drops a 2015 DigitalGlobe release of 75 scenes that buried everything else. |
 | `extraLayers` | Published impact layers, where they exist. Nepal has eleven; Indonesia has none yet, because UNOSAT has no service for it and Copernicus EMS has no activation. |
+| `extraLayers[].available` | Set `false` when a configured upstream layer cannot currently be verified. The layer remains visible with its reason but cannot be switched on or restored from a permalink. |
 
 A provider's own collection extent is not a safe event bbox. The Vantor
 `Indonesia-Earthquakes-Aug-2026` collection spans the whole archipelago,
