@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-02T09:28:17Z",
+ "generated": "2026-09-02T10:08:31Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -17,8 +17,13 @@
  "failures": [
   {
    "source": "impact_layers",
+   "what": "layer unosat-mudflow-live",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
    "what": "layer unosat-detachment",
-   "detail": "service error 400: Invalid or missing input parameters."
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   },
   {
    "source": "impact_layers",
@@ -37,13 +42,28 @@
   },
   {
    "source": "impact_layers",
+   "what": "layer unosat-barrier-lakes",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer unosat-barrier-lakes",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
    "what": "layer unosat-affected-buildings",
-   "detail": "service error 400: Invalid or missing input parameters."
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-affected-roads",
-   "detail": "service error 400: Invalid or missing input parameters."
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer unosat-cropland",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   }
  ],
  "event": {
@@ -1971,7 +1991,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 13,
+   "percent_mapped": 19,
    "percent_validated": 0,
    "url": "https://tasks.hotosm.org/projects/63465",
    "aoi": {
@@ -14849,16 +14869,17 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-01T17:25:17.034000Z",
-   "last_updated": "2026-09-02T09:06:30.353000Z",
+   "last_updated": "2026-09-02T09:55:45.869000Z",
    "total_tasks": null,
    "task_status": {
     "67": "MAPPED",
-    "31": "LOCKED_FOR_MAPPING",
+    "31": "MAPPED",
     "50": "MAPPED",
+    "37": "READY",
     "2": "READY",
     "1": "MAPPED",
     "4": "READY",
-    "3": "LOCKED_FOR_MAPPING",
+    "3": "MAPPED",
     "5": "READY",
     "6": "READY",
     "7": "READY",
@@ -14882,44 +14903,43 @@
     "25": "READY",
     "26": "READY",
     "27": "READY",
-    "28": "READY",
     "29": "READY",
-    "30": "READY",
+    "28": "MAPPED",
     "36": "READY",
     "32": "MAPPED",
     "33": "MAPPED",
-    "37": "READY",
+    "30": "READY",
     "38": "READY",
     "39": "READY",
     "40": "READY",
-    "42": "READY",
     "43": "READY",
     "41": "MAPPED",
+    "42": "LOCKED_FOR_MAPPING",
     "44": "READY",
     "48": "READY",
     "47": "READY",
     "46": "MAPPED",
     "51": "MAPPED",
     "49": "MAPPED",
-    "52": "READY",
     "53": "READY",
+    "52": "READY",
     "56": "READY",
     "57": "READY",
-    "58": "READY",
-    "59": "READY",
     "60": "READY",
     "61": "READY",
     "62": "READY",
-    "54": "READY",
+    "58": "MAPPED",
+    "54": "MAPPED",
+    "59": "MAPPED",
     "63": "READY",
     "64": "READY",
     "65": "READY",
     "66": "READY",
     "68": "READY",
-    "69": "READY",
     "70": "READY",
     "71": "READY",
     "72": "READY",
+    "69": "LOCKED_FOR_MAPPING",
     "73": "READY",
     "74": "READY",
     "75": "READY",
@@ -14942,19 +14962,19 @@
     "92": "READY",
     "93": "READY",
     "94": "READY",
-    "95": "READY",
     "96": "READY",
     "98": "READY",
-    "97": "READY",
+    "97": "LOCKED_FOR_MAPPING",
+    "95": "LOCKED_FOR_MAPPING",
     "45": "MAPPED",
     "55": "MAPPED",
     "35": "MAPPED",
     "34": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 13,
-    "LOCKED_FOR_MAPPING": 2,
-    "READY": 83
+    "MAPPED": 19,
+    "READY": 75,
+    "LOCKED_FOR_MAPPING": 4
    }
   },
   {
