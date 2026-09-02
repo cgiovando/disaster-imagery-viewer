@@ -771,6 +771,8 @@ function renderActive() {
   const block = $('#active-block');
   const list = $('#active-list');
   block.hidden = state.active.length === 0;
+  const n = $('#active-count');
+  if (n) n.textContent = state.active.length ? String(state.active.length) : '';
   list.innerHTML = '';
 
   state.active.forEach((a, idx) => {
@@ -1060,20 +1062,17 @@ function sceneRow(s) {
   cb.onclick = (e) => { e.stopPropagation(); toggleScene(s); };
   row.appendChild(cb);
 
+  const flag = el('span', 'onflag' + (on ? ' on' : ''));
+  if (on && state.compare) {
+    const a = state.active.find((x) => x.key === sceneKey(s));
+    if (a) flag.dataset.side = a.side === 'left' ? 'L' : 'R';
+  }
+  flag.title = on ? 'Drawn on the map' : '';
+  row.appendChild(flag);
+
   const body = el('div', 'body');
   const gsd = fmtGsd(s.gsd_cm);
   let badges = '';
-  /* Says outright that a scene is drawn, and in compare mode which side it is
-   * on. The row tint alone reads as selection, which is not the same question
-   * as "what am I actually looking at".
-   */
-  if (on) {
-    const a = state.active.find((x) => x.key === sceneKey(s));
-    const side = state.compare && a
-      ? (a.side === 'left' ? ' left' : ' right')
-      : '';
-    badges += `<span class="badge onmap">on map${side}</span>`;
-  }
   if (s.phase === 'post') badges += '<span class="badge post">post</span>';
   if (s.gsd_cm != null && s.gsd_cm <= 25) badges += '<span class="badge hires">hi-res</span>';
   if (s.gsd_cm != null && s.gsd_cm >= 300) badges += '<span class="badge coarse">coarse</span>';
@@ -1297,11 +1296,30 @@ function renderBasemaps() {
   for (const b of BASEMAPS) {
     const lab = el('label', 'chk');
     const r = el('input'); r.type = 'radio'; r.name = 'basemap'; r.checked = state.basemap === b.id;
-    r.onchange = () => { state.basemap = b.id; renderAll(); writeHash(); };
+    r.onchange = () => {
+      state.basemap = b.id;
+      renderBasemaps();
+      // Choosing one is the end of the interaction, so put the map back.
+      closeBasemapMenu();
+      renderAll(); writeHash();
+    };
     lab.appendChild(r);
     lab.appendChild(el('span', null, esc(b.name) + (b.note ? ` <span class="meta">- ${esc(b.note)}</span>` : '')));
     wrap.appendChild(lab);
   }
+  /* The collapsed control has to name the current basemap, or it is a button
+   * that says nothing about the state it controls. */
+  const cur = BASEMAPS.find((b) => b.id === state.basemap);
+  const label = $('#basemap-current');
+  if (label) label.textContent = cur ? cur.name : 'Basemap';
+}
+
+function closeBasemapMenu() {
+  const list = $('#basemap-list');
+  const btn = $('#basemap-toggle');
+  if (!list || !btn) return;
+  list.hidden = true;
+  btn.setAttribute('aria-expanded', 'false');
 }
 
 /* The task grid belongs to one project's AOI, so it must not outlive that
@@ -2063,9 +2081,11 @@ function renderSar() {
         `${fmtDate(dt)} ${mode && mode.expression && mode.expression.indexOf('{pol}') === -1 ? '' : pol.toUpperCase()}` +
         (isPost ? '<span class="badge post">post</span>' : '') +
         (rtc ? '<span class="badge hires">RTC</span>' : '')));
+      const cov = Math.round(aoiCoverage(f.bbox) * 100);
       body.appendChild(el('div', 'd',
         `${esc(f.properties['sat:orbit_state'] || '')} &middot; orbit ${esc(String(f.properties['sat:relative_orbit'] ?? '?'))}` +
-        ` &middot; ${rtc ? 'terrain-corrected' : 'GRD'}`));
+        ` &middot; ${rtc ? 'terrain-corrected' : 'GRD'}` +
+        ` &middot; covers ${cov}% of AOI`));
       row.appendChild(body);
       row.onclick = () => toggleSar(f, pol, mode);
       listEl.appendChild(row);
@@ -2110,6 +2130,13 @@ function toggleSar(feature, pol, mode) {
   else {
     state.active.unshift({
       key, kind: 'sar', opacity: 1, side: 'right', maxzoom: 16,
+      /* A Sentinel-1 frame covers a fraction of a wide event area. Bounding the
+       * source stops tiles being fetched outside the footprint, where the
+       * service returns fully transparent PNGs that look like a broken layer.
+       */
+      bounds: (feature.bbox && feature.bbox.length >= 4)
+        ? [feature.bbox[0], feature.bbox[1], feature.bbox[2], feature.bbox[3]]
+        : null,
       url: pcTileUrl(cfg.tiler, feature.collection, feature.id, mode, pol),
       name: `S1 ${fmtDate(feature.properties.datetime)} ${pol.toUpperCase()} ${mode.name}`,
       attribution: 'Copernicus Sentinel-1 via Microsoft Planetary Computer'
@@ -2419,6 +2446,27 @@ async function boot() {
   });
 
   state.showAoiOsm = false;
+  /* Set before the first render: the Tasking Manager area is not always where
+   * the post-event imagery is. On Flores the projects cluster around Ruteng
+   * while Vantor released over Labuan Bajo, the epicentre and the east, so
+   * defaulting this filter on hid every post-event scene. Events set
+   * `aoiFilterDefault: false` for that, and `aoiLabel` where "Tasking Manager
+   * area" is not what they call it.
+   */
+  /* Sentinel is useful for some events and noise for others, so an event can
+   * leave it out entirely rather than showing an empty section. Setting
+   * `sar.enabled` or `optical.enabled` to false removes the whole block, not
+   * just its contents.
+   */
+  for (const [key, id] of [['sar', '#sar-block'], ['optical', '#s2-block']]) {
+    const conf = state.cfg[key];
+    const block = $(id);
+    if (block && (!conf || conf.enabled === false)) block.hidden = true;
+  }
+
+  if (state.cfg.aoiFilterDefault === false) $('#aoi-only').checked = false;
+  if (state.cfg.aoiLabel) $('#aoi-only-label').textContent = state.cfg.aoiLabel;
+
   renderCatalog(); renderMosaics(); renderBasemaps();
   if (!state.tmOn.size && (state.catalog.tm_projects || []).length) {
     state.tmOn.add(state.catalog.tm_projects[0].id);
@@ -2441,6 +2489,34 @@ async function boot() {
     };
   });
   $('#scene-search').oninput = renderCatalog;
+  const abCollapse = $('#active-collapse');
+  if (abCollapse) {
+    abCollapse.onclick = () => {
+      const b = $('#active-block');
+      const open = !b.classList.toggle('collapsed');
+      abCollapse.innerHTML = open ? '&#9660;' : '&#9654;';
+      abCollapse.setAttribute('aria-expanded', open ? 'true' : 'false');
+      abCollapse.title = open ? 'Collapse' : 'Expand';
+    };
+  }
+  const bmBtn = $('#basemap-toggle');
+  if (bmBtn) {
+    bmBtn.onclick = (e) => {
+      e.stopPropagation();
+      const list = $('#basemap-list');
+      const open = list.hidden;
+      list.hidden = !open;
+      bmBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    // Clicking the map or pressing Escape dismisses it, as a menu should.
+    document.addEventListener('click', (e) => {
+      if (!$('#basemap-ctl').contains(e.target)) closeBasemapMenu();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeBasemapMenu();
+    });
+  }
+
   $('#aoi-only').onchange = renderCatalog;
   $('#active-only').onchange = (e) => { state.activeOnly = e.target.checked; renderCatalog(); };
   $('#scene-groupby').onchange = (e) => {

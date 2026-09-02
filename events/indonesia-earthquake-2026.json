@@ -1,0 +1,175 @@
+{
+  "id": "indonesia-earthquake-2026",
+  "name": "Indonesia Earthquake 2026",
+  "subtitle": "Flores, East Nusa Tenggara",
+  "eventDate": "2026-08-15",
+  "eventDatetime": "2026-08-14T21:58:21Z",
+  "summary": "A magnitude 7.8 earthquake struck 64 km north-northwest of Ende, Flores, at 05:58 on 15 August 2026 local time, followed by an intense aftershock sequence along the north coast from Labuan Bajo to Ende, including an M6.1 within half an hour. At least 69 people were killed. Mapping is coordinated by HOT's Open Mapping Hub Asia-Pacific with the Indonesian community, on the Tasking Manager and MapSwipe.",
+  "bbox": [
+    119.6,
+    -9.15,
+    122.8,
+    -7.9
+  ],
+  "tmAoiBbox": [
+    120.2934,
+    -8.8973,
+    120.6656,
+    -8.2468
+  ],
+  "tmCampaign": "2026 Indonesia Earthquake Response",
+  "center": [
+    120.95,
+    -8.4
+  ],
+  "zoom": 9,
+  "wiki": "https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/Indonesia_Earthquake_2026",
+  "hashtag": "indonesia-earthquake-2026-flores",
+  "rawDataApi": "https://api-prod.raw-data.hotosm.org/v1",
+  "odpCollections": [
+    "https://vantor-opendata.s3.amazonaws.com/events/Indonesia-Earthquakes-Aug-2026/collection.json"
+  ],
+  "hdxDatasets": [
+    "idn-earthquake-sm-us6000tkt2",
+    "idn-earthquake-sm-us6000tkuc",
+    "idn-earthquake-sm-us6000tm1j"
+  ],
+  "sar": {
+    "enabled": false,
+    "stac": "https://planetarycomputer.microsoft.com/api/stac/v1/search",
+    "tiler": "https://planetarycomputer.microsoft.com/api/data/v1/item/tiles/WebMercatorQuad/{z}/{x}/{y}@1x",
+    "collections": [
+      "sentinel-1-rtc",
+      "sentinel-1-grd"
+    ],
+    "daysBefore": 30,
+    "daysAfter": 30,
+    "rescale": {
+      "sentinel-1-rtc": "0,0.4",
+      "sentinel-1-grd": "0,600"
+    },
+    "modes": [
+      {
+        "id": "db",
+        "name": "Backscatter (dB)",
+        "default": true,
+        "expression": "10*log10({pol})",
+        "rescale": "-22,0",
+        "colormap": "gray",
+        "info": "The standard way to read radar. Smooth surfaces such as standing water and wet scoured mud are dark; rough ground and buildings are bright. Raw linear backscatter renders almost black, which is why this is the default."
+      },
+      {
+        "id": "water",
+        "name": "Smooth-surface / water mask",
+        "expression": "where({pol}<0.02,1,0)",
+        "rescale": "0,1",
+        "colormap": "blues",
+        "info": "Thresholds low backscatter: standing water, saturated ground and smooth deposits. Indicative only. In steep terrain radar shadow also reads as smooth, so treat isolated patches on slopes with caution."
+      },
+      {
+        "id": "rgb",
+        "name": "False colour (dB VV / VH / ratio)",
+        "expression": "10*log10(vv);10*log10(vh);10*log10(vv)-10*log10(vh)",
+        "rescale": "-20,-2&rescale=-28,-10&rescale=2,12",
+        "info": "Dual-polarisation composite on a dB scale. Vegetation is green, smooth and water-covered ground dark blue, built-up surfaces pale."
+      }
+    ]
+  },
+  "optical": {
+    "enabled": true,
+    "collection": "sentinel-2-l2a",
+    "stac": "https://planetarycomputer.microsoft.com/api/stac/v1/search",
+    "tiler": "https://planetarycomputer.microsoft.com/api/data/v1/item/tiles/WebMercatorQuad/{z}/{x}/{y}@1x",
+    "daysBefore": 20,
+    "daysAfter": 30,
+    "maxCloud": 95,
+    "modes": [
+      {
+        "id": "tci",
+        "name": "True colour",
+        "default": true,
+        "assets": "B04,B03,B02",
+        "rescale": "0,3000",
+        "info": "Natural colour, 10 m."
+      },
+      {
+        "id": "swir",
+        "name": "SWIR false colour",
+        "assets": "B12,B08,B04",
+        "rescale": "0,4000",
+        "info": "Cuts through haze and thin cloud. Water is very dark, wet ground dark blue, bare scoured land bright."
+      },
+      {
+        "id": "ndwi",
+        "name": "NDWI water index",
+        "expression": "(B03-B08)/(B03+B08)",
+        "rescale": "-1,1",
+        "colormap": "rdbu",
+        "info": "Normalised difference water index. Blue is water."
+      }
+    ]
+  },
+  "places": [
+    {
+      "name": "Epicentre (M7.8)",
+      "center": [
+        121.3478,
+        -8.3514
+      ],
+      "zoom": 11
+    },
+    {
+      "name": "Ruteng (TM focus)",
+      "center": [
+        120.4739,
+        -8.6116
+      ],
+      "zoom": 12
+    },
+    {
+      "name": "Labuan Bajo",
+      "center": [
+        119.8877,
+        -8.4964
+      ],
+      "zoom": 12
+    },
+    {
+      "name": "Ende",
+      "center": [
+        121.6459,
+        -8.8432
+      ],
+      "zoom": 12
+    }
+  ],
+  "extraLayers": [],
+  "links": [
+    {
+      "name": "Activation wiki",
+      "url": "https://wiki.openstreetmap.org/wiki/Organised_Editing/Activities/Indonesia_Earthquake_2026"
+    },
+    {
+      "name": "Tasking Manager campaign",
+      "url": "https://tasks.hotosm.org/explore?campaign=2026%20Indonesia%20Earthquake%20Response&omitMapResults=1&status=PUBLISHED%2CARCHIVED"
+    },
+    {
+      "name": "Mapping tasks (bit.ly/mapflores)",
+      "url": "https://bit.ly/mapflores"
+    },
+    {
+      "name": "Vantor STAC index",
+      "url": "https://browser.moregeo.it/external/vantor-opendata.s3.amazonaws.com/events/Indonesia-Earthquakes-Aug-2026/collection.json"
+    },
+    {
+      "name": "USGS event page (M7.8)",
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tkt2"
+    },
+    {
+      "name": "MapSwipe projects",
+      "url": "https://web.mapswipe.org/#/en/projects"
+    }
+  ],
+  "aoiLabel": "Tasking Manager area only",
+  "aoiFilterDefault": false
+}

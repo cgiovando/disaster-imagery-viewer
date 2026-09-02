@@ -1,17 +1,23 @@
 # Disaster Imagery Viewer
 
-**Live: <https://cgiovando.github.io/disaster-imagery-viewer/>**
-&middot; Nepal Floods 2026: <https://cgiovando.github.io/disaster-imagery-viewer/nepal-floods-2026/>
-
 A map for humanitarian mapping activations that answers three questions:
 
 1. **What imagery exists over this area, and how old is it?**
 2. **What are Tasking Manager mappers actually looking at right now?**
 3. **How does the ground compare before and after the event?**
 
-Currently configured for the **Nepal Floods 2026** response in the Bhote Koshi
-and Trishuli river corridors (Rasuwa and Nuwakot districts, Nepal), following
-the glacier and rock collapse of 26 August 2026.
+## Live events
+
+| Event | Viewer |
+|---|---|
+| **Nepal Floods 2026**<br>Bhote Koshi and Trishuli corridors, Rasuwa and Nuwakot. Glacier and rock collapse of 26 August 2026 | <https://cgiovando.github.io/disaster-imagery-viewer/nepal-floods-2026/> |
+| **Indonesia Earthquake 2026**<br>Flores, East Nusa Tenggara. M7.8 of 15 August 2026 and its aftershock sequence | <https://cgiovando.github.io/disaster-imagery-viewer/indonesia-earthquake-2026/> |
+
+Event index, listing every configured event:
+<https://cgiovando.github.io/disaster-imagery-viewer/>
+
+Each event is a JSON file in `events/`. Adding one does not touch the
+application code; see [Adding an event](#adding-an-event).
 
 Imagery streams directly from the providers. Nothing is re-hosted here.
 
@@ -37,17 +43,19 @@ Three things this surfaced for the Nepal response:
   under the International Charter, and Copernicus EMS grading. Where they
   disagree is information in itself.
 
+The Indonesia response is the useful counter-example: every one of its seven
+Tasking Manager projects was already pointed at OpenAerialMap rather than Esri,
+five of them at a merged Vantor collection URL. The imagery-to-mapper path can
+work; on Nepal it mostly did not.
+
 ## Usage
 
 ```
 python3 -m http.server 8000
+open http://localhost:8000/                            # event index
 open http://localhost:8000/nepal-floods-2026/
+open http://localhost:8000/indonesia-earthquake-2026/
 ```
-
-The root page lists every configured event. Each event has its own URL:
-
-- <https://cgiovando.github.io/disaster-imagery-viewer/> - event index
-- <https://cgiovando.github.io/disaster-imagery-viewer/nepal-floods-2026/> - Nepal Floods 2026
 
 There is no build step and no dependencies to install for the front end.
 
@@ -66,6 +74,22 @@ basemap and a position can be shared as a link.
    This writes `data/<event-id>.catalog.json`, generates `<event-id>/index.html`
    from `shell.html`, and rebuilds the root event index.
 3. Open `/<event-id>/`.
+
+Everything an event needs to differ is config, not code. The switches that exist
+because a second event needed them:
+
+| Key | Why it exists |
+|---|---|
+| `aoiFilterDefault` | The Tasking Manager area is not always where the post-event imagery is. On Flores the projects cluster around Ruteng while Vantor released elsewhere, so defaulting the filter on hid every post-event scene. Set `false` there. |
+| `aoiLabel` | "Corridor AOI" means something in a river valley and nothing on an island. |
+| `sar.enabled`, `optical.enabled` | Sentinel-1 backscatter earns its place in a flood and adds little to an earthquake. Set `false` and the whole section is gone, not just empty. |
+| `excludeProviders` | Whole publishers can be irrelevant. The Nepal config drops a 2015 DigitalGlobe release of 75 scenes that buried everything else. |
+| `extraLayers` | Published impact layers, where they exist. Nepal has eleven; Indonesia has none yet, because UNOSAT has no service for it and Copernicus EMS has no activation. |
+
+A provider's own collection extent is not a safe event bbox. The Vantor
+`Indonesia-Earthquakes-Aug-2026` collection spans the whole archipelago,
+including Sumatra scenes from unrelated events, so the event `bbox` is drawn
+around the actual affected area and the filter excludes the rest.
 
 CI rebuilds every configured event hourly, and on any push. Trigger a run by
 hand with `gh workflow run refresh.yml` when something has just been released.

@@ -470,5 +470,6 @@
   },
   "excludeProviders": [
     "DigitalGlobe"
-  ]
+  ],
+  "aoiLabel": "Corridor AOI only"
 }
