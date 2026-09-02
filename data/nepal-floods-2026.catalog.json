@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-02T01:12:14Z",
+ "generated": "2026-09-02T02:08:53Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -1938,7 +1938,7 @@
   {
    "id": 63399,
    "name": "Nepal Flood 2026 Response - Upper Trishuli and Bhote Koshi Corridor [Residential Areas]",
-   "status": "PUBLISHED",
+   "status": "ARCHIVED",
    "priority": "URGENT",
    "percent_mapped": 100,
    "percent_validated": 100,
@@ -7622,7 +7622,7 @@
    },
    "imagery": "tms:https://api.imagery.hotosm.org/raster/collections/openaerialmap/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=6a92f09910691da75dd828c3,6a90c0f1d8f7b27f66739990&assets=visual",
    "created": "2026-08-31T11:36:17.064000Z",
-   "last_updated": "2026-09-01T22:08:51.860000Z",
+   "last_updated": "2026-09-02T01:54:48.777000Z",
    "total_tasks": null,
    "task_status": {
     "54": "VALIDATED",
