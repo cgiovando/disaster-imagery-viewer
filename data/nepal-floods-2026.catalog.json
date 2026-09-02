@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-02T05:08:21Z",
+ "generated": "2026-09-02T06:08:26Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -18,32 +18,17 @@
   {
    "source": "impact_layers",
    "what": "layer copernicus-buildings",
-   "detail": "service error 500: Service FL20260826NPL/Copernicus_Analysis/MapServer not started "
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-buildings",
-   "detail": "service error 500: Service FL20260826NPL/Copernicus_Analysis/MapServer not started "
+   "detail": "service error 400: Invalid or missing input parameters."
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-roads",
-   "detail": "service error 500: Service FL20260826NPL/Copernicus_Analysis/MapServer not started "
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-roads",
-   "detail": "service error 500: Service FL20260826NPL/Copernicus_Analysis/MapServer not started "
+   "detail": "service error 400: Invalid or missing input parameters."
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-observed",
-   "detail": "service error 500: Service FL20260826NPL/Copernicus_Analysis/MapServer not started "
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-observed",
-   "detail": "service error 500: Service FL20260826NPL/Copernicus_Analysis/MapServer not started "
+   "detail": "service error 400: Invalid or missing input parameters."
   }
  ],
  "event": {
