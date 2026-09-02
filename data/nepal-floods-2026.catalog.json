@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-02T16:08:52Z",
+ "generated": "2026-09-02T17:09:21Z",
  "sources": {
   "scenes": {
    "status": "ok",
-   "count": 59
+   "count": 62
   },
   "tasking_manager": {
    "status": "ok",
@@ -93,6 +93,135 @@
  },
  "esri_seamlines": "nepal-floods-2026.esri-seamlines.geojson",
  "scenes": [
+  {
+   "provider": "Planet",
+   "sensor": "Pelican",
+   "acquired": "2026-09-01T05:06:35.683725Z",
+   "phase": "post",
+   "gsd_cm": 57.0,
+   "cloud_pct": 84.0,
+   "bbox": [
+    85.2847279323838,
+    28.104304437208164,
+    85.39743308571435,
+    28.179125821966146
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/pelican-2026-09-01/items/20260901_050635_67_300b/20260901_050635_67_300b.json",
+   "id": "planet-20260901_050635_67_300b",
+   "title": "Pelican 2026-09-01 05:06:35Z",
+   "renders": [
+    {
+     "id": "natural",
+     "name": "Natural colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050635_67_300b%2F20260901_050635_67_300b_visual.tif",
+     "note": "8-bit RGB as published by the provider."
+    },
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050635_67_300b%2F20260901_050635_67_300b_pansharpened.tif&bidx=4&bidx=3&bidx=2&rescale=9000,46000&rescale=9000,46000&rescale=9000,46000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050635_67_300b%2F20260901_050635_67_300b_pansharpened.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050635_67_300b%2F20260901_050635_67_300b_visual.tif",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "Pelican",
+   "acquired": "2026-09-01T05:06:34.337982Z",
+   "phase": "post",
+   "gsd_cm": 56.0,
+   "cloud_pct": 78.0,
+   "bbox": [
+    85.29842337978346,
+    28.161684100302544,
+    85.41871143240316,
+    28.264891505275187
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/pelican-2026-09-01/items/20260901_050634_33_300b/20260901_050634_33_300b.json",
+   "id": "planet-20260901_050634_33_300b",
+   "title": "Pelican 2026-09-01 05:06:34Z",
+   "renders": [
+    {
+     "id": "natural",
+     "name": "Natural colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050634_33_300b%2F20260901_050634_33_300b_visual.tif",
+     "note": "8-bit RGB as published by the provider."
+    },
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050634_33_300b%2F20260901_050634_33_300b_pansharpened.tif&bidx=4&bidx=3&bidx=2&rescale=9000,46000&rescale=9000,46000&rescale=9000,46000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050634_33_300b%2F20260901_050634_33_300b_pansharpened.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050634_33_300b%2F20260901_050634_33_300b_visual.tif",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "Pelican",
+   "acquired": "2026-09-01T05:06:32.992240Z",
+   "phase": "post",
+   "gsd_cm": 57.0,
+   "cloud_pct": 47.0,
+   "bbox": [
+    85.32075347840208,
+    28.247220306474595,
+    85.4364785486028,
+    28.35100608602984
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/pelican-2026-09-01/items/20260901_050632_98_300b/20260901_050632_98_300b.json",
+   "id": "planet-20260901_050632_98_300b",
+   "title": "Pelican 2026-09-01 05:06:32Z",
+   "renders": [
+    {
+     "id": "natural",
+     "name": "Natural colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050632_98_300b%2F20260901_050632_98_300b_visual.tif",
+     "note": "8-bit RGB as published by the provider."
+    },
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050632_98_300b%2F20260901_050632_98_300b_pansharpened.tif&bidx=4&bidx=3&bidx=2&rescale=9000,46000&rescale=9000,46000&rescale=9000,46000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050632_98_300b%2F20260901_050632_98_300b_pansharpened.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fpelican-2026-09-01%2Fitems%2F20260901_050632_98_300b%2F20260901_050632_98_300b_visual.tif",
+   "group": "post-satellite"
+  },
   {
    "id": "6a9803df4b875f187edc947f",
    "title": "[POST] Vantor LG04 Image B1400011010A2910",
@@ -2057,7 +2186,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 80,
+   "percent_mapped": 81,
    "percent_validated": 7,
    "url": "https://tasks.hotosm.org/projects/63465",
    "aoi": {
@@ -14935,7 +15064,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-01T17:25:17.034000Z",
-   "last_updated": "2026-09-02T16:06:03.246000Z",
+   "last_updated": "2026-09-02T16:30:03.958000Z",
    "total_tasks": null,
    "task_status": {
     "67": "MAPPED",
@@ -14952,25 +15081,24 @@
     "61": "VALIDATED",
     "23": "MAPPED",
     "1": "MAPPED",
-    "4": "READY",
     "3": "MAPPED",
+    "4": "READY",
     "6": "MAPPED",
     "5": "MAPPED",
     "7": "MAPPED",
     "89": "MAPPED",
     "9": "MAPPED",
     "8": "MAPPED",
-    "10": "READY",
+    "10": "MAPPED",
     "11": "READY",
     "13": "READY",
     "12": "MAPPED",
     "17": "MAPPED",
     "19": "LOCKED_FOR_MAPPING",
-    "16": "READY",
-    "15": "LOCKED_FOR_MAPPING",
+    "16": "LOCKED_FOR_MAPPING",
     "21": "READY",
     "22": "MAPPED",
-    "20": "LOCKED_FOR_MAPPING",
+    "20": "READY",
     "24": "MAPPED",
     "26": "READY",
     "25": "MAPPED",
@@ -14984,7 +15112,7 @@
     "40": "MAPPED",
     "38": "MAPPED",
     "41": "MAPPED",
-    "43": "LOCKED_FOR_MAPPING",
+    "43": "READY",
     "46": "MAPPED",
     "49": "MAPPED",
     "47": "MAPPED",
@@ -14999,14 +15127,14 @@
     "56": "MAPPED",
     "57": "VALIDATED",
     "60": "MAPPED",
-    "63": "LOCKED_FOR_MAPPING",
-    "66": "READY",
+    "63": "MAPPED",
     "69": "READY",
     "70": "MAPPED",
     "65": "MAPPED",
     "72": "MAPPED",
     "68": "LOCKED_FOR_MAPPING",
     "71": "MAPPED",
+    "66": "LOCKED_FOR_MAPPING",
     "78": "READY",
     "79": "MAPPED",
     "81": "MAPPED",
@@ -15016,7 +15144,6 @@
     "76": "LOCKED_FOR_MAPPING",
     "82": "MAPPED",
     "85": "MAPPED",
-    "87": "READY",
     "84": "MAPPED",
     "86": "MAPPED",
     "83": "MAPPED",
@@ -15027,7 +15154,7 @@
     "95": "MAPPED",
     "93": "MAPPED",
     "98": "VALIDATED",
-    "91": "LOCKED_FOR_MAPPING",
+    "91": "MAPPED",
     "42": "MAPPED",
     "73": "MAPPED",
     "27": "MAPPED",
@@ -15036,15 +15163,20 @@
     "14": "MAPPED",
     "44": "MAPPED",
     "45": "MAPPED",
+    "15": "MAPPED",
+    "103": "READY",
+    "104": "READY",
+    "105": "READY",
+    "106": "LOCKED_FOR_MAPPING",
     "55": "MAPPED",
     "35": "MAPPED",
     "34": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 73,
-    "READY": 12,
+    "MAPPED": 77,
+    "READY": 13,
     "VALIDATED": 8,
-    "LOCKED_FOR_MAPPING": 8
+    "LOCKED_FOR_MAPPING": 6
    }
   },
   {
