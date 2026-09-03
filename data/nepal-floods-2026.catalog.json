@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-03T07:09:18Z",
+ "generated": "2026-09-03T08:08:39Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2186,8 +2186,8 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor [Residential Areas]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 100,
-   "percent_validated": 8,
+   "percent_mapped": 98,
+   "percent_validated": 10,
    "url": "https://tasks.hotosm.org/projects/63465",
    "aoi": {
     "type": "MultiPolygon",
@@ -15064,7 +15064,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-01T17:25:17.034000Z",
-   "last_updated": "2026-09-02T19:50:11.709000Z",
+   "last_updated": "2026-09-03T08:06:56.695000Z",
    "total_tasks": null,
    "task_status": {
     "67": "MAPPED",
@@ -15072,20 +15072,20 @@
     "50": "MAPPED",
     "74": "MAPPED",
     "18": "MAPPED",
-    "101": "MAPPED",
-    "99": "MAPPED",
-    "100": "MAPPED",
-    "102": "MAPPED",
+    "100": "LOCKED_FOR_VALIDATION",
+    "101": "LOCKED_FOR_VALIDATION",
+    "99": "LOCKED_FOR_VALIDATION",
+    "102": "LOCKED_FOR_VALIDATION",
     "37": "MAPPED",
     "64": "VALIDATED",
     "61": "VALIDATED",
     "23": "MAPPED",
-    "1": "MAPPED",
-    "3": "MAPPED",
-    "4": "MAPPED",
+    "1": "LOCKED_FOR_VALIDATION",
+    "3": "LOCKED_FOR_VALIDATION",
+    "4": "LOCKED_FOR_VALIDATION",
     "6": "MAPPED",
     "5": "MAPPED",
-    "7": "MAPPED",
+    "7": "VALIDATED",
     "89": "MAPPED",
     "9": "MAPPED",
     "8": "MAPPED",
@@ -15148,17 +15148,17 @@
     "86": "MAPPED",
     "83": "MAPPED",
     "88": "MAPPED",
-    "94": "MAPPED",
     "90": "MAPPED",
     "95": "MAPPED",
     "93": "MAPPED",
     "98": "VALIDATED",
     "91": "MAPPED",
     "97": "VALIDATED",
+    "94": "VALIDATED",
     "42": "MAPPED",
     "73": "MAPPED",
     "27": "MAPPED",
-    "96": "MAPPED",
+    "96": "LOCKED_FOR_VALIDATION",
     "92": "MAPPED",
     "14": "MAPPED",
     "44": "MAPPED",
@@ -15173,8 +15173,9 @@
     "34": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 95,
-    "VALIDATED": 9
+    "MAPPED": 85,
+    "LOCKED_FOR_VALIDATION": 8,
+    "VALIDATED": 11
    }
   },
   {
