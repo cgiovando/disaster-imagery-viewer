@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-03T14:09:15Z",
+ "generated": "2026-09-03T14:23:18Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2186,7 +2186,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor - Final Parts [Buildings and Roads]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 41,
+   "percent_mapped": 49,
    "percent_validated": 0,
    "url": "https://tasks.hotosm.org/projects/63564",
    "aoi": {
@@ -2628,20 +2628,19 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-03T11:27:29.130000Z",
-   "last_updated": "2026-09-03T14:02:55.102000Z",
+   "last_updated": "2026-09-03T14:17:59.728000Z",
    "total_tasks": null,
    "task_status": {
+    "11": "MAPPED",
     "1": "READY",
-    "4": "READY",
     "2": "MAPPED",
-    "3": "LOCKED_FOR_MAPPING",
-    "7": "READY",
+    "3": "MAPPED",
+    "4": "LOCKED_FOR_MAPPING",
     "10": "READY",
     "12": "READY",
     "13": "READY",
     "25": "READY",
     "26": "READY",
-    "31": "READY",
     "32": "READY",
     "34": "READY",
     "22": "MAPPED",
@@ -2657,23 +2656,22 @@
     "28": "MAPPED",
     "33": "MAPPED",
     "17": "MAPPED",
-    "27": "LOCKED_FOR_MAPPING",
     "8": "LOCKED_FOR_MAPPING",
     "15": "MAPPED",
     "16": "MAPPED",
-    "30": "READY",
-    "11": "LOCKED_FOR_MAPPING",
     "14": "READY",
-    "29": "LOCKED_FOR_MAPPING",
+    "30": "LOCKED_FOR_MAPPING",
+    "31": "LOCKED_FOR_MAPPING",
+    "29": "READY",
+    "7": "MAPPED",
+    "27": "MAPPED",
     "35": "READY",
     "39": "READY",
     "40": "READY",
     "44": "READY",
-    "46": "READY",
     "53": "MAPPED",
     "54": "MAPPED",
     "50": "MAPPED",
-    "45": "READY",
     "51": "MAPPED",
     "49": "READY",
     "52": "MAPPED",
@@ -2684,12 +2682,14 @@
     "47": "LOCKED_FOR_MAPPING",
     "37": "LOCKED_FOR_MAPPING",
     "36": "READY",
-    "41": "READY"
+    "41": "READY",
+    "46": "LOCKED_FOR_MAPPING",
+    "45": "LOCKED_FOR_MAPPING"
    },
    "task_counts": {
-    "READY": 23,
-    "MAPPED": 22,
-    "LOCKED_FOR_MAPPING": 8,
+    "MAPPED": 26,
+    "READY": 18,
+    "LOCKED_FOR_MAPPING": 9,
     "BADIMAGERY": 1
    }
   },
@@ -2699,7 +2699,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 98,
+   "percent_validated": 100,
    "url": "https://tasks.hotosm.org/projects/63465",
    "aoi": {
     "type": "MultiPolygon",
@@ -15576,11 +15576,11 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-01T17:25:17.034000Z",
-   "last_updated": "2026-09-03T14:07:19.471000Z",
+   "last_updated": "2026-09-03T14:18:19.785000Z",
    "total_tasks": null,
    "task_status": {
     "31": "VALIDATED",
-    "74": "LOCKED_FOR_VALIDATION",
+    "74": "VALIDATED",
     "100": "VALIDATED",
     "101": "VALIDATED",
     "102": "VALIDATED",
@@ -15634,13 +15634,13 @@
     "59": "VALIDATED",
     "54": "VALIDATED",
     "60": "VALIDATED",
-    "72": "MAPPED",
     "70": "VALIDATED",
     "65": "VALIDATED",
     "68": "VALIDATED",
     "71": "VALIDATED",
     "66": "VALIDATED",
     "69": "VALIDATED",
+    "72": "VALIDATED",
     "80": "VALIDATED",
     "79": "VALIDATED",
     "75": "VALIDATED",
@@ -15685,9 +15685,7 @@
     "34": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 102,
-    "LOCKED_FOR_VALIDATION": 1,
-    "MAPPED": 1
+    "VALIDATED": 104
    }
   },
   {
