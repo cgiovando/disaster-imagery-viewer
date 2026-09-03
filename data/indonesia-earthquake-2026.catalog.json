@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-03T02:08:03Z",
+ "generated": "2026-09-03T03:08:10Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -13560,7 +13560,6 @@
     "160": "MAPPED",
     "161": "MAPPED",
     "159": "MAPPED",
-    "175": "READY",
     "180": "READY",
     "182": "READY",
     "170": "MAPPED",
@@ -13577,6 +13576,7 @@
     "173": "MAPPED",
     "176": "MAPPED",
     "179": "MAPPED",
+    "175": "READY",
     "206": "READY",
     "205": "MAPPED",
     "195": "MAPPED",
@@ -14202,11 +14202,11 @@
     "844": "READY",
     "829": "MAPPED",
     "845": "READY",
-    "837": "READY",
     "833": "MAPPED",
     "839": "READY",
     "835": "MAPPED",
     "834": "MAPPED",
+    "837": "READY",
     "849": "READY",
     "855": "READY",
     "863": "READY",
@@ -14219,8 +14219,8 @@
     "852": "MAPPED",
     "859": "MAPPED",
     "853": "READY",
-    "858": "READY",
     "856": "READY",
+    "858": "READY",
     "868": "READY",
     "872": "READY",
     "875": "READY",
@@ -14395,7 +14395,6 @@
     "1043": "READY",
     "1040": "MAPPED",
     "1044": "READY",
-    "1046": "READY",
     "1067": "MAPPED",
     "1066": "MAPPED",
     "1065": "MAPPED",
@@ -14418,6 +14417,7 @@
     "1047": "MAPPED",
     "1048": "MAPPED",
     "1049": "MAPPED",
+    "1046": "LOCKED_FOR_MAPPING",
     "1030": "MAPPED",
     "1069": "MAPPED",
     "1068": "MAPPED",
@@ -14496,9 +14496,10 @@
    },
    "task_counts": {
     "MAPPED": 580,
-    "READY": 504,
+    "READY": 503,
     "BADIMAGERY": 1,
-    "VALIDATED": 5
+    "VALIDATED": 5,
+    "LOCKED_FOR_MAPPING": 1
    }
   },
   {
