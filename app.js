@@ -1222,14 +1222,12 @@ function partialNote(layer) {
 
 function layerRow(layer) {
   const isRaster = layer.type === 'raster';
-  const unavailable = layer.available === false;
   const key = 'x:' + layer.id;
   const on = isRaster ? isActive(key) : state.vectorsOn.has(layer.id);
 
   const ref = el('div', 'ref');
   const top = el('div', 'top');
-  const cb = el('input'); cb.type = 'checkbox'; cb.checked = on && !unavailable;
-  cb.disabled = unavailable;
+  const cb = el('input'); cb.type = 'checkbox'; cb.checked = on;
   cb.onchange = async () => {
     if (isRaster) { toggleExtraRaster(layer); return; }
     if (cb.checked) {
@@ -1260,18 +1258,13 @@ function layerRow(layer) {
   top.appendChild(el('span', 'nm', esc(layer.name)));
   ref.appendChild(top);
 
-  if (unavailable) {
-    ref.appendChild(el('div', 'warn', esc(layer.unavailableReason ||
-      'Unavailable while the upstream source is being verified.')));
-  }
-
   /* A layer coloured by class is unreadable without a key, and a key built
    * separately from the paint expression drifts out of step with it. Both come
    * from the same `colorBy.stops`, so they cannot disagree.
    */
   const key0 = classKey(layer);
   if (key0) ref.appendChild(key0);
-  const note0 = unavailable ? null : partialNote(layer);
+  const note0 = partialNote(layer);
   if (note0) ref.appendChild(note0);
 
   if (layer.info) {
@@ -2381,17 +2374,13 @@ async function boot() {
   if (hash.basemap) state.basemap = hash.basemap;
   for (const v of hash.vectors) {
     const m = v.match(/^tm(\d+)$/);
-    if (m) state.tmOn.add(+m[1]);
-    else {
-      const layer = (state.cfg.extraLayers || []).find((l) => l.id === v);
-      if (!layer || layer.available !== false) state.vectorsOn.add(v);
-    }
+    if (m) state.tmOn.add(+m[1]); else state.vectorsOn.add(v);
   }
 
   // Vector overlays restored from the permalink do not depend on the map, so
   // load them up front rather than inside the map's load handler.
   await Promise.all((state.cfg.extraLayers || [])
-    .filter((l) => l.type === 'geojson' && l.available !== false && state.vectorsOn.has(l.id))
+    .filter((l) => l.type === 'geojson' && state.vectorsOn.has(l.id))
     .map(loadGeojson));
   if (state.showTaskGrid) await loadTaskGrid();
   if (state.vectorsOn.has('esri-seamlines')) {

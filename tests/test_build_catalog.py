@@ -85,17 +85,15 @@ class NepalLayerConfigTest(unittest.TestCase):
         self.assertRegex(self.layers["copernicus-observed"]["urls"][0], r"/31/query")
         self.assertRegex(self.layers["copernicus-observed"]["urls"][1], r"/13/query")
 
-    def test_unresolved_layers_are_explicitly_unavailable(self):
-        unresolved = {
-            "unosat-mudflow-live", "unosat-detachment", "unosat-barrier-lakes",
-            "unosat-affected-buildings", "unosat-affected-roads", "unosat-cropland",
-            "sertit-flood-trace", "sertit-builtup", "sertit-roads",
-        }
-        for layer_id in unresolved:
-            with self.subTest(layer_id=layer_id):
-                layer = self.layers[layer_id]
-                self.assertIs(layer.get("available"), False)
-                self.assertTrue(layer.get("unavailableReason"))
+    def test_current_unosat_and_sertit_layer_ids(self):
+        self.assertRegex(self.layers["unosat-mudflow-live"]["url"], r"UNOSAT_Analysis_V2/MapServer/41/query")
+        self.assertRegex(self.layers["unosat-detachment"]["url"], r"UNOSAT_Analysis_V2/MapServer/42/query")
+        self.assertRegex(self.layers["sertit-flood-trace"]["url"], r"Sertit_Analysis/MapServer/3/query")
+        self.assertRegex(self.layers["sertit-builtup"]["url"], r"Sertit_Analysis/MapServer/1/query")
+        self.assertRegex(self.layers["sertit-roads"]["url"], r"Sertit_Analysis/MapServer/2/query")
+        for layer in self.layers.values():
+            self.assertNotIn("available", layer)
+            self.assertNotIn("unavailableReason", layer)
 
 
 if __name__ == "__main__":
