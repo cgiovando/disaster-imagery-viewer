@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-03T19:09:19Z",
+ "generated": "2026-09-03T20:09:22Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2186,7 +2186,7 @@
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor - Final Parts [Buildings and Roads]",
    "status": "PUBLISHED",
    "priority": "URGENT",
-   "percent_mapped": 98,
+   "percent_mapped": 100,
    "percent_validated": 70,
    "url": "https://tasks.hotosm.org/projects/63564",
    "aoi": {
@@ -2628,7 +2628,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-03T11:27:29.130000Z",
-   "last_updated": "2026-09-03T19:03:42.072000Z",
+   "last_updated": "2026-09-03T19:53:41.373000Z",
    "total_tasks": null,
    "task_status": {
     "18": "VALIDATED",
@@ -2642,7 +2642,7 @@
     "1": "VALIDATED",
     "2": "VALIDATED",
     "55": "MAPPED",
-    "56": "LOCKED_FOR_MAPPING",
+    "56": "MAPPED",
     "58": "MAPPED",
     "57": "MAPPED",
     "32": "VALIDATED",
@@ -2694,8 +2694,7 @@
    },
    "task_counts": {
     "VALIDATED": 41,
-    "MAPPED": 16,
-    "LOCKED_FOR_MAPPING": 1,
+    "MAPPED": 17,
     "BADIMAGERY": 2
    }
   },
