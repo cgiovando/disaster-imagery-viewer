@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-04T03:08:19Z",
+ "generated": "2026-09-04T04:08:27Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -13400,14 +13400,13 @@
    },
    "imagery": "https://api.imagery.hotosm.org/raster/collections/vantor-opendata/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=103001011748BA00,103001012628F900,10300101297FF100,1030010129CB7B00,10400100B90B7700,B030001100BE1D10,B030001100BE1F10,B030001100BE2210,B030001100C6AD10,B030001100C6B710,B0400011007EEC10,B0400011007EED10,B04000110080F510,B040001100880F10,B04000110089BC10,B04000110089C610,B04000110089D610,B04000110089F210,B04000110089F310,B050001100601110,B050001100632D10,B1100011009D1610,B1100011010C7E10,B1100011010C9710,B110001101137E10,B1200011010AC310,B12000110111CF10,B12000110111F110,B12000110111F310,B13000110106A510,B13000110106DF10,B130001101088010,B130001101088310,B1300011010A1610,B1300011010A1710,B13000110110C810,B13000110110C910,B13000110110CA10,B140001100F3E110,B140001100F9B410,B140001100FB4410,B150001101CDA510,B150001101CDBF10,B150001101D44C10,B150001101D45210,B150001101D53710,B160001101C97C10,B160001101C97D10&assets=visual&nodata=0",
    "created": "2026-08-31T07:39:16.254000Z",
-   "last_updated": "2026-09-04T03:05:32.432000Z",
+   "last_updated": "2026-09-04T03:59:49.685000Z",
    "total_tasks": null,
    "task_status": {
     "616": "MAPPED",
     "1085": "MAPPED",
     "2": "MAPPED",
     "3": "MAPPED",
-    "14": "READY",
     "6": "MAPPED",
     "17": "MAPPED",
     "11": "MAPPED",
@@ -13422,7 +13421,7 @@
     "16": "READY",
     "9": "MAPPED",
     "18": "READY",
-    "24": "READY",
+    "14": "MAPPED",
     "32": "READY",
     "34": "READY",
     "28": "READY",
@@ -13439,6 +13438,7 @@
     "26": "MAPPED",
     "33": "MAPPED",
     "31": "READY",
+    "24": "LOCKED_FOR_MAPPING",
     "40": "READY",
     "42": "READY",
     "43": "READY",
@@ -13601,9 +13601,9 @@
     "211": "MAPPED",
     "215": "MAPPED",
     "222": "READY",
-    "216": "READY",
     "218": "MAPPED",
     "217": "MAPPED",
+    "216": "LOCKED_FOR_MAPPING",
     "223": "READY",
     "230": "READY",
     "235": "READY",
@@ -13655,7 +13655,6 @@
     "264": "MAPPED",
     "272": "READY",
     "268": "MAPPED",
-    "269": "READY",
     "275": "READY",
     "281": "READY",
     "283": "READY",
@@ -13878,8 +13877,7 @@
     "488": "READY",
     "489": "MAPPED",
     "498": "MAPPED",
-    "499": "LOCKED_FOR_MAPPING",
-    "501": "READY",
+    "499": "MAPPED",
     "504": "READY",
     "506": "READY",
     "509": "READY",
@@ -13897,7 +13895,8 @@
     "502": "READY",
     "503": "READY",
     "500": "MAPPED",
-    "510": "LOCKED_FOR_MAPPING",
+    "510": "MAPPED",
+    "501": "MAPPED",
     "522": "READY",
     "524": "READY",
     "530": "READY",
@@ -14164,7 +14163,6 @@
     "817": "READY",
     "819": "READY",
     "812": "MAPPED",
-    "826": "READY",
     "800": "MAPPED",
     "821": "MAPPED",
     "808": "MAPPED",
@@ -14178,6 +14176,7 @@
     "822": "MAPPED",
     "824": "READY",
     "813": "MAPPED",
+    "826": "LOCKED_FOR_MAPPING",
     "841": "READY",
     "842": "READY",
     "843": "READY",
@@ -14197,7 +14196,7 @@
     "847": "MAPPED",
     "846": "MAPPED",
     "848": "READY",
-    "830": "LOCKED_FOR_MAPPING",
+    "830": "READY",
     "850": "MAPPED",
     "860": "MAPPED",
     "854": "READY",
@@ -14374,7 +14373,7 @@
     "1013": "READY",
     "1020": "MAPPED",
     "1035": "MAPPED",
-    "1010": "LOCKED_FOR_MAPPING",
+    "1010": "MAPPED",
     "1039": "READY",
     "1040": "MAPPED",
     "1043": "MAPPED",
@@ -14485,6 +14484,7 @@
     "1101": "MAPPED",
     "1100": "MAPPED",
     "177": "MAPPED",
+    "269": "MAPPED",
     "1": "MAPPED",
     "88": "MAPPED",
     "776": "MAPPED",
@@ -14501,11 +14501,11 @@
     "71": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 740,
-    "READY": 344,
+    "MAPPED": 746,
+    "READY": 339,
+    "LOCKED_FOR_MAPPING": 5,
     "BADIMAGERY": 1,
-    "VALIDATED": 5,
-    "LOCKED_FOR_MAPPING": 6
+    "VALIDATED": 5
    }
   },
   {
@@ -26435,7 +26435,7 @@
     "39": "VALIDATED",
     "82": "VALIDATED",
     "23": "VALIDATED",
-    "160": "LOCKED_FOR_MAPPING",
+    "160": "INVALIDATED",
     "230": "VALIDATED",
     "49": "VALIDATED",
     "133": "VALIDATED",
@@ -26622,7 +26622,7 @@
    "task_counts": {
     "VALIDATED": 269,
     "MAPPED": 90,
-    "LOCKED_FOR_MAPPING": 1
+    "INVALIDATED": 1
    }
   },
   {
