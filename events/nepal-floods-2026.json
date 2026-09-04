@@ -230,8 +230,10 @@
       "group": "impact",
       "name": "Copernicus EMS building grading",
       "urls": [
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/3/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/11/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/29/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/11/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/18/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/37/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
       ],
       "color": "#d73f3f",
       "colorBy": {
@@ -245,7 +247,7 @@
         "default": "#7a7a86"
       },
       "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
-      "info": "864 buildings graded across the Syapru Besi and Timure AOIs: 695 destroyed, 65 damaged, 104 possibly damaged. Photo-interpreted, not automated. Two separate EMS AOIs are merged here into one layer.",
+      "info": "3,770 buildings graded across four EMS AOIs, merged here into one layer: Syapru Besi 433, Timure 431, Bidur 2,343, Phosretar 563. Totals are 2,785 destroyed, 354 damaged, 631 possibly damaged. Photo-interpreted, not automated. Bidur and Phosretar are downstream on the Trishuli and were added when Copernicus republished the service; counts verified 3 Sep 2026.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     },
     {
@@ -254,8 +256,10 @@
       "group": "impact",
       "name": "Copernicus EMS road grading",
       "urls": [
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/7/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/14/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/33/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/14/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/25/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/40/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
       ],
       "color": "#d73f3f",
       "lineWidth": 3,
@@ -265,12 +269,13 @@
           "Destroyed": "#d73f3f",
           "Damaged": "#f08c2e",
           "Possibly damaged": "#f5d547",
-          "No visible damage": "#4caf7d"
+          "No visible damage": "#4caf7d",
+          "Not Analysed": "#5a5a66"
         },
         "default": "#7a7a86"
       },
       "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
-      "info": "46 road segments across both EMS AOIs: 28 destroyed, 7 possibly damaged, 11 no visible damage.",
+      "info": "1,075 road segments across four EMS AOIs, merged here into one layer: Syapru Besi 31, Timure 15, Bidur 613, Phosretar 416. Totals are 317 destroyed, 3 damaged, 118 possibly damaged, 490 no visible damage and 147 not analysed. Most of the length is in the two downstream AOIs, where the majority of segments came through undamaged; counts verified 3 Sep 2026.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     },
     {
@@ -279,13 +284,15 @@
       "group": "impact",
       "name": "Copernicus EMS observed event",
       "urls": [
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/13/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/31/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/13/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/23/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Copernicus_Analysis/MapServer/39/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
       ],
       "color": "#b388ff",
       "fillOpacity": 0.22,
       "attribution": "Copernicus Emergency Management Service, via UNOSAT FL20260826NPL",
-      "info": "Observed event extent for both EMS AOIs, classified as mass movement rather than flooding. A useful cross-check on the UNOSAT mudflow delineation, which was drawn from different sensors.",
+      "info": "45 observed-event polygons across the four EMS AOIs, every one classified as mass movement rather than flooding. Nearly all of them (41) are in Phosretar. A useful cross-check on the UNOSAT mudflow delineation, which was drawn from different sensors.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     },
     {

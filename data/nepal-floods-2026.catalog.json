@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-04T00:09:06Z",
+ "generated": "2026-09-04T00:56:51Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -24,21 +24,6 @@
    "source": "impact_layers",
    "what": "layer unosat-detachment",
    "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-buildings",
-   "detail": "service error 400: Invalid or missing input parameters."
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-roads",
-   "detail": "service error 400: Invalid or missing input parameters."
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-observed",
-   "detail": "service error 400: Invalid or missing input parameters."
   },
   {
    "source": "impact_layers",

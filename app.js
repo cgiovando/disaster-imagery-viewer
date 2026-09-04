@@ -1506,6 +1506,47 @@ function layerColor(layer) {
   return expr;
 }
 
+/* ArcGIS truncates a query at the service's maxRecordCount and admits it only
+ * through `exceededTransferLimit`. The response is still a valid, complete
+ * looking FeatureCollection, just short, so a truncated layer draws without
+ * complaint. The Copernicus Bidur AOI has 2,343 graded buildings against a cap
+ * of 2,000: 343 of them, most of them destroyed, would silently never appear.
+ *
+ * This service answers `supportsPagination: false` and rejects `resultOffset`,
+ * so the usual paging is out. Asking for the object ids and re-requesting them
+ * in chunks is the one route that works against it.
+ */
+async function fetchArcgisAllFeatures(url) {
+  const idQuery = new URL(url);
+  idQuery.searchParams.set('f', 'json');
+  idQuery.searchParams.set('returnIdsOnly', 'true');
+  idQuery.searchParams.delete('outFields');
+  const r = await fetch(idQuery);
+  if (!r.ok) throw new Error(`HTTP ${r.status}`);
+  const j = await r.json();
+  const ids = (j && j.objectIds) || [];
+  if (!ids.length) throw new Error('no object ids returned');
+
+  /* Chunked well below the 2,000 cap: these go in the query string, and a URL
+   * carrying 2,000 ids is long enough for a proxy to reject it.
+   */
+  const CHUNK = 500;
+  const features = [];
+  for (let i = 0; i < ids.length; i += CHUNK) {
+    const q = new URL(url);
+    q.searchParams.delete('where');
+    q.searchParams.set('objectIds', ids.slice(i, i + CHUNK).join(','));
+    const rr = await fetch(q);
+    if (!rr.ok) throw new Error(`HTTP ${rr.status}`);
+    const jj = await rr.json();
+    if (jj && jj.error) {
+      throw new Error(`service error ${jj.error.code || ''} ${jj.error.message || ''}`.trim());
+    }
+    features.push(...((jj && jj.features) || []));
+  }
+  return features;
+}
+
 async function loadGeojson(layer) {
   state._geojson = state._geojson || {};
   state._partial = state._partial || {};
@@ -1533,6 +1574,16 @@ async function loadGeojson(layer) {
       throw new Error(`service error ${j.error.code || ''} ${j.error.message || ''}`.trim());
     }
     if (!j || !Array.isArray(j.features)) throw new Error('response is not a FeatureCollection');
+    if (j.exceededTransferLimit) {
+      /* Partial data with a warning beats no data: if the id walk fails, keep
+       * the truncated page rather than dropping the AOI from the layer.
+       */
+      try {
+        return await fetchArcgisAllFeatures(u);
+      } catch (err) {
+        console.warn(`${layer.id}: capped at ${j.features.length} features, could not fetch the rest`, u, err);
+      }
+    }
     return j.features;
   }));
 

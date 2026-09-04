@@ -1040,11 +1040,12 @@ def write_landing(events):
 
 def main():
     wanted = sys.argv[1:]
-    configs = sorted(
+    all_configs = sorted(
         os.path.join(EVENTS_DIR, f)
         for f in os.listdir(EVENTS_DIR)
         if f.endswith(".json") and not f.startswith("_")
     )
+    configs = all_configs
     if wanted:
         configs = [c for c in configs
                    if os.path.basename(c)[:-5] in wanted or os.path.basename(c) in wanted]
@@ -1069,8 +1070,27 @@ def main():
         write_event_page(cfg)
         built.append((cfg, cat))
 
+    # The landing page lists every event, so it has to be built from every
+    # config, not only the ones this run touched. `build_catalog.py <event>`
+    # is the normal way to iterate on a single event during a response, and
+    # without this that publishes a landing page with every other event
+    # silently deleted.
+    fresh = {cfg["id"]: cat for cfg, cat in built}
+    listed = []
+    for c in all_configs:
+        with open(c) as f:
+            cfg = json.load(f)
+        cat = fresh.get(cfg["id"])
+        if cat is None:
+            try:
+                with open(os.path.join(DATA_DIR, f'{cfg["id"]}.catalog.json')) as f:
+                    cat = json.load(f)
+            except (OSError, ValueError):
+                cat = {}
+        listed.append((cfg, cat))
+
     print("\nPages:")
-    write_landing(built)
+    write_landing(listed)
     if failed:
         print(f"\nStale (kept previous catalogue): {', '.join(failed)}", file=sys.stderr)
         return 2
