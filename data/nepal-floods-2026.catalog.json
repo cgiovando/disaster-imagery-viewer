@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-04T05:09:12Z",
+ "generated": "2026-09-04T06:09:06Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2172,7 +2172,7 @@
    "status": "PUBLISHED",
    "priority": "URGENT",
    "percent_mapped": 100,
-   "percent_validated": 75,
+   "percent_validated": 82,
    "url": "https://tasks.hotosm.org/projects/63564",
    "aoi": {
     "type": "MultiPolygon",
@@ -2613,14 +2613,14 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-03T11:27:29.130000Z",
-   "last_updated": "2026-09-03T21:16:19.437000Z",
+   "last_updated": "2026-09-04T05:32:46.856000Z",
    "total_tasks": null,
    "task_status": {
     "18": "VALIDATED",
     "60": "VALIDATED",
-    "59": "MAPPED",
+    "59": "VALIDATED",
     "62": "VALIDATED",
-    "61": "MAPPED",
+    "61": "VALIDATED",
     "11": "VALIDATED",
     "3": "VALIDATED",
     "4": "VALIDATED",
@@ -2654,9 +2654,9 @@
     "26": "VALIDATED",
     "31": "VALIDATED",
     "29": "BADIMAGERY",
-    "25": "MAPPED",
     "15": "VALIDATED",
     "16": "VALIDATED",
+    "25": "VALIDATED",
     "51": "VALIDATED",
     "52": "VALIDATED",
     "54": "VALIDATED",
@@ -2673,13 +2673,13 @@
     "48": "VALIDATED",
     "44": "VALIDATED",
     "35": "VALIDATED",
-    "39": "MAPPED",
     "36": "VALIDATED",
-    "47": "VALIDATED"
+    "47": "VALIDATED",
+    "39": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 44,
-    "MAPPED": 14,
+    "VALIDATED": 48,
+    "MAPPED": 10,
     "BADIMAGERY": 2
    }
   },
