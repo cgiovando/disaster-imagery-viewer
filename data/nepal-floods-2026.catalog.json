@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T03:09:02Z",
+ "generated": "2026-09-05T04:11:05Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -10,11 +10,31 @@
    "count": 9
   },
   "hdx": {
-   "status": "ok",
+   "status": "stale",
    "count": 4
   }
  },
  "failures": [
+  {
+   "source": "hdx",
+   "what": "HDX hot_flood_npl",
+   "detail": "Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "source": "hdx",
+   "what": "HDX hot_flood_npl_corridor",
+   "detail": "Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "source": "hdx",
+   "what": "HDX hot_flood_npl_buildings_damage",
+   "detail": "Expecting value: line 1 column 1 (char 0)"
+  },
+  {
+   "source": "hdx",
+   "what": "HDX 2026-nepal-flash-flood",
+   "detail": "Expecting value: line 1 column 1 (char 0)"
+  },
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
