@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T00:08:32Z",
+ "generated": "2026-09-05T01:08:15Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -13755,12 +13755,12 @@
     "385": "READY",
     "377": "MAPPED",
     "386": "MAPPED",
-    "372": "READY",
     "378": "READY",
     "380": "MAPPED",
     "376": "MAPPED",
     "382": "MAPPED",
     "383": "MAPPED",
+    "372": "LOCKED_FOR_MAPPING",
     "397": "READY",
     "393": "MAPPED",
     "401": "MAPPED",
@@ -13775,10 +13775,10 @@
     "403": "MAPPED",
     "390": "MAPPED",
     "399": "MAPPED",
-    "391": "READY",
     "388": "MAPPED",
     "387": "MAPPED",
     "402": "READY",
+    "391": "LOCKED_FOR_MAPPING",
     "413": "READY",
     "414": "READY",
     "409": "MAPPED",
@@ -14228,7 +14228,7 @@
     "883": "READY",
     "884": "READY",
     "890": "MAPPED",
-    "869": "LOCKED_FOR_MAPPING",
+    "869": "READY",
     "892": "READY",
     "893": "READY",
     "900": "MAPPED",
@@ -14502,10 +14502,10 @@
    },
    "task_counts": {
     "MAPPED": 882,
-    "READY": 204,
+    "READY": 203,
     "BADIMAGERY": 1,
     "VALIDATED": 8,
-    "LOCKED_FOR_MAPPING": 1
+    "LOCKED_FOR_MAPPING": 2
    }
   },
   {
