@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T04:09:17Z",
+ "generated": "2026-09-05T04:13:33Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -10,27 +10,11 @@
    "count": 7
   },
   "hdx": {
-   "status": "stale",
+   "status": "ok",
    "count": 3
   }
  },
- "failures": [
-  {
-   "source": "hdx",
-   "what": "HDX idn-earthquake-sm-us6000tkt2",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "source": "hdx",
-   "what": "HDX idn-earthquake-sm-us6000tkuc",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "source": "hdx",
-   "what": "HDX idn-earthquake-sm-us6000tm1j",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  }
- ],
+ "failures": [],
  "event": {
   "id": "indonesia-earthquake-2026",
   "name": "Indonesia Earthquake 2026",

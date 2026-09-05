@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T04:11:05Z",
+ "generated": "2026-09-05T04:14:08Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -10,31 +10,11 @@
    "count": 9
   },
   "hdx": {
-   "status": "stale",
+   "status": "ok",
    "count": 4
   }
  },
  "failures": [
-  {
-   "source": "hdx",
-   "what": "HDX hot_flood_npl",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "source": "hdx",
-   "what": "HDX hot_flood_npl_corridor",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "source": "hdx",
-   "what": "HDX hot_flood_npl_buildings_damage",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  },
-  {
-   "source": "hdx",
-   "what": "HDX 2026-nepal-flash-flood",
-   "detail": "Expecting value: line 1 column 1 (char 0)"
-  },
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
@@ -54517,7 +54497,7 @@
    "slug": "hot_flood_npl",
    "title": "Nepal Flood 2026 Flood Affected Area, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl",
-   "last_modified": "2026-09-04T23:01:34.882667",
+   "last_modified": "2026-09-05T04:04:49.308416",
    "num_resources": 78
   },
   {
