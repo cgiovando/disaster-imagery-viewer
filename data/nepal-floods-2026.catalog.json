@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T05:08:53Z",
+ "generated": "2026-09-05T06:09:01Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2169,7 +2169,7 @@
   {
    "id": 63564,
    "name": "Nepal Flood 2026 Response - Lower Trishuli and Bhote Koshi Corridor - Final Parts [Buildings and Roads]",
-   "status": "PUBLISHED",
+   "status": "ARCHIVED",
    "priority": "URGENT",
    "percent_mapped": 100,
    "percent_validated": 100,
@@ -2613,7 +2613,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-03T11:27:29.130000Z",
-   "last_updated": "2026-09-04T07:41:38.246000Z",
+   "last_updated": "2026-09-05T05:24:13.337000Z",
    "total_tasks": null,
    "task_status": {
     "18": "VALIDATED",
