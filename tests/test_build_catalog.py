@@ -69,6 +69,52 @@ class ArcgisGeojsonProbeTest(unittest.TestCase):
         self.assertEqual(BUILD.FAILURES, [])
 
 
+class TaskStatusCarryForwardTest(unittest.TestCase):
+    """A transient Tasking Manager tasks failure must not drop a project's
+    task statuses from the catalogue when the previous build had them."""
+
+    SCENE = {"id": "s1", "title": "scene", "acquired": "2026-08-27T00:00:00Z",
+             "phase": "post", "in_aoi": True, "gsd_cm": 50.0, "provider": "X",
+             "is_drone": False, "group": "post-satellite"}
+    PREV_PROJECT = {"id": 1, "name": "P1", "status": "PUBLISHED",
+                    "task_status": {"5": "MAPPED", "6": "VALIDATED"},
+                    "task_counts": {"MAPPED": 1, "VALIDATED": 1}}
+
+    def _build_with_tasks_unavailable(self, tmp):
+        cfg_path = tmp / "t.json"
+        cfg_path.write_text(json.dumps({
+            "id": "t", "name": "T", "eventDate": "2026-08-26", "bbox": [0, 0, 1, 1]}))
+        (tmp / "t.catalog.json").write_text(json.dumps({
+            "scenes": [self.SCENE], "tm_projects": [self.PREV_PROJECT], "hdx": []}))
+        fresh_project = {k: v for k, v in self.PREV_PROJECT.items()
+                         if k not in ("task_status", "task_counts")}
+        with mock.patch.object(BUILD, "DATA_DIR", str(tmp)), \
+                mock.patch.object(BUILD, "fetch_oam", return_value=[dict(self.SCENE)]), \
+                mock.patch.object(BUILD, "fetch_tm", return_value=[fresh_project]), \
+                mock.patch.object(BUILD, "fetch_planet_crisis", return_value=[]), \
+                mock.patch.object(BUILD, "fetch_provider_metadata", return_value={}), \
+                mock.patch.object(BUILD, "fetch_tasks", return_value=(None, None)), \
+                mock.patch.object(BUILD, "fetch_esri_seamlines",
+                                  return_value={"type": "FeatureCollection", "features": []}), \
+                mock.patch.object(BUILD, "fetch_hdx", return_value=[]), \
+                mock.patch.object(BUILD, "check_extra_layers", return_value=0), \
+                mock.patch("sys.stdout", new_callable=io.StringIO):
+            return BUILD.build(str(cfg_path))
+
+    def test_previous_task_status_survives_tasks_outage(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            catalog = self._build_with_tasks_unavailable(pathlib.Path(d))
+            written = json.loads((pathlib.Path(d) / "t.catalog.json").read_text())
+
+        self.assertIsNotNone(catalog)
+        project = catalog["tm_projects"][0]
+        self.assertEqual(project["task_status"], self.PREV_PROJECT["task_status"])
+        self.assertEqual(project["task_counts"], self.PREV_PROJECT["task_counts"])
+        self.assertEqual(written["tm_projects"][0]["task_status"],
+                         self.PREV_PROJECT["task_status"])
+
+
 class NepalLayerConfigTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

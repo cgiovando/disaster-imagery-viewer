@@ -737,10 +737,23 @@ def build(cfg_path):
     # joined by task id, so discard them and refetch.
     grids = {k: v for k, v in grids.items() if isinstance(v, dict)}
     grids_changed = False
+    # Task status from the last good build, by project id. The section-level
+    # carry-forward below cannot see a tasks failure: the project count is
+    # unchanged and the failure is tagged task_grids, so without this one
+    # transient 502 dropped a project's statuses and the viewer, which needs
+    # geometry and statuses together, hid a 100% mapped grid until the next
+    # clean build.
+    prev_tm = {str(p.get("id")): p for p in (previous.get("tm_projects") or [])}
     for p in tm:
         geoms, statuses = fetch_tasks(p["id"])
         if geoms is None:
-            print(f"    project {p['id']}: unavailable, keeping any existing grid")
+            prev = prev_tm.get(str(p["id"])) or {}
+            if prev.get("task_status"):
+                p["task_status"] = prev["task_status"]
+                p["task_counts"] = prev.get("task_counts") or {}
+                print(f"    project {p['id']}: unavailable, keeping previous task status")
+            else:
+                print(f"    project {p['id']}: unavailable, keeping any existing grid")
             continue
         key = str(p["id"])
         # Rewrite geometry whenever the set of task ids changes, not just the
