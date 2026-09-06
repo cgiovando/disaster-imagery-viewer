@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-05T22:47:04Z",
+ "generated": "2026-09-06T00:08:33Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -14054,7 +14054,6 @@
     "681": "MAPPED",
     "709": "READY",
     "720": "READY",
-    "723": "READY",
     "703": "READY",
     "699": "MAPPED",
     "712": "MAPPED",
@@ -14080,6 +14079,7 @@
     "713": "READY",
     "708": "READY",
     "719": "READY",
+    "723": "LOCKED_FOR_MAPPING",
     "729": "READY",
     "740": "READY",
     "744": "MAPPED",
@@ -14489,8 +14489,8 @@
     "1090": "MAPPED",
     "1106": "READY",
     "1107": "READY",
+    "1108": "READY",
     "1109": "READY",
-    "1108": "LOCKED_FOR_MAPPING",
     "260": "MAPPED",
     "43": "MAPPED",
     "56": "MAPPED",
@@ -26391,7 +26391,7 @@
     "286": "VALIDATED",
     "154": "VALIDATED",
     "178": "VALIDATED",
-    "22": "INVALIDATED",
+    "22": "LOCKED_FOR_MAPPING",
     "11": "VALIDATED",
     "173": "VALIDATED",
     "138": "VALIDATED",
@@ -26426,7 +26426,7 @@
     "266": "VALIDATED",
     "113": "VALIDATED",
     "136": "VALIDATED",
-    "148": "LOCKED_FOR_MAPPING",
+    "148": "INVALIDATED",
     "112": "VALIDATED",
     "191": "VALIDATED",
     "125": "VALIDATED",
@@ -26606,7 +26606,7 @@
     "28": "VALIDATED",
     "370": "VALIDATED",
     "300": "VALIDATED",
-    "176": "INVALIDATED",
+    "176": "LOCKED_FOR_MAPPING",
     "355": "VALIDATED",
     "174": "VALIDATED",
     "158": "VALIDATED",
@@ -26626,8 +26626,8 @@
    },
    "task_counts": {
     "VALIDATED": 353,
-    "INVALIDATED": 6,
-    "LOCKED_FOR_MAPPING": 1
+    "INVALIDATED": 5,
+    "LOCKED_FOR_MAPPING": 2
    }
   },
   {
