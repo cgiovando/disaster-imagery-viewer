@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-06T21:08:39Z",
+ "generated": "2026-09-06T21:12:18Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -13544,7 +13544,7 @@
     "147": "MAPPED",
     "155": "MAPPED",
     "157": "MAPPED",
-    "156": "READY",
+    "156": "LOCKED_FOR_MAPPING",
     "168": "MAPPED",
     "166": "MAPPED",
     "162": "MAPPED",
@@ -14508,11 +14508,11 @@
    },
    "task_counts": {
     "MAPPED": 943,
-    "READY": 109,
+    "READY": 108,
     "VALIDATED": 36,
     "INVALIDATED": 11,
     "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 2
+    "LOCKED_FOR_MAPPING": 3
    }
   },
   {
