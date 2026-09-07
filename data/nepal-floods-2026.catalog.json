@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-07T07:10:44Z",
+ "generated": "2026-09-07T08:09:10Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -24,6 +24,16 @@
    "source": "impact_layers",
    "what": "layer unosat-detachment",
    "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-roads",
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-roads",
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
