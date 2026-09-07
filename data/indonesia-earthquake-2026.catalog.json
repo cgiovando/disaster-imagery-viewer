@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-07T16:23:04Z",
+ "generated": "2026-09-07T17:08:16Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -504,7 +504,7 @@
    "name": "Earthquake Response 2026 - East Nusa Tenggara, Indonesia 6",
    "status": "PUBLISHED",
    "priority": "HIGH",
-   "percent_mapped": 92,
+   "percent_mapped": 93,
    "percent_validated": 4,
    "url": "https://tasks.hotosm.org/projects/63366",
    "aoi": {
@@ -13400,7 +13400,7 @@
    },
    "imagery": "https://api.imagery.hotosm.org/raster/collections/vantor-opendata/tiles/WebMercatorQuad/{z}/{x}/{y}?ids=103001011748BA00,103001012628F900,10300101297FF100,1030010129CB7B00,10400100B90B7700,B030001100BE1D10,B030001100BE1F10,B030001100BE2210,B030001100C6AD10,B030001100C6B710,B0400011007EEC10,B0400011007EED10,B04000110080F510,B040001100880F10,B04000110089BC10,B04000110089C610,B04000110089D610,B04000110089F210,B04000110089F310,B050001100601110,B050001100632D10,B1100011009D1610,B1100011010C7E10,B1100011010C9710,B110001101137E10,B1200011010AC310,B12000110111CF10,B12000110111F110,B12000110111F310,B13000110106A510,B13000110106DF10,B130001101088010,B130001101088310,B1300011010A1610,B1300011010A1710,B13000110110C810,B13000110110C910,B13000110110CA10,B140001100F3E110,B140001100F9B410,B140001100FB4410,B150001101CDA510,B150001101CDBF10,B150001101D44C10,B150001101D45210,B150001101D53710,B160001101C97C10,B160001101C97D10&assets=visual&nodata=0",
    "created": "2026-08-31T07:39:16.254000Z",
-   "last_updated": "2026-09-07T16:11:06.764000Z",
+   "last_updated": "2026-09-07T17:06:15.046000Z",
    "total_tasks": null,
    "task_status": {
     "616": "MAPPED",
@@ -13791,7 +13791,7 @@
     "410": "MAPPED",
     "405": "MAPPED",
     "414": "READY",
-    "411": "LOCKED_FOR_MAPPING",
+    "411": "MAPPED",
     "425": "MAPPED",
     "422": "MAPPED",
     "423": "MAPPED",
@@ -13932,8 +13932,8 @@
     "567": "MAPPED",
     "565": "MAPPED",
     "564": "MAPPED",
-    "571": "READY",
     "573": "MAPPED",
+    "571": "LOCKED_FOR_MAPPING",
     "576": "VALIDATED",
     "577": "MAPPED",
     "578": "MAPPED",
@@ -14047,7 +14047,6 @@
     "681": "MAPPED",
     "686": "MAPPED",
     "683": "MAPPED",
-    "720": "READY",
     "699": "MAPPED",
     "712": "MAPPED",
     "727": "MAPPED",
@@ -14160,7 +14159,6 @@
     "826": "READY",
     "803": "READY",
     "804": "READY",
-    "836": "READY",
     "828": "MAPPED",
     "832": "MAPPED",
     "838": "MAPPED",
@@ -14171,14 +14169,15 @@
     "847": "MAPPED",
     "846": "MAPPED",
     "848": "MAPPED",
-    "830": "READY",
     "840": "MAPPED",
-    "839": "READY",
     "843": "MAPPED",
     "842": "MAPPED",
     "845": "MAPPED",
     "844": "MAPPED",
     "837": "MAPPED",
+    "836": "MAPPED",
+    "839": "MAPPED",
+    "830": "LOCKED_FOR_MAPPING",
     "850": "MAPPED",
     "860": "MAPPED",
     "857": "MAPPED",
@@ -14504,15 +14503,16 @@
     "500": "VALIDATED",
     "534": "MAPPED",
     "180": "MAPPED",
-    "811": "MAPPED"
+    "811": "MAPPED",
+    "720": "MAPPED"
    },
    "task_counts": {
-    "MAPPED": 974,
-    "READY": 71,
+    "MAPPED": 978,
+    "READY": 66,
     "VALIDATED": 46,
     "INVALIDATED": 9,
     "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 1
+    "LOCKED_FOR_MAPPING": 2
    }
   },
   {
