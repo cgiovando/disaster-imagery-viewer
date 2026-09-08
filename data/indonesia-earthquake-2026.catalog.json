@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-08T21:08:33Z",
+ "generated": "2026-09-08T21:46:19Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -14346,9 +14346,9 @@
     "1043": "MAPPED",
     "1042": "MAPPED",
     "1038": "MAPPED",
-    "1041": "READY",
     "1037": "MAPPED",
     "1039": "MAPPED",
+    "1041": "LOCKED_FOR_MAPPING",
     "1067": "MAPPED",
     "1066": "MAPPED",
     "1065": "MAPPED",
@@ -14409,7 +14409,7 @@
     "782": "MAPPED",
     "579": "MAPPED",
     "750": "VALIDATED",
-    "820": "LOCKED_FOR_MAPPING",
+    "820": "READY",
     "1102": "MAPPED",
     "1104": "MAPPED",
     "1103": "VALIDATED",
