@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-09T05:09:27Z",
+ "generated": "2026-09-09T06:09:07Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -18,37 +18,102 @@
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-detachment",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer sertit-flood-trace",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer sertit-builtup",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer sertit-roads",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-buildings",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-buildings",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-buildings",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-buildings",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-roads",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-roads",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-roads",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-roads",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-observed",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-observed",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-observed",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer copernicus-observed",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
   },
   {
    "source": "impact_layers",
-   "what": "layer unosat-affected-buildings",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer unosat-affected-roads",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer unosat-cropland",
-   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+   "what": "layer unosat-heritage",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
   }
  ],
  "event": {
