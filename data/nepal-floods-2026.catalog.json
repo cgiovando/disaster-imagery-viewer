@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-09T14:10:00Z",
+ "generated": "2026-09-09T14:24:15Z",
  "sources": {
   "scenes": {
-   "status": "stale",
+   "status": "ok",
    "count": 76
   },
   "tasking_manager": {
@@ -15,11 +15,6 @@
   }
  },
  "failures": [
-  {
-   "source": "scenes",
-   "what": "Planet item 20260827_060958_31_3009.json",
-   "detail": "HTTP 520"
-  },
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
@@ -113,6 +108,11 @@
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
+   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer unosat-heritage",
    "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
   }
  ],
