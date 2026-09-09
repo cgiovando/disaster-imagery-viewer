@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-09T03:08:22Z",
+ "generated": "2026-09-09T04:08:22Z",
  "sources": {
   "scenes": {
    "status": "ok",
-   "count": 15
+   "count": 16
   },
   "tasking_manager": {
    "status": "ok",
@@ -42,6 +42,31 @@
  },
  "esri_seamlines": "indonesia-earthquake-2026.esri-seamlines.geojson",
  "scenes": [
+  {
+   "id": "6aa0d9ce169f940f76ba59f0",
+   "title": "Nanga Kantor Barat",
+   "tms": "https://tiles.openaerialmap.org/6aa0d80e169f940f76ba579f/0/6aa0d80e169f940f76ba57a0/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6aa0d80e169f940f76ba579f/0/6aa0d80e169f940f76ba57a0.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6aa0d80e169f940f76ba579f%2F0%2F6aa0d80e169f940f76ba57a0.tif",
+   "acquired": "2026-08-29T17:00:00.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2026-08-29T17:00:00.000Z",
+   "phase": "post",
+   "gsd_cm": 3.9,
+   "provider": "Asosiasi Pilot Drone Indonesia",
+   "platform": "aircraft",
+   "is_drone": true,
+   "license": null,
+   "bbox": [
+    120.123543,
+    -8.42139,
+    120.133117,
+    -8.412024
+   ],
+   "in_aoi": false,
+   "oam_url": "https://map.openaerialmap.org/#/6aa0d9ce169f940f76ba59f0",
+   "group": "post-drone"
+  },
   {
    "id": "6a8c1a2b1ea99a5c6d2e4927",
    "title": "[POST] Vantor LG05 Image B150001101CDA510",
