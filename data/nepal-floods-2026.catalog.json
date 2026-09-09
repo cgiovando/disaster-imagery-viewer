@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-09T10:08:41Z",
+ "generated": "2026-09-09T11:09:16Z",
  "sources": {
   "scenes": {
    "status": "ok",
-   "count": 75
+   "count": 76
   },
   "tasking_manager": {
    "status": "ok",
@@ -144,6 +144,39 @@
  "esri_seamlines": "nepal-floods-2026.esri-seamlines.geojson",
  "scenes": [
   {
+   "id": "6aa13445c0980283f78588bd",
+   "title": "[POST] Vantor WV03 Image B0400011009ECD10",
+   "tms": "https://tiles.openaerialmap.org/6aa13202c0980283f78583f3/0/6aa13202c0980283f78583f4/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6aa13202c0980283f78583f3/0/6aa13202c0980283f78583f4.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6aa13202c0980283f78583f3%2F0%2F6aa13202c0980283f78583f4.tif",
+   "acquired": "2026-09-09T03:11:00.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2026-09-09T03:11:00.000Z",
+   "phase": "post",
+   "gsd_cm": 39.1,
+   "provider": "Vantor",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.25957,
+    28.058075,
+    85.416819,
+    28.23978
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/6aa13445c0980283f78588bd",
+   "group": "post-satellite",
+   "catalog_id": "B0400011009ECD10",
+   "cloud_pct": 84.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
+  },
+  {
    "id": "6a9fe9059626406760105cf8",
    "title": "[POST] Vantor LG04 Image B14000110116A310",
    "tms": "https://tiles.openaerialmap.org/6a9fe68996264067601058f9/0/6a9fe68996264067601058fa/{z}/{x}/{y}",
@@ -177,39 +210,6 @@
    ]
   },
   {
-   "id": "6a9fc8ef96264067601031a4",
-   "title": "[POST] Vantor WV02 Image B030001100EF5110",
-   "tms": "https://tiles.openaerialmap.org/6a9fc6a9962640676010257f/0/6a9fc6a99626406760102580/{z}/{x}/{y}",
-   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a9fc6a9962640676010257f/0/6a9fc6a99626406760102580.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a9fc6a9962640676010257f%2F0%2F6a9fc6a99626406760102580.tif",
-   "acquired": "2026-09-08T03:02:00.000Z",
-   "acquired_source": "oam",
-   "oam_acquired": "2026-09-08T03:02:00.000Z",
-   "phase": "post",
-   "gsd_cm": 67.8,
-   "provider": "Vantor",
-   "platform": "satellite",
-   "is_drone": false,
-   "license": null,
-   "bbox": [
-    84.878314,
-    27.642673,
-    85.098142,
-    27.903807
-   ],
-   "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/6a9fc8ef96264067601031a4",
-   "group": "post-satellite",
-   "catalog_id": "B030001100EF5110",
-   "cloud_pct": 56.0,
-   "sensor": "maxar",
-   "bands": [
-    "red",
-    "green",
-    "blue"
-   ]
-  },
-  {
    "id": "6a9fc8fb96264067601031c3",
    "title": "[POST] Vantor WV02 Image B030001100EF5210",
    "tms": "https://tiles.openaerialmap.org/6a9fc6d49626406760102659/0/6a9fc6d4962640676010265a/{z}/{x}/{y}",
@@ -235,6 +235,39 @@
    "group": "post-satellite",
    "catalog_id": "B030001100EF5210",
    "cloud_pct": 40.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
+  },
+  {
+   "id": "6a9fc8ef96264067601031a4",
+   "title": "[POST] Vantor WV02 Image B030001100EF5110",
+   "tms": "https://tiles.openaerialmap.org/6a9fc6a9962640676010257f/0/6a9fc6a99626406760102580/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a9fc6a9962640676010257f/0/6a9fc6a99626406760102580.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a9fc6a9962640676010257f%2F0%2F6a9fc6a99626406760102580.tif",
+   "acquired": "2026-09-08T03:02:00.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2026-09-08T03:02:00.000Z",
+   "phase": "post",
+   "gsd_cm": 67.8,
+   "provider": "Vantor",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    84.878314,
+    27.642673,
+    85.098142,
+    27.903807
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/6a9fc8ef96264067601031a4",
+   "group": "post-satellite",
+   "catalog_id": "B030001100EF5110",
+   "cloud_pct": 56.0,
    "sensor": "maxar",
    "bands": [
     "red",
@@ -1138,31 +1171,31 @@
    ]
   },
   {
-   "id": "6a91675c835b65a3708c8d99",
-   "title": "[POST] Vantor WV02 Image B030001100CF1310",
-   "tms": "https://tiles.openaerialmap.org/6a9164c2835b65a3708c80f8/0/6a9164c2835b65a3708c80f9/{z}/{x}/{y}",
-   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a9164c2835b65a3708c80f8/0/6a9164c2835b65a3708c80f9.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a9164c2835b65a3708c80f8%2F0%2F6a9164c2835b65a3708c80f9.tif",
+   "id": "6a91663a835b65a3708c87c9",
+   "title": "[POST] Vantor WV02 Image B030001100CF1110",
+   "tms": "https://tiles.openaerialmap.org/6a916437835b65a3708c8011/0/6a916437835b65a3708c8012/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a916437835b65a3708c8011/0/6a916437835b65a3708c8012.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a916437835b65a3708c8011%2F0%2F6a916437835b65a3708c8012.tif",
    "acquired": "2026-08-28T03:07:00.000Z",
    "acquired_source": "oam",
    "oam_acquired": "2026-08-28T03:07:00.000Z",
    "phase": "post",
-   "gsd_cm": 56.1,
+   "gsd_cm": 58.1,
    "provider": "Vantor",
    "platform": "satellite",
    "is_drone": false,
    "license": null,
    "bbox": [
-    85.267538,
-    28.10867,
-    85.451987,
-    28.355945
+    85.280936,
+    28.144049,
+    85.469433,
+    28.330058
    ],
    "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/6a91675c835b65a3708c8d99",
+   "oam_url": "https://map.openaerialmap.org/#/6a91663a835b65a3708c87c9",
    "group": "post-satellite",
-   "catalog_id": "B030001100CF1310",
-   "cloud_pct": 78.0,
+   "catalog_id": "B030001100CF1110",
+   "cloud_pct": 81.0,
    "sensor": "maxar",
    "bands": [
     "red",
@@ -1204,31 +1237,31 @@
    ]
   },
   {
-   "id": "6a91663a835b65a3708c87c9",
-   "title": "[POST] Vantor WV02 Image B030001100CF1110",
-   "tms": "https://tiles.openaerialmap.org/6a916437835b65a3708c8011/0/6a916437835b65a3708c8012/{z}/{x}/{y}",
-   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a916437835b65a3708c8011/0/6a916437835b65a3708c8012.tif",
-   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a916437835b65a3708c8011%2F0%2F6a916437835b65a3708c8012.tif",
+   "id": "6a91675c835b65a3708c8d99",
+   "title": "[POST] Vantor WV02 Image B030001100CF1310",
+   "tms": "https://tiles.openaerialmap.org/6a9164c2835b65a3708c80f8/0/6a9164c2835b65a3708c80f9/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6a9164c2835b65a3708c80f8/0/6a9164c2835b65a3708c80f9.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6a9164c2835b65a3708c80f8%2F0%2F6a9164c2835b65a3708c80f9.tif",
    "acquired": "2026-08-28T03:07:00.000Z",
    "acquired_source": "oam",
    "oam_acquired": "2026-08-28T03:07:00.000Z",
    "phase": "post",
-   "gsd_cm": 58.1,
+   "gsd_cm": 56.1,
    "provider": "Vantor",
    "platform": "satellite",
    "is_drone": false,
    "license": null,
    "bbox": [
-    85.280936,
-    28.144049,
-    85.469433,
-    28.330058
+    85.267538,
+    28.10867,
+    85.451987,
+    28.355945
    ],
    "in_aoi": true,
-   "oam_url": "https://map.openaerialmap.org/#/6a91663a835b65a3708c87c9",
+   "oam_url": "https://map.openaerialmap.org/#/6a91675c835b65a3708c8d99",
    "group": "post-satellite",
-   "catalog_id": "B030001100CF1110",
-   "cloud_pct": 81.0,
+   "catalog_id": "B030001100CF1310",
+   "cloud_pct": 78.0,
    "sensor": "maxar",
    "bands": [
     "red",
