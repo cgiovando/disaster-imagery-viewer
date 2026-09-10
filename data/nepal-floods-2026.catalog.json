@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-10T11:08:01Z",
+ "generated": "2026-09-10T12:08:23Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -18,102 +18,37 @@
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-detachment",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer sertit-flood-trace",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer sertit-builtup",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer sertit-roads",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-buildings",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-buildings",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-buildings",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-buildings",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-roads",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-roads",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-roads",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-roads",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-observed",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-observed",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-observed",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
-  },
-  {
-   "source": "impact_layers",
-   "what": "layer copernicus-observed",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   },
   {
    "source": "impact_layers",
-   "what": "layer unosat-heritage",
-   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
+   "what": "layer unosat-affected-buildings",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer unosat-affected-roads",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
+  },
+  {
+   "source": "impact_layers",
+   "what": "layer unosat-cropland",
+   "detail": "service error 500: Service FL20260826NPL/UNOSAT_Analysis/MapServer not started "
   }
  ],
  "event": {
