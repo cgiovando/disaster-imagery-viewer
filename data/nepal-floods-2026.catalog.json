@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-10T08:07:51Z",
+ "generated": "2026-09-10T09:07:55Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -18,102 +18,102 @@
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-detachment",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer sertit-flood-trace",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer sertit-builtup",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer sertit-roads",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-buildings",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-buildings",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-buildings",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-buildings",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-roads",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-roads",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-roads",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-roads",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-observed",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-observed",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-observed",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer copernicus-observed",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-barrier-lakes",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   },
   {
    "source": "impact_layers",
    "what": "layer unosat-heritage",
-   "detail": "URLError: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certi"
+   "detail": "HTTPError: HTTP Error 500: Internal Server Error"
   }
  ],
  "event": {
