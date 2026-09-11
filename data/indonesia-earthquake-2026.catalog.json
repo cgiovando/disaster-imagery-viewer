@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-11T11:08:08Z",
+ "generated": "2026-09-11T12:07:56Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -529,7 +529,7 @@
    "name": "Earthquake Response 2026 - East Nusa Tenggara, Indonesia 6",
    "status": "PUBLISHED",
    "priority": "HIGH",
-   "percent_mapped": 100,
+   "percent_mapped": 99,
    "percent_validated": 23,
    "url": "https://tasks.hotosm.org/projects/63366",
    "aoi": {
