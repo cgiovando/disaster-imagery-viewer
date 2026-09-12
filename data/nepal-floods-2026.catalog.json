@@ -1,9 +1,9 @@
 {
- "generated": "2026-09-12T12:08:22Z",
+ "generated": "2026-09-12T13:09:30Z",
  "sources": {
   "scenes": {
    "status": "ok",
-   "count": 76
+   "count": 77
   },
   "tasking_manager": {
    "status": "ok",
@@ -78,6 +78,39 @@
  },
  "esri_seamlines": "nepal-floods-2026.esri-seamlines.geojson",
  "scenes": [
+  {
+   "id": "6aa5480504033cef6769844b",
+   "title": "[POST] Vantor LG02 Image B1200011012B2A10",
+   "tms": "https://tiles.openaerialmap.org/6aa545e304033cef67698106/0/6aa545e304033cef67698107/{z}/{x}/{y}",
+   "cog": "https://oin-hotosm-temp.s3.us-east-1.amazonaws.com/6aa545e304033cef67698106/0/6aa545e304033cef67698107.tif",
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Foin-hotosm-temp.s3.us-east-1.amazonaws.com%2F6aa545e304033cef67698106%2F0%2F6aa545e304033cef67698107.tif",
+   "acquired": "2026-09-12T05:26:00.000Z",
+   "acquired_source": "oam",
+   "oam_acquired": "2026-09-12T05:26:00.000Z",
+   "phase": "post",
+   "gsd_cm": 40.8,
+   "provider": "Vantor",
+   "platform": "satellite",
+   "is_drone": false,
+   "license": null,
+   "bbox": [
+    85.279589,
+    28.095027,
+    85.401067,
+    28.225036
+   ],
+   "in_aoi": true,
+   "oam_url": "https://map.openaerialmap.org/#/6aa5480504033cef6769844b",
+   "group": "post-satellite",
+   "catalog_id": "B1200011012B2A10",
+   "cloud_pct": 59.0,
+   "sensor": "maxar",
+   "bands": [
+    "red",
+    "green",
+    "blue"
+   ]
+  },
   {
    "id": "6aa13445c0980283f78588bd",
    "title": "[POST] Vantor WV03 Image B0400011009ECD10",
