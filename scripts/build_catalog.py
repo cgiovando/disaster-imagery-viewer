@@ -737,10 +737,23 @@ def build(cfg_path):
     # joined by task id, so discard them and refetch.
     grids = {k: v for k, v in grids.items() if isinstance(v, dict)}
     grids_changed = False
+    # Task status from the last good build, by project id. The section-level
+    # carry-forward below cannot see a tasks failure: the project count is
+    # unchanged and the failure is tagged task_grids, so without this one
+    # transient 502 dropped a project's statuses and the viewer, which needs
+    # geometry and statuses together, hid a 100% mapped grid until the next
+    # clean build.
+    prev_tm = {str(p.get("id")): p for p in (previous.get("tm_projects") or [])}
     for p in tm:
         geoms, statuses = fetch_tasks(p["id"])
         if geoms is None:
-            print(f"    project {p['id']}: unavailable, keeping any existing grid")
+            prev = prev_tm.get(str(p["id"])) or {}
+            if prev.get("task_status"):
+                p["task_status"] = prev["task_status"]
+                p["task_counts"] = prev.get("task_counts") or {}
+                print(f"    project {p['id']}: unavailable, keeping previous task status")
+            else:
+                print(f"    project {p['id']}: unavailable, keeping any existing grid")
             continue
         key = str(p["id"])
         # Rewrite geometry whenever the set of task ids changes, not just the
@@ -916,9 +929,12 @@ def check_extra_layers(cfg):
     answering `error 400`; without this the only signal was a reader toggling
     that layer and seeing it fail.
 
-    Kept cheap: ArcGIS is asked for a count rather than geometry, and anything
-    else has only the first 2 KB of its body read, enough to confirm it really is
-    a FeatureCollection rather than an HTML error page served with a 200.
+    Kept cheap: ArcGIS is first asked for object ids, then one real feature is
+    fetched in GeoJSON. A count-only query is not enough: ArcGIS can answer it
+    successfully while the GeoJSON query used by the browser returns an error.
+    Anything else has only the first 2 KB of its body read, enough to confirm it
+    really is a FeatureCollection rather than an HTML error page served with a
+    200.
     Failures are tagged, so the existing health banner reports them without
     further plumbing.
     """
@@ -936,16 +952,7 @@ def check_extra_layers(cfg):
             checked += 1
             try:
                 if "/query?" in url and "f=geojson" in url:
-                    probe = url.replace("f=geojson", "f=json") + "&returnCountOnly=true"
-                    with urllib.request.urlopen(probe, timeout=60) as r:
-                        body = json.loads(r.read().decode("utf-8", "replace"))
-                    if "error" in body:
-                        err = body["error"]
-                        _fail(f"layer {lid}",
-                              f"service error {err.get('code')}: {str(err.get('message'))[:80]}")
-                    elif body.get("count") == 0:
-                        # Not an error: a real layer can legitimately be empty.
-                        print(f"    note: {lid} returned 0 features")
+                    _probe_arcgis_geojson(url, lid)
                 else:
                     # A HEAD would only catch HTTP failures. An endpoint can
                     # answer 200 with an HTML error page or truncated JSON, and
@@ -965,6 +972,47 @@ def check_extra_layers(cfg):
             except Exception as exc:  # noqa: BLE001 - report, never abort the build
                 _fail(f"layer {lid}", f"{type(exc).__name__}: {str(exc)[:80]}")
     return checked
+
+
+def _probe_arcgis_geojson(url, lid):
+    """Exercise the same GeoJSON path as the browser without fetching a layer.
+
+    ``returnCountOnly`` is intentionally not used as the health decision. The
+    Nepal UNOSAT service demonstrated that counts can work while every feature
+    query fails. Fetching one known object id keeps the probe small while still
+    testing feature serialization and geometry in GeoJSON.
+    """
+    query_base = url.split("?", 1)[0]
+    ids_url = query_base + "?" + urllib.parse.urlencode({
+        "where": "1=1", "returnIdsOnly": "true", "f": "json",
+    })
+    with urllib.request.urlopen(ids_url, timeout=60) as r:
+        ids_body = json.loads(r.read().decode("utf-8", "replace"))
+    if "error" in ids_body:
+        err = ids_body["error"]
+        _fail(f"layer {lid}",
+              f"service error {err.get('code')}: {str(err.get('message'))[:80]}")
+        return
+
+    object_ids = ids_body.get("objectIds") or []
+    if not object_ids:
+        print(f"    note: {lid} returned 0 features")
+        return
+
+    feature_url = query_base + "?" + urllib.parse.urlencode({
+        "objectIds": object_ids[0],
+        "outFields": "*",
+        "outSR": 4326,
+        "f": "geojson",
+    })
+    with urllib.request.urlopen(feature_url, timeout=60) as r:
+        body = json.loads(r.read().decode("utf-8", "replace"))
+    if "error" in body:
+        err = body["error"]
+        _fail(f"layer {lid}",
+              f"GeoJSON service error {err.get('code')}: {str(err.get('message'))[:72]}")
+    elif body.get("type") != "FeatureCollection" or not isinstance(body.get("features"), list):
+        _fail(f"layer {lid}", "GeoJSON query did not return a FeatureCollection")
 
 
 def asset_version(name):
