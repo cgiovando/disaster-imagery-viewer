@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-14T17:08:20Z",
+ "generated": "2026-09-14T18:08:33Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -14311,7 +14311,7 @@
     "1033": "VALIDATED",
     "1034": "VALIDATED",
     "1032": "VALIDATED",
-    "1031": "INVALIDATED",
+    "1031": "LOCKED_FOR_MAPPING",
     "1037": "MAPPED",
     "1043": "VALIDATED",
     "1042": "VALIDATED",
@@ -14541,9 +14541,9 @@
     "MAPPED": 600,
     "VALIDATED": 502,
     "BADIMAGERY": 1,
-    "LOCKED_FOR_MAPPING": 1,
+    "LOCKED_FOR_MAPPING": 2,
     "LOCKED_FOR_VALIDATION": 2,
-    "INVALIDATED": 2
+    "INVALIDATED": 1
    }
   },
   {
