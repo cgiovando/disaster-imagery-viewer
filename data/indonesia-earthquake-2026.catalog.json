@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-16T06:08:37Z",
+ "generated": "2026-09-16T07:08:19Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -530,7 +530,7 @@
    "status": "PUBLISHED",
    "priority": "HIGH",
    "percent_mapped": 99,
-   "percent_validated": 49,
+   "percent_validated": 50,
    "url": "https://tasks.hotosm.org/projects/63366",
    "aoi": {
     "type": "MultiPolygon",
