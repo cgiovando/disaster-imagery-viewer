@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-16T18:08:49Z",
+ "generated": "2026-09-16T19:08:33Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -14139,8 +14139,6 @@
     "835": "MAPPED",
     "834": "MAPPED",
     "840": "MAPPED",
-    "845": "MAPPED",
-    "844": "MAPPED",
     "837": "MAPPED",
     "836": "MAPPED",
     "839": "MAPPED",
@@ -14148,6 +14146,8 @@
     "829": "VALIDATED",
     "846": "VALIDATED",
     "848": "VALIDATED",
+    "844": "MAPPED",
+    "845": "MAPPED",
     "862": "VALIDATED",
     "859": "VALIDATED",
     "858": "VALIDATED",
