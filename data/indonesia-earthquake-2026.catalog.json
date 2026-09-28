@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-28T04:08:05Z",
+ "generated": "2026-09-28T08:08:11Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -13900,7 +13900,7 @@
     "548": "VALIDATED",
     "523": "VALIDATED",
     "524": "VALIDATED",
-    "530": "MAPPED",
+    "530": "LOCKED_FOR_VALIDATION",
     "558": "VALIDATED",
     "555": "VALIDATED",
     "556": "VALIDATED",
@@ -14168,7 +14168,6 @@
     "871": "VALIDATED",
     "872": "VALIDATED",
     "873": "VALIDATED",
-    "899": "MAPPED",
     "897": "VALIDATED",
     "894": "VALIDATED",
     "895": "VALIDATED",
@@ -14178,6 +14177,7 @@
     "898": "VALIDATED",
     "900": "VALIDATED",
     "896": "VALIDATED",
+    "899": "LOCKED_FOR_VALIDATION",
     "907": "VALIDATED",
     "906": "VALIDATED",
     "904": "VALIDATED",
@@ -14538,8 +14538,9 @@
     "727": "VALIDATED"
    },
    "task_counts": {
-    "MAPPED": 28,
-    "VALIDATED": 1080
+    "MAPPED": 26,
+    "VALIDATED": 1080,
+    "LOCKED_FOR_VALIDATION": 2
    }
   },
   {
