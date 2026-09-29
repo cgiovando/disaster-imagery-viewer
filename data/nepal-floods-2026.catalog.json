@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-29T17:09:17Z",
+ "generated": "2026-09-29T18:09:56Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2666,7 +2666,7 @@
    "name": "Nepal Flood 2026 Response - Third-Pass Data Quality Review",
    "status": "PUBLISHED",
    "priority": "HIGH",
-   "percent_mapped": 99,
+   "percent_mapped": 100,
    "percent_validated": 63,
    "url": "https://tasks.hotosm.org/projects/65676",
    "aoi": {
@@ -7416,7 +7416,7 @@
     "314": "VALIDATED",
     "318": "VALIDATED",
     "319": "VALIDATED",
-    "317": "LOCKED_FOR_VALIDATION",
+    "317": "MAPPED",
     "322": "MAPPED",
     "323": "MAPPED",
     "321": "VALIDATED",
@@ -7496,8 +7496,7 @@
    },
    "task_counts": {
     "VALIDATED": 225,
-    "MAPPED": 128,
-    "LOCKED_FOR_VALIDATION": 1
+    "MAPPED": 129
    }
   },
   {
