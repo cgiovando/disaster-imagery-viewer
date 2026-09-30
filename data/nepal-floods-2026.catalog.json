@@ -1,8 +1,8 @@
 {
- "generated": "2026-09-30T14:09:32Z",
+ "generated": "2026-09-30T15:11:31Z",
  "sources": {
   "scenes": {
-   "status": "ok",
+   "status": "stale",
    "count": 77
   },
   "tasking_manager": {
@@ -15,6 +15,11 @@
   }
  },
  "failures": [
+  {
+   "source": "scenes",
+   "what": "STAC planetscope-2026-05-27",
+   "detail": "HTTP 520"
+  },
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
@@ -2666,8 +2671,8 @@
    "name": "Nepal Flood 2026 Response - Third-Pass Data Quality Review",
    "status": "PUBLISHED",
    "priority": "HIGH",
-   "percent_mapped": 99,
-   "percent_validated": 99,
+   "percent_mapped": 100,
+   "percent_validated": 100,
    "url": "https://tasks.hotosm.org/projects/65676",
    "aoi": {
     "type": "MultiPolygon",
@@ -7136,7 +7141,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-15T12:57:30.479000Z",
-   "last_updated": "2026-09-30T14:04:57.952000Z",
+   "last_updated": "2026-09-30T14:10:55.494000Z",
    "total_tasks": null,
    "task_status": {
     "350": "VALIDATED",
@@ -7275,7 +7280,7 @@
     "168": "VALIDATED",
     "167": "VALIDATED",
     "171": "VALIDATED",
-    "170": "LOCKED_FOR_VALIDATION",
+    "170": "VALIDATED",
     "175": "VALIDATED",
     "176": "VALIDATED",
     "174": "VALIDATED",
@@ -7340,7 +7345,7 @@
     "243": "VALIDATED",
     "247": "VALIDATED",
     "245": "VALIDATED",
-    "246": "LOCKED_FOR_VALIDATION",
+    "246": "VALIDATED",
     "250": "VALIDATED",
     "249": "VALIDATED",
     "254": "VALIDATED",
@@ -7495,8 +7500,7 @@
     "8": "VALIDATED"
    },
    "task_counts": {
-    "VALIDATED": 352,
-    "LOCKED_FOR_VALIDATION": 2
+    "VALIDATED": 354
    }
   },
   {
