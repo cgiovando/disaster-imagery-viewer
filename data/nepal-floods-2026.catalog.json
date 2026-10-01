@@ -1,5 +1,5 @@
 {
- "generated": "2026-09-30T23:08:57Z",
+ "generated": "2026-10-01T03:09:28Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -2664,7 +2664,7 @@
   {
    "id": 65676,
    "name": "Nepal Flood 2026 Response - Third-Pass Data Quality Review",
-   "status": "PUBLISHED",
+   "status": "ARCHIVED",
    "priority": "HIGH",
    "percent_mapped": 100,
    "percent_validated": 100,
@@ -7136,7 +7136,7 @@
    },
    "imagery": "EsriWorldImagery",
    "created": "2026-09-15T12:57:30.479000Z",
-   "last_updated": "2026-09-30T14:10:55.494000Z",
+   "last_updated": "2026-10-01T02:17:41.042000Z",
    "total_tasks": null,
    "task_status": {
     "350": "VALIDATED",
@@ -59836,7 +59836,7 @@
    "slug": "hot_flood_npl_corridor",
    "title": "Nepal Flood 2026 River Corridor, Bhote Koshi and Trishuli",
    "url": "https://data.humdata.org/dataset/hot_flood_npl_corridor",
-   "last_modified": "2026-09-30T03:06:56.846794",
+   "last_modified": "2026-10-01T03:05:52.197594",
    "num_resources": 71
   },
   {
