@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-02T17:08:25Z",
+ "generated": "2026-10-02T18:08:26Z",
  "sources": {
   "scenes": {
    "status": "ok",
@@ -529,7 +529,7 @@
    "name": "Earthquake Response 2026 - East Nusa Tenggara, Indonesia 5",
    "status": "PUBLISHED",
    "priority": "HIGH",
-   "percent_mapped": 99,
+   "percent_mapped": 100,
    "percent_validated": 58,
    "url": "https://tasks.hotosm.org/projects/63003",
    "aoi": {
@@ -4299,7 +4299,7 @@
     "160": "VALIDATED",
     "161": "VALIDATED",
     "158": "VALIDATED",
-    "162": "LOCKED_FOR_VALIDATION",
+    "162": "MAPPED",
     "180": "BADIMAGERY",
     "177": "MAPPED",
     "171": "MAPPED",
@@ -4374,9 +4374,8 @@
    },
    "task_counts": {
     "VALIDATED": 138,
-    "MAPPED": 95,
-    "BADIMAGERY": 3,
-    "LOCKED_FOR_VALIDATION": 1
+    "MAPPED": 96,
+    "BADIMAGERY": 3
    }
   },
   {
