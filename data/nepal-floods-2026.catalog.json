@@ -1,8 +1,8 @@
 {
- "generated": "2026-10-08T16:10:21Z",
+ "generated": "2026-10-08T16:22:38Z",
  "sources": {
   "scenes": {
-   "status": "stale",
+   "status": "ok",
    "count": 84
   },
   "tasking_manager": {
@@ -15,11 +15,6 @@
   }
  },
  "failures": [
-  {
-   "source": "scenes",
-   "what": "Planet item 20260926_093208_ssc10_u0001.json",
-   "detail": "HTTP 520"
-  },
   {
    "source": "impact_layers",
    "what": "layer unosat-mudflow-live",
