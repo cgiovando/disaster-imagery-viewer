@@ -1,9 +1,9 @@
 {
- "generated": "2026-10-11T23:08:27Z",
+ "generated": "2026-10-12T09:08:42Z",
  "sources": {
   "scenes": {
    "status": "ok",
-   "count": 84
+   "count": 99
   },
   "tasking_manager": {
    "status": "ok",
@@ -78,6 +78,561 @@
  },
  "esri_seamlines": "nepal-floods-2026.esri-seamlines.geojson",
  "scenes": [
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-12T05:00:28.523829Z",
+   "phase": "post",
+   "gsd_cm": 400,
+   "cloud_pct": 32.0,
+   "bbox": [
+    84.83908077982123,
+    28.0933892975663,
+    85.23306786497518,
+    28.34250472523722
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-12/items/20261012_050028_52_257a/20261012_050028_52_257a.json",
+   "id": "planet-20261012_050028_52_257a",
+   "title": "PlanetScope 2026-10-12 05:00:28Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-12%2Fitems%2F20261012_050028_52_257a%2F20261012_050028_52_257a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-12%2Fitems%2F20261012_050028_52_257a%2F20261012_050028_52_257a_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-12%2Fitems%2F20261012_050028_52_257a%2F20261012_050028_52_257a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-12T05:00:23.857052Z",
+   "phase": "post",
+   "gsd_cm": 400,
+   "cloud_pct": 36.0,
+   "bbox": [
+    84.90627686798729,
+    28.386421562062452,
+    85.30137125558585,
+    28.63552002891928
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-12/items/20261012_050023_85_257a/20261012_050023_85_257a.json",
+   "id": "planet-20261012_050023_85_257a",
+   "title": "PlanetScope 2026-10-12 05:00:23Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-12%2Fitems%2F20261012_050023_85_257a%2F20261012_050023_85_257a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-12%2Fitems%2F20261012_050023_85_257a%2F20261012_050023_85_257a_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-12%2Fitems%2F20261012_050023_85_257a%2F20261012_050023_85_257a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:39:05.029832Z",
+   "phase": "post",
+   "gsd_cm": 360.0,
+   "cloud_pct": 32.0,
+   "bbox": [
+    84.50530995665433,
+    28.355782870473917,
+    84.86602889675694,
+    28.58262697972504
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_053905_02_254a/20261011_053905_02_254a.json",
+   "id": "planet-20261011_053905_02_254a",
+   "title": "PlanetScope 2026-10-11 05:39:05Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_053905_02_254a%2F20261011_053905_02_254a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_053905_02_254a%2F20261011_053905_02_254a_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_053905_02_254a%2F20261011_053905_02_254a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:39:02.849070Z",
+   "phase": "post",
+   "gsd_cm": 360.0,
+   "cloud_pct": 15.0,
+   "bbox": [
+    84.53739355744811,
+    28.49387529886193,
+    84.89672760889012,
+    28.72125130977994
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_053902_84_254a/20261011_053902_84_254a.json",
+   "id": "planet-20261011_053902_84_254a",
+   "title": "PlanetScope 2026-10-11 05:39:02Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_053902_84_254a%2F20261011_053902_84_254a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_053902_84_254a%2F20261011_053902_84_254a_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_053902_84_254a%2F20261011_053902_84_254a_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:03:07.923711Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 9.0,
+   "bbox": [
+    84.76870529256689,
+    27.844806229192603,
+    85.15993770112881,
+    28.093286880745552
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_050307_92_2562/20261011_050307_92_2562.json",
+   "id": "planet-20261011_050307_92_2562",
+   "title": "PlanetScope 2026-10-11 05:03:07Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050307_92_2562%2F20261011_050307_92_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050307_92_2562%2F20261011_050307_92_2562_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050307_92_2562%2F20261011_050307_92_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:03:05.577180Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 45.0,
+   "bbox": [
+    84.80411938459413,
+    27.99205594234395,
+    85.1924477965142,
+    28.2405084086957
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_050305_57_2562/20261011_050305_57_2562.json",
+   "id": "planet-20261011_050305_57_2562",
+   "title": "PlanetScope 2026-10-11 05:03:05Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050305_57_2562%2F20261011_050305_57_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050305_57_2562%2F20261011_050305_57_2562_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050305_57_2562%2F20261011_050305_57_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:03:03.454120Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 50.0,
+   "bbox": [
+    84.83850527203377,
+    28.141410137827464,
+    85.22720504179358,
+    28.388799001078144
+   ],
+   "in_aoi": true,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_050303_45_2562/20261011_050303_45_2562.json",
+   "id": "planet-20261011_050303_45_2562",
+   "title": "PlanetScope 2026-10-11 05:03:03Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050303_45_2562%2F20261011_050303_45_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050303_45_2562%2F20261011_050303_45_2562_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050303_45_2562%2F20261011_050303_45_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:03:01.107625Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 25.0,
+   "bbox": [
+    84.87329768132365,
+    28.289602182383906,
+    85.26184107746461,
+    28.536470321337266
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_050301_10_2562/20261011_050301_10_2562.json",
+   "id": "planet-20261011_050301_10_2562",
+   "title": "PlanetScope 2026-10-11 05:03:01Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050301_10_2562%2F20261011_050301_10_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050301_10_2562%2F20261011_050301_10_2562_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050301_10_2562%2F20261011_050301_10_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-11T05:02:58.537677Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 17.0,
+   "bbox": [
+    84.90581286510097,
+    28.435886894078543,
+    85.29692242094653,
+    28.683353192177588
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-11/items/20261011_050258_53_2562/20261011_050258_53_2562.json",
+   "id": "planet-20261011_050258_53_2562",
+   "title": "PlanetScope 2026-10-11 05:02:58Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050258_53_2562%2F20261011_050258_53_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050258_53_2562%2F20261011_050258_53_2562_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-11%2Fitems%2F20261011_050258_53_2562%2F20261011_050258_53_2562_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-10T05:04:35.696441Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 36.0,
+   "bbox": [
+    84.5669281981493,
+    27.84499770416154,
+    84.95374315536495,
+    28.08973438493033
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-10/items/20261010_050435_69_2571/20261010_050435_69_2571.json",
+   "id": "planet-20261010_050435_69_2571",
+   "title": "PlanetScope 2026-10-10 05:04:35Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050435_69_2571%2F20261010_050435_69_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050435_69_2571%2F20261010_050435_69_2571_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050435_69_2571%2F20261010_050435_69_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-10T05:04:33.371485Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 62.0,
+   "bbox": [
+    84.60132482347763,
+    27.990881287186095,
+    84.98581986490127,
+    28.23591264972299
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-10/items/20261010_050433_37_2571/20261010_050433_37_2571.json",
+   "id": "planet-20261010_050433_37_2571",
+   "title": "PlanetScope 2026-10-10 05:04:33Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050433_37_2571%2F20261010_050433_37_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050433_37_2571%2F20261010_050433_37_2571_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050433_37_2571%2F20261010_050433_37_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-10T05:04:31.046584Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 77.0,
+   "bbox": [
+    84.63551102027,
+    28.13779742298058,
+    85.01877482278282,
+    28.38170751452368
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-10/items/20261010_050431_04_2571/20261010_050431_04_2571.json",
+   "id": "planet-20261010_050431_04_2571",
+   "title": "PlanetScope 2026-10-10 05:04:31Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050431_04_2571%2F20261010_050431_04_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050431_04_2571%2F20261010_050431_04_2571_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050431_04_2571%2F20261010_050431_04_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-10T05:04:28.721684Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 82.0,
+   "bbox": [
+    84.66747219121459,
+    28.28452835877689,
+    85.05363810045566,
+    28.528345758157343
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-10/items/20261010_050428_72_2571/20261010_050428_72_2571.json",
+   "id": "planet-20261010_050428_72_2571",
+   "title": "PlanetScope 2026-10-10 05:04:28Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050428_72_2571%2F20261010_050428_72_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050428_72_2571%2F20261010_050428_72_2571_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050428_72_2571%2F20261010_050428_72_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-10T05:04:26.396728Z",
+   "phase": "post",
+   "gsd_cm": 390.0,
+   "cloud_pct": 67.0,
+   "bbox": [
+    84.70217866433433,
+    28.431244317731473,
+    85.08810985275119,
+    28.67473099727418
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-10/items/20261010_050426_39_2571/20261010_050426_39_2571.json",
+   "id": "planet-20261010_050426_39_2571",
+   "title": "PlanetScope 2026-10-10 05:04:26Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050426_39_2571%2F20261010_050426_39_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050426_39_2571%2F20261010_050426_39_2571_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050426_39_2571%2F20261010_050426_39_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
+  {
+   "provider": "Planet",
+   "sensor": "PlanetScope",
+   "acquired": "2026-10-10T05:04:24.071831Z",
+   "phase": "post",
+   "gsd_cm": 380.0,
+   "cloud_pct": 34.0,
+   "bbox": [
+    84.73624719236855,
+    28.5779103119981,
+    85.12129564069657,
+    28.821108399329205
+   ],
+   "in_aoi": false,
+   "is_drone": false,
+   "license": "CC-BY-NC-4.0",
+   "attribution": "Planet Crisis Response via Source Cooperative",
+   "oam_url": "https://data.source.coop/planet/disasterdata/nepal-flash-flood-2026-08-26/post-event/planetscope-2026-10-10/items/20261010_050424_07_2571/20261010_050424_07_2571.json",
+   "id": "planet-20261010_050424_07_2571",
+   "title": "PlanetScope 2026-10-10 05:04:24Z",
+   "renders": [
+    {
+     "id": "nir-false-colour",
+     "name": "NIR false colour",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050424_07_2571%2F20261010_050424_07_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+     "note": "Vegetation red, water dark, wet ground and debris distinct from dry."
+    },
+    {
+     "id": "ndwi",
+     "name": "NDWI",
+     "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050424_07_2571%2F20261010_050424_07_2571_analytic.tif&expression=%28b2-b4%29%2F%28b2%2Bb4%29&rescale=-1,1&colormap_name=rdbu",
+     "note": "Normalised difference water index from green and NIR. Blue is water."
+    }
+   ],
+   "tile_url": "https://titiler.hotosm.org/cog/tiles/WebMercatorQuad/{z}/{x}/{y}@1x?url=https%3A%2F%2Fdata.source.coop%2Fplanet%2Fdisasterdata%2Fnepal-flash-flood-2026-08-26%2Fpost-event%2Fplanetscope-2026-10-10%2Fitems%2F20261010_050424_07_2571%2F20261010_050424_07_2571_analytic.tif&bidx=4&bidx=3&bidx=2&rescale=2000,44000&rescale=2000,44000&rescale=2000,44000",
+   "group": "post-satellite"
+  },
   {
    "provider": "Planet",
    "sensor": "PlanetScope",
