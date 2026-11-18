@@ -130,10 +130,10 @@
       "type": "geojson",
       "group": "impact",
       "name": "UNOSAT mudflow / rockflow extent",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/41/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/41/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#ff7043",
       "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
-      "info": "Flow footprint delineated by UNOSAT from imagery of 26 and 27 Aug, revised since first publication and now six polygons rather than one. Pulled live from the UNOSAT service, so it tracks their revisions.",
+      "info": "Flow footprint delineated by UNOSAT from imagery of 26 to 28 Aug, currently published as one multipart feature. Pulled live from the UNOSAT service, so it tracks their revisions.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     },
     {
@@ -141,7 +141,7 @@
       "type": "geojson",
       "group": "impact",
       "name": "UNOSAT detachment zone",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/7/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/42/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#ffd54f",
       "fillOpacity": 0.18,
       "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
@@ -152,12 +152,12 @@
       "id": "sertit-flood-trace",
       "type": "geojson",
       "group": "impact",
-      "name": "SERTIT flood trace (Pleiades)",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/5/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "name": "SERTIT crisis information (Pleiades)",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/3/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#4dd0e1",
       "fillOpacity": 0.2,
       "attribution": "(c) ICube-SERTIT 2026, International Charter Call 1209",
-      "info": "127 ha flood trace photo-interpreted from Pleiades, dated 28 Aug. Human-delineated, not automated.",
+      "info": "18 flood-trace polygons (629 ha total) photo-interpreted from Pleiades. Human-delineated, not automated.",
       "link": "https://disasterscharter.org/"
     },
     {
@@ -165,7 +165,7 @@
       "type": "geojson",
       "group": "impact",
       "name": "SERTIT built-up damage (Pleiades)",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#d73f3f",
       "colorBy": {
         "property": "DAMAGE",
@@ -177,7 +177,7 @@
         "default": "#7a7a86"
       },
       "attribution": "(c) ICube-SERTIT 2026, International Charter Call 1209",
-      "info": "63 structures assessed by photo-interpretation of Pleiades: 62 destroyed, 1 damaged. 38 industrial, 25 residential. Independent of the AI assessment below, and from a sensor not otherwise in this viewer.",
+      "info": "759 structures assessed by photo-interpretation of Pleiades: 520 destroyed, 204 damaged, 35 possibly damaged. Independent of the AI assessment below, and from a sensor not otherwise in this viewer.",
       "link": "https://disasterscharter.org/"
     },
     {
@@ -185,7 +185,7 @@
       "type": "geojson",
       "group": "impact",
       "name": "SERTIT road damage (Pleiades)",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/3/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/Sertit_Analysis/MapServer/2/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#d73f3f",
       "lineWidth": 3,
       "colorBy": {
@@ -198,7 +198,7 @@
         "default": "#7a7a86"
       },
       "attribution": "(c) ICube-SERTIT 2026, International Charter Call 1209",
-      "info": "35 road segments on OSM geometry, scored from Pleiades: 13 destroyed, 22 no visible damage. 9 are primary roads.",
+      "info": "864 road segments assessed from Pleiades: 195 destroyed, 22 damaged, 316 with no visible damage, and 331 not analysed.",
       "link": "https://disasterscharter.org/"
     },
     {
@@ -301,8 +301,8 @@
       "group": "impact",
       "name": "UNOSAT barrier lakes",
       "urls": [
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/33/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
-        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/35/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/33/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+        "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/35/query?where=1%3D1&outFields=*&outSR=4326&f=geojson"
       ],
       "color": "#29b6f6",
       "fillOpacity": 0.35,
@@ -327,10 +327,10 @@
       "type": "geojson",
       "group": "impact",
       "name": "Buildings within the affected area",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/29/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/47/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#ffab91",
       "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
-      "info": "882 building points falling inside UNOSAT's affected area. This is exposure, not damage: the layer carries no damage classification, so a building appearing here has not been assessed as damaged. Use the damage layers for that.",
+      "info": "572 building points falling inside UNOSAT's affected area. This is exposure, not damage: the layer carries no damage classification, so a building appearing here has not been assessed as damaged. Use the damage layers for that.",
       "link": "https://experience.arcgis.com/experience/506e35256a654e0c97600f6adbaacbe3/page/UNOSAT"
     },
     {
@@ -338,7 +338,7 @@
       "type": "geojson",
       "group": "impact",
       "name": "Roads within the affected area",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/31/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/44/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#ffcc80",
       "lineWidth": 2.4,
       "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
@@ -350,7 +350,7 @@
       "type": "geojson",
       "group": "impact",
       "name": "Potentially affected cropland",
-      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis/MapServer/39/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
+      "url": "https://unosatgis.cern.ch/rapidmapping/rest/services/FL20260826NPL/UNOSAT_Analysis_V2/MapServer/39/query?where=1%3D1&outFields=*&outSR=4326&f=geojson",
       "color": "#aed581",
       "fillOpacity": 0.28,
       "attribution": "UNOSAT (UNITAR), event FL20260826NPL",
